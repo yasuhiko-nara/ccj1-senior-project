@@ -67,7 +67,7 @@ function MyComponent() {
     setSelected(item);
   };
   return (
-    <LoadScript googleMapsApiKey="AIzaSyBM-UMdy6RjiH06ehfm2XNw9v5PTtUXt8M">
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_googleMapsApiKey}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={currentPosition}

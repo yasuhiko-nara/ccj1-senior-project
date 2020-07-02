@@ -7,10 +7,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-directions": "^4.0.3",
     "@react-google-maps/api": "^1.9.7",
     "bootstrap": "^4.5.0",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^1.8.0",
     "mapbox-gl": "^1.11.0",
     "next": "latest",
+    "path": "^0.12.7",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.9.0",
