@@ -56,25 +56,23 @@ const locations = [
 
 function MyComponent() {
   const [selected, setSelected] = useState({});
-  const [currentPosition, setCurrentPosition] = useState({});
-  const success = (position) => {
-    const currentPosition = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    };
-    setCurrentPosition(currentPosition);
-  };
+  const [currentPosition, setCurrentPosition] = useState(center);
 
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(success);
-  // });
+  useEffect(() => {
+    console.log(currentPosition);
+  }, []);
+
   const onSelect = (item) => {
+    console.log(item);
     setSelected(item);
   };
   return (
     <LoadScript googleMapsApiKey="AIzaSyBM-UMdy6RjiH06ehfm2XNw9v5PTtUXt8M">
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={7}>
-        {/* Child components, such as markers, info windows, etc. */}
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={currentPosition}
+        zoom={7}
+      >
         {locations.map((item) => {
           return (
             <Marker
