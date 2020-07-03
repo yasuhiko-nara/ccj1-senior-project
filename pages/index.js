@@ -22,9 +22,6 @@ const Index = (props) => {
 
   return (
     <>
-      <Button variant="contained" color="primary">
-        LIST
-      </Button>
       <div>
         aaaa
         <h1 className="a">ddd</h1>
