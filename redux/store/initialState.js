@@ -1,6 +1,6 @@
 const initialState = {
-  users: { name: "name" },
-  travels: {},
+  users: {},
+  travels: [],
 };
 
 export default initialState;
