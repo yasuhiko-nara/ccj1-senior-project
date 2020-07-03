@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
 import { createStore } from "../redux/store/store";
-import "../styles/style.scss";
+import "../styles/style.css"; //global css
 
 export default function App({ Component, pageProps }) {
   const store = createStore(pageProps.initialReduxState);

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
-//import "../style.scss";
 
 export async function getStaticProps() {
   const res = await axios.get("https://jsonplaceholder.typicode.com/users");
@@ -21,9 +20,12 @@ const Index = (props) => {
   const result = JSON.parse(array).map((data) => data.id);
 
   return (
-    <div>
-      <h1>ddd</h1>
-    </div>
+    <>
+      <div>
+        aaaa
+        <h1 className="a">ddd</h1>
+      </div>
+    </>
   );
 };
 
