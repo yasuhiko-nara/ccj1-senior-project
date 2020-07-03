@@ -1,6 +1,96 @@
 const initialState = {
   users: {},
-  travels: [],
+  travels: {
+    hokkaido: {
+      restaurants: [
+        {
+          latitude: 43.048583,
+          longitude: 141.318944,
+          name: "testRestaurants1",
+          image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+          category: "",
+          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          rating: 1.7,
+        },
+        {
+          latitude: 43.290157,
+          longitude: 141.974789,
+          name: "testRestaurants2",
+          image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+          category: "",
+          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          rating: 4.2,
+        },
+        {
+          latitude: 43.331995,
+          longitude: 145.607599,
+          name: "testRestaurants3",
+          image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+          category: "",
+          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          rating: 3.3,
+        },
+      ],
+      attractions: [
+        {
+          latitude: 43.279687,
+          longitude: 145.204944,
+          name: "testAttraction1",
+          image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+          category: "",
+          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          rating: 3.8,
+        },
+        {
+          latitude: 43.146834,
+          longitude: 144.863129,
+          name: "testAttraction2",
+          image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+          category: "",
+          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          rating: 1.1,
+        },
+        {
+          latitude: 43.090831,
+          longitude: 144.210956,
+          name: "testAttraction3",
+          image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+          category: "",
+          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          rating: 2.9,
+        },
+      ],
+      hotels: [
+        {
+          latitude: 45.105505,
+          longitude: 142.010715,
+          name: "testHotels1",
+          image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+          category: "",
+          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          rating: 4.1,
+        },
+        {
+          latitude: 42.691185,
+          longitude: 142.07773,
+          name: "testHotels2",
+          image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+          category: "",
+          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          rating: 2.6,
+        },
+        {
+          latitude: 41.87144,
+          longitude: 140.467568,
+          name: "testHotels3",
+          image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+          category: "",
+          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          rating: 3.2,
+        },
+      ],
+    },
+  },
 };
 
 export default initialState;
