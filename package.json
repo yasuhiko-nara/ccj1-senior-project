@@ -7,13 +7,20 @@
     "start": "next start"
   },
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "material-ui": "^0.20.2",
     "next": "latest",
+    "node-sass": "^4.14.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.0",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "sass": "^1.26.9",
+    "styled-jsx-plugin-sass": "^1.0.0"
   },
   "license": "ISC"
 }
