@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
-import Button from "@material-ui/core/Button";
 
 export async function getStaticProps() {
   const res = await axios.get("https://jsonplaceholder.typicode.com/users");
