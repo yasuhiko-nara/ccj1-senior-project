@@ -1,23 +1,32 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import Link from 'next/link'
-import { startClock } from '../actions'
-import Examples from '../components/examples'
+import axios from "axios";
+import { useSelector } from "react-redux";
 
-const Index = () => {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(startClock())
-  }, [dispatch])
+export async function getStaticProps() {
+  const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+
+  const data = JSON.stringify(res.data);
+  return {
+    props: {
+      data,
+    },
+  };
+}
+
+const Index = (props) => {
+  const name = useSelector((store) => store.users.name);
+
+  const array = props.data;
+
+  const result = JSON.parse(array).map((data) => data.id);
 
   return (
     <>
-      <Examples />
-      <Link href="/show-redux-state">
-        <a>Click to see current Redux State</a>
-      </Link>
+      <div>
+        aaaa
+        <h1 className="a">ddd</h1>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
