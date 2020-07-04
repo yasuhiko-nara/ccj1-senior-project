@@ -19,9 +19,12 @@ import {
 import { formatRelative } from "date-fns";
 
 import mapStyles from "./mapUtils/mapStyles";
+import locations from "./mapUtils/locations";
 
 const bikeIcon =
   "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%82%99%E3%82%A4%E3%82%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=260673d7-dafc-4496-b5d1-2a41ffab66a6";
+const homeIcon =
+  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%9B%E3%83%BC%E3%83%A0%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.jpeg?alt=media&token=10731173-077b-4d14-b3c1-6866cb01bf29";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -43,16 +46,19 @@ export default function App() {
     googleMapsApiKey: process.env.REACT_APP_googleMapsApiKey,
     libraries,
   });
-  const [markers, setMarkers] = useState([]);
+  const [markers, setMarkers] = useState(locations);
   const [selected, setSelected] = useState(null);
 
   const onMapClick = useCallback((e) => {
     setMarkers((current) => [
       ...current,
       {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
+        name: "test",
+        image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+        location: {
+          lat: e.latLng.lat(),
+          lng: e.latLng.lng(),
+        },
       },
     ]);
   }, []);
@@ -90,8 +96,8 @@ export default function App() {
       >
         {markers.map((marker) => (
           <Marker
-            key={`${marker.lat}-${marker.lng}`}
-            position={{ lat: marker.lat, lng: marker.lng }}
+            key={`${marker.location.lat}-${marker.location.lng}`}
+            position={{ lat: marker.location.lat, lng: marker.location.lng }}
             onClick={() => {
               setSelected(marker);
             }}
@@ -106,7 +112,10 @@ export default function App() {
 
         {selected ? (
           <InfoWindow
-            position={{ lat: selected.lat, lng: selected.lng }}
+            position={{
+              lat: selected.location.lat,
+              lng: selected.location.lng,
+            }}
             onCloseClick={() => {
               setSelected(null);
             }}
@@ -114,11 +123,10 @@ export default function App() {
             <div>
               <h2>
                 <span role="img" aria-label="bear">
-                  test
-                </span>{" "}
-                Alert
+                  {selected.name}
+                </span>
               </h2>
-              <p>Spotted {formatRelative(selected.time, new Date())}</p>
+              <img src={selected.image} />
             </div>
           </InfoWindow>
         ) : null}
@@ -143,7 +151,7 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="/compass.svg" alt="compass" />
+      <img src={homeIcon} alt="home" />
     </button>
   );
 }
