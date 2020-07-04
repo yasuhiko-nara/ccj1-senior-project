@@ -5,6 +5,7 @@ import "../styles/style.css"; //global css
 import "mapbox-gl/dist/mapbox-gl.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
+import "@reach/combobox/styles.css";
 
 export default function App({ Component, pageProps }) {
   const store = createStore(pageProps.initialReduxState);

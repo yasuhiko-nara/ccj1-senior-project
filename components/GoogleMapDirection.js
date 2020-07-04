@@ -5,7 +5,7 @@ import {
   GoogleMap,
   DirectionsRenderer,
 } from "react-google-maps";
-import locations from "./locations";
+import locations from "./mapUtils/locations";
 
 export default function () {
   const [directions, setDirections] = useState(null);
@@ -32,6 +32,24 @@ export default function () {
             location: new google.maps.LatLng(
               locations[7].location.lat,
               locations[7].location.lng
+            ),
+          },
+          {
+            location: new google.maps.LatLng(
+              locations[8].location.lat,
+              locations[8].location.lng
+            ),
+          },
+          {
+            location: new google.maps.LatLng(
+              locations[9].location.lat,
+              locations[9].location.lng
+            ),
+          },
+          {
+            location: new google.maps.LatLng(
+              locations[10].location.lat,
+              locations[10].location.lng
             ),
           },
         ],

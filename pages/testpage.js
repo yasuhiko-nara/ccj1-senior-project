@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
-import TestMap from "../components/GoogleMap2";
+import TestMap from "../components/GoogleMap3";
 // import Mapbox from "../components/Mapbox3";
 
 export async function getStaticProps() {
