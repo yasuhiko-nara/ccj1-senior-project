@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
+import List from "../components/List";
 
 export async function getStaticProps() {
   const res = await axios.get("https://jsonplaceholder.typicode.com/users");
