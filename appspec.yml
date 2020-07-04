@@ -3,14 +3,6 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user/rakutabi
-[4]acls: 
-[6]-[1]acls-specification 
-[4]context:
-[6]user:[1]user-specification
-[6]type:[1]type-specification
-[6]range:[1]range-specification
-[4]type:
-[6]-[1]object-type
 hooks:
   AfterInstall:
     - location: /home/ec2-user/rakubabi/awsscripts/serup_server.sh
