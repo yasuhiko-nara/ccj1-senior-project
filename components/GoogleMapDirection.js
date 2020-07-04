@@ -5,15 +5,16 @@ import {
   GoogleMap,
   DirectionsRenderer,
 } from "react-google-maps";
+import locations from "./locations";
 
 export default function () {
   const [directions, setDirections] = useState(null);
+  const defaultCenter = locations[0].location;
+  const origin = locations[1].location;
+  const destination = locations[2].location;
 
   useEffect(() => {
     const directionsService = new google.maps.DirectionsService();
-
-    const origin = { lat: 6.5244, lng: 3.3792 };
-    const destination = { lat: 6.4667, lng: 3.45 };
 
     directionsService.route(
       {
@@ -22,10 +23,16 @@ export default function () {
         travelMode: google.maps.TravelMode.DRIVING,
         waypoints: [
           {
-            location: new google.maps.LatLng(6.4698, 3.5852),
+            location: new google.maps.LatLng(
+              locations[3].location.lat,
+              locations[3].location.lng
+            ),
           },
           {
-            location: new google.maps.LatLng(6.6018, 3.3515),
+            location: new google.maps.LatLng(
+              locations[7].location.lat,
+              locations[7].location.lng
+            ),
           },
         ],
       },
@@ -41,7 +48,7 @@ export default function () {
   }, []);
 
   const GoogleMapExample = withGoogleMap((props) => (
-    <GoogleMap defaultCenter={{ lat: 6.5244, lng: 3.3792 }} defaultZoom={13}>
+    <GoogleMap defaultCenter={defaultCenter} defaultZoom={13}>
       <DirectionsRenderer directions={directions} />
     </GoogleMap>
   ));
