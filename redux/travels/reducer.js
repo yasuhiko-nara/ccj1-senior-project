@@ -1,7 +1,10 @@
 import initialState from "../store/initialState";
-export const travelReducer = (store = initialState.travels, action) => {
+import * as actions from "./action";
+import { ActionSchedule } from "material-ui/svg-icons";
+
+export const travelReducer = (state = initialState.travels, action) => {
   switch (action.type) {
     default:
-      return store;
+      return state;
   }
 };

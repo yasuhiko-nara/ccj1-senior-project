@@ -1,7 +1,8 @@
 import initialState from "../store/initialState";
-export const userReducer = (store = initialState.users, action) => {
+import * as actions from "./action";
+export const userReducer = (state = initialState.users, action) => {
   switch (action.type) {
     default:
-      return store;
+      return state;
   }
 };
