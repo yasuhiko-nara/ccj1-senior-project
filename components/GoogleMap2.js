@@ -1,7 +1,7 @@
 import React from "react";
 import { withScriptjs } from "react-google-maps";
 
-import Map from "./GoogleMapDirection";
+import Map from "./GoogleMapDirection2";
 
 export default function () {
   const MapLoader = withScriptjs(Map);

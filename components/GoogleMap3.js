@@ -4,6 +4,8 @@ import {
   useLoadScript,
   Marker,
   InfoWindow,
+  DirectionsRenderer,
+  DirectionsService,
 } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
   getGeocode,
@@ -48,6 +50,7 @@ export default function App() {
   });
   const [markers, setMarkers] = useState(locations);
   const [selected, setSelected] = useState(null);
+  const [response, setResponse] = useState(null);
 
   const onMapClick = useCallback((e) => {
     setMarkers((current) => [
@@ -76,6 +79,31 @@ export default function App() {
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
+  const origin = { lat: 42.755955, lng: 141.32816 };
+  const destination = { lat: 44.299023, lng: 141.65308 };
+
+  const directionsCallback = (googleResponse) => {
+    if (googleResponse) {
+      if (response) {
+        if (
+          googleResponse.status === "OK" &&
+          googleResponse.routes.overview_polyline !==
+            response.routes.overview_polyline
+        ) {
+          setResponse(() => googleResponse);
+        } else {
+          console.log("response: ", googleResponse);
+        }
+      } else {
+        if (googleResponse.status === "OK") {
+          setResponse(() => googleResponse);
+        } else {
+          console.log("response: ", googleResponse);
+        }
+      }
+    }
+  };
+
   return (
     <div>
       <h1>
@@ -94,6 +122,24 @@ export default function App() {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
+        {destination !== "" && origin !== "" && (
+          <DirectionsService
+            options={{
+              origin,
+              destination,
+              travelMode: "DRIVING",
+            }}
+            callback={directionsCallback}
+          />
+        )}
+
+        {response !== null && (
+          <DirectionsRenderer
+            options={{
+              directions: response,
+            }}
+          />
+        )}
         {markers.map((marker) => (
           <Marker
             key={`${marker.location.lat}-${marker.location.lng}`}
