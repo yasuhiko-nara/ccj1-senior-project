@@ -1,7 +1,6 @@
 import React from "react";
 // import "./App.css";
 import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 class App extends React.Component {
@@ -17,6 +16,7 @@ class App extends React.Component {
       unit: "metric",
       profile: "mapbox/driving",
     });
+    map.addControl(directions, "top-left");
   }
   render() {
     return <div ref={(el) => (this.mapWrapper = el)} className="mapWrapper" />;

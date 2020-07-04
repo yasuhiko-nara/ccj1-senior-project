@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
+import GoogleMap from "../components/GoogleMap2";
+import Mapbox from "../components/Mapbox3";
 
 export async function getStaticProps() {
   const res = await axios.get("https://jsonplaceholder.typicode.com/users");
@@ -24,6 +26,7 @@ const Index = (props) => {
       <div>
         aaaa
         <h1 className="a">ddd</h1>
+        <GoogleMap />
       </div>
     </>
   );
