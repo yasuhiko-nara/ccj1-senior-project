@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { get_locations, select_activities } from "../redux/travels/action";
+import { select_activities } from "../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   FormLabel,
@@ -22,11 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CheckboxesGroup() {
   const classes = useStyles();
-  //   const [state, setState] = React.useState({
-  //     restaurants: true,
-  //     attractions: false,
-  //     hotels: false,
-  //   });
+
   const selectedActivities = useSelector(
     (state) => state.travels.selectedActivities
   );
@@ -36,7 +32,6 @@ export default function CheckboxesGroup() {
 
   const handleChange = (event) => {
     dispatch(select_activities(event.target));
-    // setState({ ...state, [event.target.name]: event.target.checked });
   };
 
   return (
