@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef } from "react";
+import { Button } from "@material-ui/core";
 import {
   GoogleMap,
   useLoadScript,
@@ -106,6 +107,9 @@ export default function App() {
 
   return (
     <div>
+      <Button color="primary">ATTRACTION</Button>
+      <Button color="primary">RESTAURANT</Button>
+      <Button color="primary">HOTEL</Button>
       <h1>
         バイク旅！ <span role="img" aria-label="bike"></span>
       </h1>
@@ -144,7 +148,7 @@ export default function App() {
           <Marker
             key={`${marker.location.lat}-${marker.location.lng}`}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
-            onClick={() => {
+            onMouseOver={() => {
               setSelected(marker);
             }}
             icon={{
