@@ -1,23 +1,26 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { select_activities } from "../../redux/travels/action";
-import { Button } from "@material-ui/core";
+
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
-  DirectionsRenderer,
-  DirectionsService,
 } from "@react-google-maps/api";
 
 import Search from "./Search";
 import Locate from "./Locate";
+import Activity from "./Activity";
 
 import mapStyles from "./mapUtils/mapStyles";
 
+const restaurantIcon =
+  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF%E3%81%A8%E3%83%8A%E3%82%A4%E3%83%95%E3%81%AE%E3%81%8A%E9%A3%9F%E4%BA%8B%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E7%B4%A0%E6%9D%90%20(1).svg?alt=media&token=ca319d7f-5a67-4207-856f-28fc75f6875f";
+
 const bikeIcon =
   "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%82%99%E3%82%A4%E3%82%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=260673d7-dafc-4496-b5d1-2a41ffab66a6";
+const hotelIcon =
+  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%98%E3%82%99%E3%83%83%E3%83%88%E3%82%99%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B39.svg?alt=media&token=76f3bedd-c925-4561-b282-07b81a98a8e6";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -40,39 +43,14 @@ export default function Map() {
     libraries,
   });
   const dispatch = useDispatch();
-  const travels = useSelector((state) => state.travels);
-  const selectedPlace = useSelector((state) => state.selectedPlace);
-  const { restaurants, attractions, hotels } = useSelector(
+
+  // const selectedPlace = useSelector((state) => state.selectedPlace);
+  const selectedActivities = useSelector(
     (state) => state.travels.selectedActivities
   );
-
-  const merkers = useSelector((state) => state.merkers);
-  useEffect(() => {
-    dispatch(get_locations(travels, selectedPlace));
-    // state.restaurants,attractions,hotelsにinitialStateの情報を入れる（初回マウント時のみ）
-  }, []);
-
-  useEffect(() => {
-    dispatch(set_markers(travels, selectedPlace, selectedActivities));
-    // state.markersにマークすべきlocationを入れる（[]内の引数が変わったときのみ）
-  }, [travels, selectedActivities]);
-  // const [markers, setMarkers] = useState(locations);
-  // const [selected, setSelected] = useState(null);
-  const [response, setResponse] = useState(null);
-
-  // const onMapClick = useCallback((e) => {
-  //   setMarkers((current) => [
-  //     ...current,
-  //     {
-  //       name: "test",
-  //       image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
-  //       location: {
-  //         lat: e.latLng.lat(),
-  //         lng: e.latLng.lng(),
-  //       },
-  //     },
-  //   ]);
-  // }, []);
+  const restaurants = useSelector((state) => state.travels.restaurants);
+  const attractions = useSelector((state) => state.travels.attractions);
+  const hotels = useSelector((state) => state.travels.hotels);
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -87,36 +65,8 @@ export default function Map() {
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
-  const origin = { lat: 42.755955, lng: 141.32816 };
-  const destination = { lat: 44.299023, lng: 141.65308 };
-
-  const directionsCallback = (googleResponse) => {
-    if (googleResponse) {
-      if (response) {
-        if (
-          googleResponse.status === "OK" &&
-          googleResponse.routes.overview_polyline !==
-            response.routes.overview_polyline
-        ) {
-          setResponse(() => googleResponse);
-        } else {
-          console.log("response: ", googleResponse);
-        }
-      } else {
-        if (googleResponse.status === "OK") {
-          setResponse(() => googleResponse);
-        } else {
-          console.log("response: ", googleResponse);
-        }
-      }
-    }
-  };
-
   return (
     <div>
-      <Button color="primary">ATTRACTION</Button>
-      <Button color="primary">RESTAURANT</Button>
-      <Button color="primary">HOTEL</Button>
       <h1>
         バイク旅！ <span role="img" aria-label="bike"></span>
       </h1>
@@ -130,63 +80,24 @@ export default function Map() {
         zoom={8}
         center={center}
         options={options}
-        onClick={onMapClick}
+        // onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        {destination !== "" && origin !== "" && (
-          <DirectionsService
-            options={{
-              origin,
-              destination,
-              travelMode: "DRIVING",
-            }}
-            callback={directionsCallback}
-          />
-        )}
-
-        {response !== null && (
-          <DirectionsRenderer
-            options={{
-              directions: response,
-            }}
-          />
-        )}
-        {markers.map((marker) => (
-          <Marker
-            key={`${marker.location.lat}-${marker.location.lng}`}
-            position={{ lat: marker.location.lat, lng: marker.location.lng }}
-            onMouseOver={() => {
-              setSelected(marker);
-            }}
-            icon={{
-              url: bikeIcon,
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-              scaledSize: new window.google.maps.Size(30, 30),
-            }}
-          />
-        ))}
-
-        {selected ? (
-          <InfoWindow
-            position={{
-              lat: selected.location.lat,
-              lng: selected.location.lng,
-            }}
-            onCloseClick={() => {
-              setSelected(null);
-            }}
-          >
-            <div>
-              <h2>
-                <span role="img" aria-label="bear">
-                  {selected.name}
-                </span>
-              </h2>
-              <img src={selected.image} />
-            </div>
-          </InfoWindow>
-        ) : null}
+        <Activity
+          show={selectedActivities.restaurants}
+          activity={restaurants}
+          icon={restaurantIcon}
+        />
+        <Activity
+          show={selectedActivities.attractions}
+          activity={attractions}
+          icon={bikeIcon}
+        />
+        <Activity
+          show={selectedActivities.hotels}
+          activity={hotels}
+          icon={hotelIcon}
+        />
       </GoogleMap>
     </div>
   );

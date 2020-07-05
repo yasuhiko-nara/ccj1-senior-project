@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef } from "react";
 const homeIcon =
-  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%9B%E3%83%BC%E3%83%A0%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.jpeg?alt=media&token=10731173-077b-4d14-b3c1-6866cb01bf29";
+  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E5%AE%B6%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=fcf22311-0af1-40d9-a106-8c871ec72687";
 
 export default function List({ panTo }) {
   return (
