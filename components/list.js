@@ -1,7 +1,6 @@
 import Item from "./item";
 import { useSelector } from "react-redux";
 import { Divider } from "material-ui";
-import { get_locations } from "../redux/travels/action";
 
 const list = () => {
   const Hokkaido = useSelector((store) => store.travels.hokkaido);
@@ -11,9 +10,9 @@ const list = () => {
     <div>
       <Item
         image={hotels[0].image}
-        name={hotels.name}
-        reviews={hotels.reviews}
-        rating={hotels.rating}
+        name={hotels[0].name}
+        reviews={hotels[0].reviews}
+        rating={hotels[0].rating}
       />
     </div>
   );

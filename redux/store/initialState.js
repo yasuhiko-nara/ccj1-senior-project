@@ -8,7 +8,26 @@ const initialState = {
           name: "testRestaurants1",
           image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
           category: "",
-          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          reviews: [
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+          ],
           rating: 1.7,
         },
         {
@@ -16,7 +35,26 @@ const initialState = {
           name: "testRestaurants2",
           image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
           category: "",
-          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          reviews: [
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+          ],
           rating: 4.2,
         },
         {
@@ -24,7 +62,26 @@ const initialState = {
           name: "testRestaurants3",
           image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
           category: "",
-          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          reviews: [
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+          ],
           rating: 3.3,
         },
       ],
@@ -34,7 +91,26 @@ const initialState = {
           name: "testAttraction1",
           image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
           category: "",
-          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          reviews: [
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+          ],
           rating: 3.8,
         },
         {
@@ -42,7 +118,26 @@ const initialState = {
           name: "testAttraction2",
           image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
           category: "",
-          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          reviews: [
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+          ],
           rating: 1.1,
         },
         {
@@ -50,7 +145,26 @@ const initialState = {
           name: "testAttraction3",
           image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
           category: "",
-          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          reviews: [
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+          ],
           rating: 2.9,
         },
       ],
@@ -60,7 +174,26 @@ const initialState = {
           name: "testHotels1",
           image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
           category: "",
-          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          reviews: [
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+          ],
           rating: 4.1,
         },
         {
@@ -68,7 +201,26 @@ const initialState = {
           name: "testHotels2",
           image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
           category: "",
-          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          reviews: [
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+          ],
           rating: 2.6,
         },
         {
@@ -76,7 +228,26 @@ const initialState = {
           name: "testHotels3",
           image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
           category: "",
-          reviews: ["testtest", "testtesttesttest", "testtesttesttesttesttest"],
+          reviews: [
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+            {
+              titile: "test1",
+              text: "testtesttesttesttest",
+              rating: "4",
+              published_data: "2020-02-22T20:52:08-05:00",
+            },
+          ],
           rating: 3.2,
         },
       ],
