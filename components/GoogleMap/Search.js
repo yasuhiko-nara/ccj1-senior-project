@@ -11,7 +11,7 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 
-export default function ({ panTo }) {
+export default function Search({ panTo }) {
   const {
     ready,
     value,

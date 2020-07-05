@@ -1,4 +1,6 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { select_activities } from "../../redux/travels/action";
 import { Button } from "@material-ui/core";
 import {
   GoogleMap,
@@ -8,11 +10,11 @@ import {
   DirectionsRenderer,
   DirectionsService,
 } from "@react-google-maps/api";
+
 import Search from "./Search";
 import Locate from "./Locate";
 
 import mapStyles from "./mapUtils/mapStyles";
-import locations from "./mapUtils/locations";
 
 const bikeIcon =
   "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%82%99%E3%82%A4%E3%82%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=260673d7-dafc-4496-b5d1-2a41ffab66a6";
@@ -32,28 +34,45 @@ const center = {
   lng: 141.49701,
 };
 
-export default function App() {
+export default function Map() {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_googleMapsApiKey,
     libraries,
   });
-  const [markers, setMarkers] = useState(locations);
-  const [selected, setSelected] = useState(null);
+  const dispatch = useDispatch();
+  const travels = useSelector((state) => state.travels);
+  const selectedPlace = useSelector((state) => state.selectedPlace);
+  const { restaurants, attractions, hotels } = useSelector(
+    (state) => state.travels.selectedActivities
+  );
+
+  const merkers = useSelector((state) => state.merkers);
+  useEffect(() => {
+    dispatch(get_locations(travels, selectedPlace));
+    // state.restaurants,attractions,hotelsにinitialStateの情報を入れる（初回マウント時のみ）
+  }, []);
+
+  useEffect(() => {
+    dispatch(set_markers(travels, selectedPlace, selectedActivities));
+    // state.markersにマークすべきlocationを入れる（[]内の引数が変わったときのみ）
+  }, [travels, selectedActivities]);
+  // const [markers, setMarkers] = useState(locations);
+  // const [selected, setSelected] = useState(null);
   const [response, setResponse] = useState(null);
 
-  const onMapClick = useCallback((e) => {
-    setMarkers((current) => [
-      ...current,
-      {
-        name: "test",
-        image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
-        location: {
-          lat: e.latLng.lat(),
-          lng: e.latLng.lng(),
-        },
-      },
-    ]);
-  }, []);
+  // const onMapClick = useCallback((e) => {
+  //   setMarkers((current) => [
+  //     ...current,
+  //     {
+  //       name: "test",
+  //       image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+  //       location: {
+  //         lat: e.latLng.lat(),
+  //         lng: e.latLng.lng(),
+  //       },
+  //     },
+  //   ]);
+  // }, []);
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
