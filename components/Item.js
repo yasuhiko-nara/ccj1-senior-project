@@ -14,6 +14,9 @@ const Item = (props) => {
         </div>
         <div>
           <img src={props.image} />
+          <p>{props.rating}</p>
+          <p>{props.name}</p>
+          <p>{props.reviews}</p>
         </div>
       </div>
       <style jsx>
