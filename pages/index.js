@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { get_initial_status } from "../redux/travels/action";
 import List from "../components/List";
 
 export async function getStaticProps() {
-  const res = await axios.get("https://jsonplaceholder.typicode.com/users");
-
+  const res = await axios.get(
+    "https://ala5g0w56m.execute-api.ap-northeast-1.amazonaws.com/Rakutabi_API"
+  );
   const data = JSON.stringify(res.data);
   return {
     props: {
@@ -14,11 +16,11 @@ export async function getStaticProps() {
 }
 
 const Index = (props) => {
-  const name = useSelector((store) => store.users.name);
+  // const name = useSelector((store) => store.users.name);
 
-  const array = props.data;
-
-  const result = JSON.parse(array).map((data) => data.id);
+  const initialState = JSON.parse(props.data);
+  const dispatch = useDispatch();
+  dispatch(get_initial_status(initialState));
 
   return <></>;
 };
