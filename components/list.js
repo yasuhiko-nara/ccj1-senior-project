@@ -1,22 +1,41 @@
 import Item from "./item";
 import { useSelector, useDispatch } from "react-redux";
+import Slider from "react-slick";
 
 import { Divider } from "material-ui";
 
-const List = () => {
-  const Hokkaido = useSelector((store) => store.travels.hokkaido);
-  const hotels = Hokkaido.hotels;
-  const array = hotels.map((obj, i) => (
-    <Item
-      image={obj.image}
-      name={obj.name}
-      reviews={obj.reviews}
-      rating={obj.rating}
-      key={i.toString()}
-    />
-  ));
+const List = (props) => {
+  const travels = useSelector((store) => store.travels);
+  const selectedActivities = props.selectedActivities;
+  let result = [];
+  const setting = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToscroll: 1,
+  };
+  for (const key in selectedActivities) {
+    if (selectedActivities[key]) {
+      let tmp = travels[key].map((obj, i) => (
+        <Item
+          image={obj.image}
+          name={obj.name}
+          reviews={obj.reviews}
+          rating={obj.rating}
+          key={i.toString()}
+        />
+      ));
 
-  return <div>{array}</div>;
+      result.push(
+        <Slider style={{ marginBottom: 20 }} {...setting}>
+          {tmp}
+        </Slider>
+      );
+    }
+  }
+
+  return <div>{result}</div>;
 };
 
 {
