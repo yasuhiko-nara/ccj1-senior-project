@@ -12,6 +12,13 @@ export const travelReducer = (state = initialState.travels, action) => {
           [action.activity.name]: action.activity.checked,
         },
       };
+    case actions.GET_INITIAL_STATUS:
+      return {
+        ...state,
+        restaurants: [...state.restaurants, ...action.initialState.restaurants],
+        attractions: [...state.attractions, ...action.initialState.attractions],
+        hotels: [...state.hotels, ...action.initialState.hotels],
+      };
     default:
       return state;
   }
