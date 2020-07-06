@@ -67,10 +67,6 @@ export default function Map() {
 
   return (
     <div>
-      <h1>
-        バイク旅！ <span role="img" aria-label="bike"></span>
-      </h1>
-
       <Locate panTo={panTo} />
       <Search panTo={panTo} />
 
