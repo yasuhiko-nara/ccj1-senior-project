@@ -22,10 +22,7 @@ const Index = (props) => {
 
   return (
     <>
-      <div>
-        aaaa
-        <h1 className="a">ddd</h1>
-      </div>
+      <List />
     </>
   );
 };

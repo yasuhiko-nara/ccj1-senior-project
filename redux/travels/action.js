@@ -1,9 +1,9 @@
-export const GET_LOCATIONS = 'GET_LACATIONS'
-export const get_locations = (data)=>{
+export const GET_LOCATIONS = "GET_LACATIONS";
+export const get_locations = (da) => {
   return {
-    type:'GET_LACATIONS',
-    data:data
-  }
-}
+    type: "GET_LACATIONS",
+   
+  };
+};
 
 //-----------------------------
