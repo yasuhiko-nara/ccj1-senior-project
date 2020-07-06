@@ -3,6 +3,13 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user/rakutabi
+permissions:
+  - object: /rakutabi/aws_scripts
+    pattern: "*.sh"
+    owner: root
+    mode: 777
+    type:
+      - file
 hooks:
   AfterInstall:
     - location: aws_scripts/setup_server.sh
