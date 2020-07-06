@@ -5,6 +5,6 @@ files:
     destination: /home/ec2-user/rakutabi
 hooks:
   AfterInstall:
-    - location: /home/ec2-user/rakubabi/awsscripts/serup_server.sh
+    - location: aws_scripts/setup_server.sh
       timeout: 120
       runas: ec2-user

@@ -1,6 +1,7 @@
 #! /bin/bash
 cd /home/ec2-user/rakutabi/
 # install paclages
+npm install -g yarn
 yarn 
 # build server
 yarn build
