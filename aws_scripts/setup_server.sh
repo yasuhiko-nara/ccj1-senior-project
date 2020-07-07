@@ -1,8 +1,10 @@
 #! /bin/bash
+# run in bash
+
 # recognize node js
 source /home/ec2-user/.bash_profile
 
-# change user 
+# change user app directory
 cd /home/ec2-user/
 sudo chown -R ec2-user:ec2-user rakutabi
 
@@ -14,7 +16,7 @@ npm install -g yarn
 yarn 
 
 # stop previous server
-yarn foever stop 0
+yarn forever stop 0
 
 # build server
 yarn build
