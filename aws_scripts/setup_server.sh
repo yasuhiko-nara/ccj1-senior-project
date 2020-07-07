@@ -1,4 +1,5 @@
 #! /bin/bash
+source /home/ec2-user/.bash_profile
 ls
 cd /home/ec2-user/rakutabi/
 # install paclages
