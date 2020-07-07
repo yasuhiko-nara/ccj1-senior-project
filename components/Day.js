@@ -19,8 +19,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Day({
   day = 1,
-  activities = [
+  schedules = [
     {
+      activityClass: "restaurants",
+      day: 1,
+      checked: false,
+
       place: "hokkaido",
       location: { lat: 43.048583, lng: 141.318944 },
       name: "testRestaurants1",
@@ -63,7 +67,7 @@ export default function Day({
           <Typography className={classes.heading}>Day {day}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {activities.map((activity) => (
+          {schedules.map((activity) => (
             <Card
               key={`${activity.location.lat}-${activity.location.lng}`}
               name={activity.name}

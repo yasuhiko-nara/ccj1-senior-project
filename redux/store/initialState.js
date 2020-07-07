@@ -7,37 +7,98 @@ const initialState = {
 
     schedules: [
       {
+        activityClass: "restaurants",
         day: 1,
-        activities: [
+        checked: false,
+
+        place: "hokkaido",
+        location: { lat: 43.048583, lng: 141.318944 },
+        name: "testRestaurants1",
+        image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+        category: "",
+        reviews: [
           {
-            place: "hokkaido",
-            location: { lat: 43.048583, lng: 141.318944 },
-            name: "testRestaurants1",
-            image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
-            category: "",
-            reviews: [
-              {
-                titile: "test1",
-                text: "testtesttesttesttest",
-                rating: "4",
-                published_data: "2020-02-22T20:52:08-05:00",
-              },
-              {
-                titile: "test1",
-                text: "testtesttesttesttest",
-                rating: "4",
-                published_data: "2020-02-22T20:52:08-05:00",
-              },
-              {
-                titile: "test1",
-                text: "testtesttesttesttest",
-                rating: "4",
-                published_data: "2020-02-22T20:52:08-05:00",
-              },
-            ],
-            rating: 1.7,
+            titile: "test1",
+            text: "testtesttesttesttest",
+            rating: "4",
+            published_data: "2020-02-22T20:52:08-05:00",
+          },
+          {
+            titile: "test1",
+            text: "testtesttesttesttest",
+            rating: "4",
+            published_data: "2020-02-22T20:52:08-05:00",
+          },
+          {
+            titile: "test1",
+            text: "testtesttesttesttest",
+            rating: "4",
+            published_data: "2020-02-22T20:52:08-05:00",
           },
         ],
+        rating: 1.7,
+      },
+      {
+        activityClass: "attractions",
+        day: 2,
+        checked: false,
+        place: "hokkaido",
+        location: { lat: 43.090831, lng: 144.210956 },
+        name: "testAttraction3",
+        image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+        category: "",
+        reviews: [
+          {
+            titile: "test1",
+            text: "testtesttesttesttest",
+            rating: "4",
+            published_data: "2020-02-22T20:52:08-05:00",
+          },
+          {
+            titile: "test1",
+            text: "testtesttesttesttest",
+            rating: "4",
+            published_data: "2020-02-22T20:52:08-05:00",
+          },
+          {
+            titile: "test1",
+            text: "testtesttesttesttest",
+            rating: "4",
+            published_data: "2020-02-22T20:52:08-05:00",
+          },
+        ],
+        rating: 2.9,
+      },
+      {
+        activityClass: "hotels",
+        day: 1,
+        checked: false,
+        place: "hokkaido",
+        location: { lat: 41.87144, lng: 140.467568 },
+        name: "testHotels3",
+        image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+        category: "",
+        reviews: [
+          {
+            titile: "test1",
+            text: "testtesttesttesttest",
+            rating: "4",
+            published_data: "2020-02-22T20:52:08-05:00",
+          },
+          {
+            titile: "test1",
+            text: "testtesttesttesttest",
+            rating: "4",
+            published_data: "2020-02-22T20:52:08-05:00",
+          },
+          {
+            titile: "test1",
+            text: "testtesttesttesttest",
+            rating: "4",
+            published_data: "2020-02-22T20:52:08-05:00",
+          },
+        ],
+        rating: 3.2,
       },
     ],
     toggleDisplay: true,
@@ -45,7 +106,7 @@ const initialState = {
     restaurants: [
       {
         activityClass: "restaurants",
-        day: "",
+        day: 1,
         checked: false,
 
         place: "hokkaido",
@@ -79,7 +140,7 @@ const initialState = {
     attractions: [
       {
         activityClass: "attractions",
-        day: "",
+        day: 1,
         checked: false,
         place: "hokkaido",
         location: { lat: 43.090831, lng: 144.210956 },
@@ -112,7 +173,7 @@ const initialState = {
     hotels: [
       {
         activityClass: "hotels",
-        day: "",
+        day: 1,
         checked: false,
         place: "hokkaido",
         location: { lat: 41.87144, lng: 140.467568 },

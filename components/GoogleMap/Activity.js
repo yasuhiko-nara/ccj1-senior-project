@@ -57,6 +57,11 @@ export default function Activity({ icon, show, activity }) {
         >
           <div>
             <h2>
+              <Checkbox
+                // checked={checked}
+                // onChange={handleChange}
+                inputProps={{ "aria-label": "primary checkbox" }}
+              />
               <span role="img" aria-label="bear">
                 {selected.name}
               </span>

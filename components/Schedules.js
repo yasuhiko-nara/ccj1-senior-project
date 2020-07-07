@@ -3,16 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import Day from "./Day";
 
 export default function Schedules() {
-  const schedules = useSelector((state) => state.travels.schedules);
-
+  const schedulesByDay = useSelector((state) => {
+    const schedules = state.travels.schedules;
+    const result = {};
+    for (const activity of schedules) {
+      result[activity.day]
+        ? result[activity.day].push(activity)
+        : (result[activity.day] = [activity]);
+    }
+    return result;
+  });
   return (
     <>
-      {schedules.map((schedule) => (
-        <Day
-          key={schedule.day}
-          day={schedule.day}
-          activities={schedule.activities}
-        />
+      {Object.keys(schedulesByDay).map((day) => (
+        <Day day={day} schedules={schedulesByDay[day]} />
       ))}
     </>
   );

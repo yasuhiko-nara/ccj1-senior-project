@@ -22,7 +22,7 @@ export const travelReducer = (state = initialState.travels, action) => {
           ...state.restaurants,
           ...action.initialState.restaurants.map((elem) => {
             const modifiedElem = elem;
-            modifiedElem.day = "";
+            modifiedElem.day = 1;
             modifiedElem.checked = false;
             modifiedElem.activityClass = "restaurants";
             return modifiedElem;
@@ -32,7 +32,7 @@ export const travelReducer = (state = initialState.travels, action) => {
           ...state.attractions,
           ...action.initialState.attractions.map((elem) => {
             const modifiedElem = elem;
-            modifiedElem.day = "";
+            modifiedElem.day = 1;
             modifiedElem.checked = false;
             modifiedElem.activityClass = "attractions";
             return modifiedElem;
@@ -42,7 +42,7 @@ export const travelReducer = (state = initialState.travels, action) => {
           ...state.hotels,
           ...action.initialState.hotels.map((elem) => {
             const modifiedElem = elem;
-            modifiedElem.day = "";
+            modifiedElem.day = 1;
             modifiedElem.checked = false;
             modifiedElem.activityClass = "hotels";
             return modifiedElem;
