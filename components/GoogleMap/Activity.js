@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "@react-google-maps/api";
+import Checkbox from "@material-ui/core/Checkbox";
+import { select_plan } from "../../redux/travels/action";
 
 export default function Activity({ icon, show, activity }) {
-  const [selected, setSelected] = useState(null);
+  const [selectedPlaces, setSelectedPlaces] = useState([]);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -12,8 +15,9 @@ export default function Activity({ icon, show, activity }) {
           <Marker
             key={`${marker.location.lat}-${marker.location.lng}`}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
-            onMouseOver={() => {
-              setSelected(marker);
+            onClick={() => {
+              console.log(marker);
+              setSelectedPlaces([...selectedPlaces, marker]);
             }}
             icon={{
               url: icon,
@@ -24,26 +28,36 @@ export default function Activity({ icon, show, activity }) {
           />
         ))}
 
-      {selected ? (
+      {selectedPlaces.map((selectedPlace, index) => (
         <InfoWindow
+          key={`${selectedPlace.location.lat - selectedPlace.location.lng}`}
           position={{
-            lat: selected.location.lat,
-            lng: selected.location.lng,
+            lat: selectedPlace.location.lat,
+            lng: selectedPlace.location.lng,
           }}
           onCloseClick={() => {
-            setSelected(null);
+            const deletedSelectedPlaces = [...selectedPlaces];
+            deletedSelectedPlaces.splice(index, 1);
+            setSelectedPlaces([...deletedSelectedPlaces]);
           }}
         >
           <div>
             <h2>
+              <Checkbox
+                checked={selectedPlace.checked}
+                onChange={(event) => {
+                  dispatch(select_plan(event.target, selectedPlace));
+                }}
+                inputProps={{ "aria-label": "primary checkbox" }}
+              />
               <span role="img" aria-label="bear">
-                {selected.name}
+                {selectedPlace.name}
               </span>
             </h2>
-            <img src={selected.image} />
+            <img src={selectedPlace.image} />
           </div>
         </InfoWindow>
-      ) : null}
+      ))}
     </div>
   );
 }

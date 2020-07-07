@@ -23,3 +23,12 @@ export const get_initial_status = (initialState) => {
     initialState,
   };
 };
+
+export const SELECT_PLAN = "SELECT_PLAN";
+export const select_plan = (target, selectedPlace) => {
+  return {
+    type: "SELECT_PLAN",
+    target,
+    selectedPlace,
+  };
+};
