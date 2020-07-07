@@ -1,15 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import Accordion from "@material-ui/core/Accordion";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionActions from "@material-ui/core/AccordionActions";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Chip from "@material-ui/core/Chip";
-import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
+import Card from "./Card";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,78 +13,70 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-  },
-  icon: {
-    verticalAlign: "bottom",
-    height: 20,
-    width: 20,
-  },
-  details: {
-    alignItems: "center",
-  },
-  column: {
-    flexBasis: "33.33%",
-  },
-  helper: {
-    borderLeft: `2px solid ${theme.palette.divider}`,
-    padding: theme.spacing(1, 2),
-  },
-  link: {
-    color: theme.palette.primary.main,
-    textDecoration: "none",
-    "&:hover": {
-      textDecoration: "underline",
-    },
+    fontWeight: theme.typography.fontWeightRegular,
   },
 }));
 
-export default function DetailedAccordion() {
+export default function Day({
+  day = 1,
+  activities = [
+    {
+      place: "hokkaido",
+      location: { lat: 43.048583, lng: 141.318944 },
+      name: "testRestaurants1",
+      image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
+      category: "",
+      reviews: [
+        {
+          titile: "test1",
+          text: "testtesttesttesttest",
+          rating: "4",
+          published_data: "2020-02-22T20:52:08-05:00",
+        },
+        {
+          titile: "test1",
+          text: "testtesttesttesttest",
+          rating: "4",
+          published_data: "2020-02-22T20:52:08-05:00",
+        },
+        {
+          titile: "test1",
+          text: "testtesttesttesttest",
+          rating: "4",
+          published_data: "2020-02-22T20:52:08-05:00",
+        },
+      ],
+      rating: 1.7,
+    },
+  ],
+}) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Accordion defaultExpanded>
+    <>
+      <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1c-content"
-          id="panel1c-header"
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Location</Typography>
-          </div>
-          <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>
-              Select trip destination
-            </Typography>
-          </div>
+          <Typography className={classes.heading}>Day {day}</Typography>
         </AccordionSummary>
-        <AccordionDetails className={classes.details}>
-          <div className={classes.column} />
-          <div className={classes.column}>
-            <Chip label="Barbados" onDelete={() => {}} />
-          </div>
-          <div className={clsx(classes.column, classes.helper)}>
-            <Typography variant="caption">
-              Select your destination of choice
-              <br />
-              <a href="#secondary-heading-and-columns" className={classes.link}>
-                Learn more
-              </a>
-            </Typography>
-          </div>
+        <AccordionDetails>
+          {activities.map((activity) => (
+            <Card
+              key={`${activity.location.lat}-${activity.location.lng}`}
+              name={activity.name}
+              image={activity.image}
+              location={activity.location}
+              place={activity.place}
+              category={activity.category}
+              reviews={activity.reviews}
+              rating={activity.rating}
+            />
+          ))}
         </AccordionDetails>
-        <Divider />
-        <AccordionActions>
-          <Button size="small">Cancel</Button>
-          <Button size="small" color="primary">
-            Save
-          </Button>
-        </AccordionActions>
       </Accordion>
-    </div>
+    </>
   );
 }

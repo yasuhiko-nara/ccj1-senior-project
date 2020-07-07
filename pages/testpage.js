@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
 import TestMap from "../components/GoogleMap/GoogleMap4";
 import CheckBox from "../components/CheckBox";
+import Schedules from "../components/Schedules";
 
 export async function getStaticProps() {
   const res = await axios.get(
@@ -30,6 +31,7 @@ const Index = (props) => {
         <h1 className="a">ddd</h1>
         <CheckBox />
         <TestMap />
+        <Schedules />
       </div>
     </>
   );

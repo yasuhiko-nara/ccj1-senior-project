@@ -11,6 +11,7 @@ import {
 import Search from "./Search";
 import Locate from "./Locate";
 import Activity from "./Activity";
+import Schedules from "../Schedules";
 
 import mapStyles from "./mapUtils/mapStyles";
 
