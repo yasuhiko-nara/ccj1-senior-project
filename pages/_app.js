@@ -5,7 +5,9 @@ import Head from "next/head";
 import { StylesProvider } from "@material-ui/core/styles";
 
 import "../styles/style.css"; //global css
+import "../styles/reset.css";
 import "@reach/combobox/styles.css";
+import "react-multi-carousel/lib/styles.css";
 
 export default function MyApp({ Component, pageProps }) {
   const store = createStore(pageProps.initialReduxState);

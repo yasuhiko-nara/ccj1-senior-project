@@ -4,6 +4,7 @@ const initialState = {
   travels: {
     show: true,
     // selectedPlace: "hokkaido", // 表示すべき地域や都道府県
+
     schedules: [
       {
         day: 1,
@@ -39,6 +40,7 @@ const initialState = {
         ],
       },
     ],
+    toggleDisplay: true,
     selectedActivities: { restaurants: true, attractions: true, hotels: true }, // restaurants,attractions,hotelsのなかで表示するべきもの
     restaurants: [
       {

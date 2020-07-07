@@ -5,6 +5,8 @@ import restaurant from "material-ui/svg-icons/maps/restaurant";
 
 export const travelReducer = (state = initialState.travels, action) => {
   switch (action.type) {
+    case actions.TOGGLE_DISPLAY:
+      return { ...state, toggleDisplay: !state.toggleDisplay };
     case actions.SELECT_ACTIVITIES:
       return {
         ...state,

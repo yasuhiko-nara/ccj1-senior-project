@@ -1,6 +1,7 @@
 import initialState from "../store/initialState";
 
 export const GET_LOCATIONS = "GET_LACATIONS";
+
 export const get_locations = (data) => {
   return {
     type: "GET_LACATIONS",
@@ -30,5 +31,12 @@ export const select_plan = (target, selectedPlace) => {
     type: "SELECT_PLAN",
     target,
     selectedPlace,
+  };
+};
+
+export const TOGGLE_DISPLAY = "TOGGLE_DISPLAY";
+export const toggle_display = () => {
+  return {
+    type: "TOGGLE_DISPLAY",
   };
 };
