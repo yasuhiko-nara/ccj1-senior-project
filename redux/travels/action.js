@@ -24,3 +24,11 @@ export const get_initial_status = (initialState) => {
     initialState,
   };
 };
+
+export const TOGGLE_DISPLAY = 'TOGGLE_DISPLAY'
+export const toggle_display = () =>{
+  return {
+    type:'TOGGLE_DISPLAY'
+  }
+}
+
