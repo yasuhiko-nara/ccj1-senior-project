@@ -26,11 +26,11 @@ export const get_initial_status = (initialState) => {
 };
 
 export const SELECT_PLAN = "SELECT_PLAN";
-export const select_plan = (target, selectedPlace) => {
+export const select_plan = (target, activity) => {
   return {
     type: "SELECT_PLAN",
     target,
-    selectedPlace,
+    activity,
   };
 };
 

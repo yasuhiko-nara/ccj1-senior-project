@@ -50,29 +50,14 @@ export const travelReducer = (state = initialState.travels, action) => {
         ],
       };
     case actions.SELECT_PLAN:
-      // console.log(action.target.checked, action.selectedPlace);
-      const activityClass = action.selectedPlace.activityClass;
-      const activityName = action.selectedPlace.name;
-      // console.log(activityClass, activityName, state[activityClass]);
-      // const modifiedActivities = state[activityClass].map((activity, index) => {
-      //   console.log(index, activity.name === activityName, !activity.checked);
-      //   return activity.name === activityName
-      //     ? { ...activity, checked: !activity.checked }
-      //     : activity;
-      // });
+      const activityClass = action.activity.activityClass;
+      const activityName = action.activity.name;
       const selectedActivity = state[activityClass].filter(
         (activity) => activity.name === activityName
       )[0];
-      console.log({
-        ...state,
-        schedules: [...state.schedules, selectedActivity],
-        // [activityClass]: modifiedActivities,
-      });
-
       return {
         ...state,
         schedules: [...state.schedules, selectedActivity],
-        // [activityClass]: modifiedActivities,
       };
     default:
       return state;
