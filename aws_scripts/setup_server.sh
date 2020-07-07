@@ -1,11 +1,11 @@
 #! /bin/bash
 source /home/ec2-user/.bash_profile
-ls
 cd /home/ec2-user/rakutabi/
+pwd
 # install paclages
 npm install -g yarn
 yarn 
 # build server
-yarn build
+# yarn build
 # start server 
-yarn start
+# yarn start
