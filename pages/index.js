@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
-import List from "../components/List";
+// import List from "../components/List";
 
 export async function getStaticProps() {
   const res = await axios.get(
