@@ -13,6 +13,9 @@ cd /home/ec2-user/rakutabi/
 npm install -g yarn
 yarn 
 
+# stop previous server
+yarn foever stop 0
+
 # build server
 yarn build
 
