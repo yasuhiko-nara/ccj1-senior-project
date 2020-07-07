@@ -1,6 +1,7 @@
 import initialState from "../store/initialState";
 
 export const GET_LOCATIONS = "GET_LACATIONS";
+
 export const get_locations = (data) => {
   return {
     type: "GET_LACATIONS",
@@ -23,3 +24,11 @@ export const get_initial_status = (initialState) => {
     initialState,
   };
 };
+
+export const TOGGLE_DISPLAY = 'TOGGLE_DISPLAY'
+export const toggle_display = () =>{
+  return {
+    type:'TOGGLE_DISPLAY'
+  }
+}
+

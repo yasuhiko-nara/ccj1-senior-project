@@ -4,6 +4,8 @@ import { ActionSchedule } from "material-ui/svg-icons";
 
 export const travelReducer = (state = initialState.travels, action) => {
   switch (action.type) {
+    case actions.TOGGLE_DISPLAY:
+      return { ...state, toggleDisplay: !state.toggleDisplay };
     case actions.SELECT_ACTIVITIES:
       return {
         ...state,
