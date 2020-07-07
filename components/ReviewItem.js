@@ -12,7 +12,7 @@ const ReviewItem = (props) => {
       </div>
       <style jsx>{`
         .review__item {
-          hight: 80%;
+          hight: 200px;
           display: flex;
         }
         .left__container {

@@ -24,10 +24,10 @@ const Item = (props) => {
                 <h3 className="margin_bottom_small">rating</h3>
                 <Rating
                   name="read-only"
-                  value={Math.round(props.rating)}
+                  value={Math.round(Number(props.rating))}
                   readOnly
                 />
-                <p>{Math.round(props.rating)}</p>
+                <p>{Math.round(Number(props.rating))}</p>
               </div>
 
               <div className="review__container">
@@ -100,7 +100,7 @@ const Item = (props) => {
             margin-bottom: 15px;
           }
           .review__container__small {
-            height: 80%;
+            height: 130px;
             overflow: scroll;
           }
         `}

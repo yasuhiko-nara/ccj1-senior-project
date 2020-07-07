@@ -9,7 +9,9 @@ const List = (props) => {
   const selectedActivities = props.selectedActivities;
   let result = [];
   const setting = {
-    dots: true,
+    arrows: true,
+    accessibility: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -28,23 +30,16 @@ const List = (props) => {
       ));
 
       result.push(
-        <Slider style={{ marginBottom: 20 }} {...setting}>
-          {tmp}
-        </Slider>
+        <div>
+          <Slider style={{ marginBottom: 20 }} {...setting}>
+            {tmp}
+          </Slider>
+        </div>
       );
     }
   }
 
   return <div>{result}</div>;
 };
-
-{
-  /* <Item
-        image={hotels[0].image}
-        name={hotels[0].name}
-        reviews={hotels[0].reviews}
-        rating={hotels[0].rating}
-      /> */
-}
 
 export default List;
