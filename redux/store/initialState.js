@@ -9,7 +9,7 @@ const initialState = {
       {
         activityClass: "restaurants",
         day: 1,
-        checked: false,
+        checked: true,
 
         place: "hokkaido",
         location: { lat: 43.048583, lng: 141.318944 },
@@ -41,7 +41,7 @@ const initialState = {
       {
         activityClass: "attractions",
         day: 2,
-        checked: false,
+        checked: true,
         place: "hokkaido",
         location: { lat: 43.090831, lng: 144.210956 },
         name: "testAttraction3",
@@ -72,7 +72,7 @@ const initialState = {
       {
         activityClass: "hotels",
         day: 1,
-        checked: false,
+        checked: true,
         place: "hokkaido",
         location: { lat: 41.87144, lng: 140.467568 },
         name: "testHotels3",
