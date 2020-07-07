@@ -16,7 +16,7 @@ npm install -g yarn
 yarn 
 
 # stop previous server
-yarn forever stop 0
+yarn forever stop node_modules/.bin/next
 
 # build server
 yarn build
