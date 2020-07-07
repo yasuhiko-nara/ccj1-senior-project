@@ -47,6 +47,7 @@ export default function Activity({ icon, show, activity }) {
                 checked={selectedPlace.checked}
                 onChange={(event) => {
                   dispatch(select_plan(event.target, selectedPlace));
+                  console.log("checked!", selectedPlace.checked);
                 }}
                 inputProps={{ "aria-label": "primary checkbox" }}
               />
