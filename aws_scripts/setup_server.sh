@@ -17,4 +17,4 @@ yarn
 yarn build
 
 # start server 
-# yarn start
+yarn forever start node_modules/.bin/next start
