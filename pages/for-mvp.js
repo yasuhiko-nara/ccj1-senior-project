@@ -1,4 +1,5 @@
 import List from "../components/List";
+import Schedules from "../components/Schedules";
 import axios from "axios";
 import { useEffect } from "react";
 import CheckBox from "../components/CheckBox";
@@ -43,7 +44,10 @@ const mvp = (props) => {
         toggle
       </Button>
       {mapToList ? (
-        <TestMap />
+        <>
+          <TestMap />
+          <Schedules />
+        </>
       ) : (
         <List selectedActivities={selectedActivities} />
       )}

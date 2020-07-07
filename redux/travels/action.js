@@ -25,10 +25,18 @@ export const get_initial_status = (initialState) => {
   };
 };
 
-export const TOGGLE_DISPLAY = 'TOGGLE_DISPLAY'
-export const toggle_display = () =>{
+export const SELECT_PLAN = "SELECT_PLAN";
+export const select_plan = (target, activity) => {
   return {
-    type:'TOGGLE_DISPLAY'
-  }
-}
+    type: "SELECT_PLAN",
+    target,
+    activity,
+  };
+};
 
+export const TOGGLE_DISPLAY = "TOGGLE_DISPLAY";
+export const toggle_display = () => {
+  return {
+    type: "TOGGLE_DISPLAY",
+  };
+};

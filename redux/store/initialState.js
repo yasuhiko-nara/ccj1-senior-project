@@ -1,13 +1,9 @@
 const initialState = {
   users: {},
-  map: {
-    restaurants: [],
-    attractions: [],
-    hotels: [],
-    markers: [],
-  },
+  map: {},
   travels: {
-    // selectedPlace: "hokkaido", // 表示すべき地域や都道府県
+    show: true,
+    schedules: [],
     toggleDisplay: true,
     selectedActivities: { restaurants: true, attractions: true, hotels: true }, // restaurants,attractions,hotelsのなかで表示するべきもの
     restaurants: [],

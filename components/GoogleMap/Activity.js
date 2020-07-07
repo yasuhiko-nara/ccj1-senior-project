@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "@react-google-maps/api";
+import { Checkbox } from "@material-ui/core";
+import { select_plan } from "../../redux/travels/action";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -13,6 +15,8 @@ import Rating from "@material-ui/lab/Rating";
 export default function Activity({ icon, show, activity }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
+
+  const dispatch = useDispatch();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -54,6 +58,14 @@ export default function Activity({ icon, show, activity }) {
         >
           <div>
             <h2>
+              <Button
+                onClick={(event) => {
+                  dispatch(select_plan(event.target, selected));
+                }}
+                inputProps={{ "aria-label": "primary checkbox" }}
+              >
+                Add
+              </Button>
               <span role="img" aria-label="bear">
                 {selected.name}
               </span>
