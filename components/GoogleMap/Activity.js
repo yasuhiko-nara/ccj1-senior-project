@@ -8,11 +8,11 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Rating from "@material-ui/lab/Rating";
 
 export default function Activity({ icon, show, activity }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -81,7 +81,7 @@ export default function Activity({ icon, show, activity }) {
                     <div>
                       <h2>{review.title}</h2>
                       <p>{review.published_date}</p>
-                      <p>{review.rating}</p>
+                      <Rating name="read-only" value={review.rating} readOnly />
                       <p>{review.text}</p>
                     </div>
                   ))}
