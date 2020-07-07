@@ -4,7 +4,7 @@ files:
   - source: /
     destination: /home/ec2-user/rakutabi
 permissions:
-  - object: /rakutabi/aws_scripts
+  - object: /rakutabi
     pattern: "*.sh"
     owner: ec2-user
     mode: 777
