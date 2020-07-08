@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
-import TestMap from "../components/GoogleMap/GoogleMap4";
+import Map from "../components/GoogleMap/GoogleMap5";
 import CheckBox from "../components/CheckBox";
 import Schedules from "../components/Schedules";
 
@@ -30,7 +30,7 @@ const Index = (props) => {
         aaaa
         <h1 className="a">ddd</h1>
         <CheckBox />
-        <TestMap />
+        <Map />
         <Schedules />
       </div>
     </>
