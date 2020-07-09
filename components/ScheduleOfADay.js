@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Day({
+export default function ScheduleOfADay({
   schedules = [
     {
       day: 1,
@@ -54,7 +54,6 @@ export default function Day({
   ],
 }) {
   const classes = useStyles();
-  console.log("schedule of today=>", schedules);
 
   return (
     <>
