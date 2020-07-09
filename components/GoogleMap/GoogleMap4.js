@@ -7,7 +7,6 @@ import Direction from "./Direction";
 import Search from "./Search";
 import Locate from "./Locate";
 import Activity from "./Activity";
-
 import mapStyles from "./mapUtils/mapStyles";
 
 const restaurantIcon =
@@ -58,29 +57,19 @@ export default function Map() {
     mapRef.current.setZoom(10);
   }, []);
 
-  const directionsCallback = (googleResponse) => {
-    if (googleResponse) {
-      if (response) {
-        if (
-          googleResponse.status === "OK" &&
-          googleResponse.routes.overview_polyline !==
-            response.routes.overview_polyline
-        ) {
-          setResponse(() => googleResponse);
-        } else {
-          console.log("response: ", googleResponse);
-        }
-      } else {
-        if (googleResponse.status === "OK") {
-          setResponse(() => googleResponse);
-        } else {
-          console.log("response: ", googleResponse);
-        }
-      }
-    }
-  };
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
+
+  const origin = { lat: 42.755955, lng: 141.32816 };
+  const destination = { lat: 45.299023, lng: 141.65308 };
+  const activityLocations = [
+    {
+      location: { lat: 43.66406, lng: 142.85445 },
+      stopover: true,
+    },
+    { location: { lat: 43.906742, lng: 144.79872 } },
+    { location: { lat: 43.286533, lng: 143.18524 } },
+  ];
 
   return (
     <div>
@@ -111,7 +100,11 @@ export default function Map() {
           activity={hotels}
           icon={hotelIcon}
         />
-        <Direction />
+        <Direction
+          origin={origin}
+          destination={destination}
+          activityLocations={activityLocations}
+        />
       </GoogleMap>
     </div>
   );
