@@ -1,18 +1,39 @@
+import React, { useEffect } from "react";
 import { Provider } from "react-redux";
-
 import { createStore } from "../redux/store/store";
-import "../styles/style.css"; //global css
-import "mapbox-gl/dist/mapbox-gl.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
-import "@reach/combobox/styles.css";
+import Head from "next/head";
+import { StylesProvider } from "@material-ui/core/styles";
 
-export default function App({ Component, pageProps }) {
+import "../styles/style.css"; //global css
+import "../styles/reset.css";
+import "@reach/combobox/styles.css";
+import "react-multi-carousel/lib/styles.css";
+
+export default function MyApp({ Component, pageProps }) {
   const store = createStore(pageProps.initialReduxState);
 
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <>
+      <Head>
+        <title>RAKUTABI</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+      </Head>
+      <StylesProvider>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </StylesProvider>
+    </>
   );
 }
