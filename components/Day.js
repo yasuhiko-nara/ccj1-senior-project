@@ -55,6 +55,7 @@ export default function Day({
   ],
 }) {
   const classes = useStyles();
+  console.log(schedules);
 
   return (
     <>
@@ -66,7 +67,7 @@ export default function Day({
         >
           <Typography className={classes.heading}>Day {day}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        {/* <AccordionDetails>
           {schedules.map((activity) => (
             <Card
               key={`${activity.location.lat}-${activity.location.lng}`}
@@ -79,7 +80,7 @@ export default function Day({
               rating={activity.rating}
             />
           ))}
-        </AccordionDetails>
+        </AccordionDetails> */}
       </Accordion>
     </>
   );
