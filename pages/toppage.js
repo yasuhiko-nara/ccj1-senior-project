@@ -28,147 +28,184 @@ const Toppage = () => {
         <button>検索する</button>
       </div>
       <div className="option">
-        <div className={classes.root}>
-          <Grid container spacing={1} justify="center">
-            <Grid item xs={1}>
+        <div className="region">
+          <h2>地域一覧</h2>
+          <Grid container spacing={1} justify="left">
+            <Grid item xs={1.5}>
               <Paper className={classes.paper}>北海道地方</Paper>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1.5}>
               <Paper className={classes.paper}>東北地方</Paper>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1.5}>
               <Paper className={classes.paper}>関東地方</Paper>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1.5}>
               <Paper className={classes.paper}>中部地方</Paper>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1.5}>
               <Paper className={classes.paper}>近畿地方</Paper>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1.5}>
               <Paper className={classes.paper}>中国地方</Paper>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1.5}>
               <Paper className={classes.paper}>四国地方</Paper>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1.5}>
               <Paper className={classes.paper}>九州地方</Paper>
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1.5}>
               <Paper className={classes.paper}>沖縄</Paper>
             </Grid>
           </Grid>
         </div>
-        {/*<div class="region">
-          <ul>
-            <li>
-              <span>北海道地方</span>
-            </li>
-            <li>
-              <span>東北地方</span>
-            </li>
-            <li>
-              <span>関東地方</span>
-            </li>
-            <li>
-              <span>中部地方</span>
-            </li>
-            <li>
-              <span>近畿地方</span>
-            </li>
-            <li>
-              <span>中国地方</span>
-            </li>
-            <li>
-              <span>四国地方</span>
-            </li>
-            <li>
-              <span>九州地方</span>
-            </li>
-            <li>
-              <span>沖縄</span>
-            </li>
-          </ul>
+        <div className="prefecture">
+          <h2>都道府県一覧</h2>
+          <Grid container spacing={1} justify="left">
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>北海道</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>青森県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>岩手県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>宮城県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>秋田県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>山形県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>福島県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>茨城県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>栃木県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>群馬県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>埼玉県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>千葉県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>東京都</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>神奈川県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>新潟県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>富山県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>石川県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>福井県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>山梨県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>長野県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>岐阜県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>静岡県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>愛知県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>三重県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>滋賀県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>京都府</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>大阪府</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>兵庫県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>奈良県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>和歌山県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>鳥取県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>島根県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>岡山県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>広島県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>山口県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>徳島県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>香川県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>愛媛県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>高知県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>福岡県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>佐賀県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>長崎県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>熊本県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>大分県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>宮崎県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>鹿児島県</Paper>
+            </Grid>
+            <Grid item xs={1.5}>
+              <Paper className={classes.paper}>沖縄県</Paper>
+            </Grid>
+          </Grid>
         </div>
-        <div class="prefecture">
-          <p>都道府県</p>
-          <ul>
-            <li>
-              <span>北海道</span>
-            </li>
-            <li>
-              <span>青森県</span>
-            </li>
-            <li>
-              <span>岩手県</span>
-            </li>
-            <li>
-              <span>宮城県</span>
-            </li>
-            <li>
-              <span>秋田県</span>
-            </li>
-            <li>
-              <span>山形県</span>
-            </li>
-            <li>
-              <span>福島県</span>
-            </li>
-            <li>
-              <span>茨城県</span>
-            </li>
-            <li>
-              <span>栃木県</span>
-            </li>
-            <li>
-              <span>群馬県</span>
-            </li>
-            <li>
-              <span>埼玉県</span>
-            </li>
-            <li>
-              <span>千葉県</span>
-            </li>
-            <li>
-              <span>東京都</span>
-            </li>
-            <li>
-              <span>神奈川県</span>
-            </li>
-            <li>
-              <span>新潟県</span>
-            </li>
-            <li>
-              <span>富山県</span>
-            </li>
-            <li>
-              <span>石川県</span>
-            </li>
-            <li>
-              <span>福井県</span>
-            </li>
-            <li>
-              <span>山梨県</span>
-            </li>
-            <li>
-              <span>長野県</span>
-            </li>
-            <li>
-              <span>岐阜県</span>
-            </li>
-            <li>
-              <span>静岡県</span>
-            </li>
-            <li>
-              <span>愛知県</span>
-            </li>
-            <li>
-              <span>三重県</span>
-            </li>
-          </ul>
-
-        </div>
-          */}
       </div>
       <style jsx>{`
         img {
@@ -185,6 +222,17 @@ const Toppage = () => {
         }
         button {
           height: 45px;
+        }
+        .region {
+          margin: 0 15%;
+          margin-top: 30px;
+        }
+        .prefecture {
+          margin: 0 15%;
+          margin-top: 30px;
+        }
+        h2 {
+          margin-bottom: 15px;
         }
       `}</style>
     </div>
