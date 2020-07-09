@@ -1,7 +1,6 @@
 import Checkbox from "@material-ui/core/Checkbox";
 import Rating from "@material-ui/lab/Rating";
 import ReviewItem from "./ReviewItem";
-import styles from "./test.module.css";
 
 const Item = (props) => {
   return (
