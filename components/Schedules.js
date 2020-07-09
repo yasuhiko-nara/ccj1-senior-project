@@ -6,9 +6,7 @@ export default function Schedules() {
   const schedules = useSelector((state) => state.travels.schedules);
   return (
     <>
-      {schedules.map((day) => (
-        <Day schedules={schedules} />
-      ))}
+      <Day schedules={schedules} />
     </>
   );
 }

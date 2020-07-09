@@ -15,7 +15,7 @@ export default function Direction({ origin, destination, activityLocations }) {
   //     { location: { lat: 43.286533, lng: 143.18524 } },
   //   ];
 
-  const directionsCallback = (googleResponse) => {
+  const directionsCallback = useCallback((googleResponse) => {
     if (googleResponse) {
       if (response) {
         if (
@@ -35,7 +35,7 @@ export default function Direction({ origin, destination, activityLocations }) {
         }
       }
     }
-  };
+  }, []);
   return (
     <>
       <DirectionsService
