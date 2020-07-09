@@ -7,41 +7,32 @@ const Item = (props) => {
     <>
       <div className="item__container">
         <div className="left__container">
-          <Checkbox
-            color="primary"
-            inputProps={{ "aria-label": "secondary checkbox" }}
-          />
+          <h2 className="activity__name">{props.name}</h2>
+          <div className="left__small__container">
+            <img src={props.image} />
+
+            <div className="rating__container">
+              <h3 className="margin_bottom_small">rating</h3>
+              <Rating
+                name="read-only"
+                value={Math.round(Number(props.rating))}
+                readOnly
+              />
+              <p>{Math.round(Number(props.rating))}</p>
+            </div>
+          </div>
         </div>
         <div className="right__container">
-          <div className="right__conatiner__left">
-            <img src={props.image} />
-          </div>
-          <div className="right__container__right">
-            <h2 className="activity__name">{props.name}</h2>
-
-            <div className="small__container__right">
-              <div className="rating__container">
-                <h3 className="margin_bottom_small">rating</h3>
-                <Rating
-                  name="read-only"
-                  value={Math.round(Number(props.rating))}
-                  readOnly
+          <div className="review__container">
+            <p style={{ textAlign: "center", marginBottom: "20px" }}>RRVIEWS</p>
+            <div className="review__container__small">
+              {props.reviews.map((obj) => (
+                <ReviewItem
+                  text={obj.text}
+                  title={obj.title}
+                  rating={obj.rating}
                 />
-                <p>{Math.round(Number(props.rating))}</p>
-              </div>
-
-              <div className="review__container">
-                <h3 style={{ textAlign: "center" }}>reviews</h3>
-                <div className="review__container__small">
-                  {props.reviews.map((obj) => (
-                    <ReviewItem
-                      text={obj.text}
-                      title={obj.titile}
-                      rating={obj.rating}
-                    />
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -52,34 +43,32 @@ const Item = (props) => {
           .item__container {
             display: flex;
             width: 80%;
+            height: 300px;
             margin: 0 auto;
             padding: 10px;
+            border: thick solid #9baec8;
+            border-radius:10px;
           }
 
           .left__container {
-            width: 10%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-
-          .right__conatiner__left {
-            margin-right: 20px;
+            width: 35%;
+            position: relative;
           }
 
           .right__container {
-            display: flex;
-            width: 90%;
+            width: 60%;
           }
 
-          .right__container__right {
-            // text-align: center;
-            width: 100%;
-          }
-
-          .small__container__right {
+          .left__small__container {
             display: flex;
-            height: 80%;
+            width:100%;
+            justify-content: space-around;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            -webkit- transform: translateY(-50%) translateX(-50%);
           }
 
           .activity__name {
@@ -89,18 +78,18 @@ const Item = (props) => {
 
           .rating__container {
             text-align: center;
-            width: 30%;
           }
 
           .review__container {
-            width: 80%;
+            width: 100%;
+            height: 100%;
           }
 
           .margin_bottom_small {
             margin-bottom: 15px;
           }
           .review__container__small {
-            height: 130px;
+            height: 230px;
             overflow: scroll;
           }
         `}

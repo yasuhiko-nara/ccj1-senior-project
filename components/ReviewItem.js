@@ -1,23 +1,46 @@
+import Rating from "@material-ui/lab/Rating";
+
 const ReviewItem = (props) => {
   return (
     <>
-      <div className="review__item">
-        <div className="left__container">
-          title
-          {props.title}
-          rating
-          {props.rating}
+      <div className="review__item ">
+        <h3 className="review__title margin_bottom_small">{props.title}</h3>
+        <div>
+          <div className="up__container margin_bottom_small">
+            <Rating
+              name="read-only"
+              value={Math.round(Number(props.rating))}
+              readOnly
+            />
+          </div>
+          <div className="down__container margin_bottom_small">
+            {props.text}
+          </div>
         </div>
-        <div className="right__container">{props.text}</div>
       </div>
       <style jsx>{`
         .review__item {
-          hight: 200px;
-          display: flex;
+          padding: 5px;
+          margin-bottom: 20px;
+          border: thick solid #9baec8;
         }
-        .left__container {
+
+        .review__title {
+          text-align: center;
         }
-        .right__container {
+
+        .margin_bottom_small {
+          margin-bottom: 10px;
+        }
+
+        .up__container {
+          width: 23%;
+          margin: 0 auto;
+        }
+        .down__container {
+          padding: 5px;
+          line-height: 1.2rem;
+          letter-spacing: 0.2rem;
         }
       `}</style>
     </>
