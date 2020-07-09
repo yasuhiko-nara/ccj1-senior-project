@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 import { createStore } from "../redux/store/store";
 import Head from "next/head";
 import { StylesProvider } from "@material-ui/core/styles";
+import "../styles/global.scss";
 
-import "../styles/style.css"; //global css
 import "../styles/reset.css";
 import "@reach/combobox/styles.css";
 import "react-multi-carousel/lib/styles.css";
