@@ -18,11 +18,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Day({
-  day = 1,
   schedules = [
     {
-      activityClass: "restaurants",
       day: 1,
+      activityClass: "restaurants",
       checked: false,
 
       place: "hokkaido",
@@ -55,7 +54,7 @@ export default function Day({
   ],
 }) {
   const classes = useStyles();
-  console.log(schedules);
+  console.log("schedule of today=>", schedules);
 
   return (
     <>
@@ -65,9 +64,9 @@ export default function Day({
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Day {day}</Typography>
+          <Typography className={classes.heading}>Schedule</Typography>
         </AccordionSummary>
-        {/* <AccordionDetails>
+        <AccordionDetails>
           {schedules.map((activity) => (
             <Card
               key={`${activity.location.lat}-${activity.location.lng}`}
@@ -80,7 +79,7 @@ export default function Day({
               rating={activity.rating}
             />
           ))}
-        </AccordionDetails> */}
+        </AccordionDetails>
       </Accordion>
     </>
   );
