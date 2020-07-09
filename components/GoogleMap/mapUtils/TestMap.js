@@ -7,11 +7,11 @@ import {
   DirectionsRenderer,
   DirectionsService,
 } from "@react-google-maps/api";
-import Search from "./Search";
-import Locate from "./Locate";
+import Search from "../Search";
+import Locate from "../Locate";
 
-import mapStyles from "./mapUtils/mapStyles";
-import locations from "./mapUtils/locations";
+import mapStyles from "./mapStyles";
+import locations from "./locations";
 
 const bikeIcon =
   "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%82%99%E3%82%A4%E3%82%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=260673d7-dafc-4496-b5d1-2a41ffab66a6";
@@ -68,7 +68,13 @@ export default function App() {
   if (!isLoaded) return "Loading...";
 
   const origin = { lat: 42.755955, lng: 141.32816 };
-  const destination = { lat: 44.299023, lng: 141.65308 };
+  const point2 = {
+    location: { lat: 43.66406, lng: 142.85445 },
+    stopover: true,
+  };
+  const point3 = { location: { lat: 43.906742, lng: 144.79872 } };
+  const point4 = { location: { lat: 43.286533, lng: 143.18524 } };
+  const destination = { lat: 45.299023, lng: 141.65308 };
 
   const directionsCallback = (googleResponse) => {
     if (googleResponse) {
@@ -94,10 +100,6 @@ export default function App() {
 
   return (
     <div>
-      <h1>
-        バイク旅！ <span role="img" aria-label="bike"></span>
-      </h1>
-
       <Locate panTo={panTo} />
       <Search panTo={panTo} />
 
@@ -116,6 +118,8 @@ export default function App() {
               origin,
               destination,
               travelMode: "DRIVING",
+              optimizeWaypoints: true,
+              waypoints: [point2, point3, point4],
             }}
             callback={directionsCallback}
           />
@@ -133,6 +137,7 @@ export default function App() {
             key={`${marker.location.lat}-${marker.location.lng}`}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
             onMouseOver={() => {
+              console.log(marker.location);
               setSelected(marker);
             }}
             icon={{
