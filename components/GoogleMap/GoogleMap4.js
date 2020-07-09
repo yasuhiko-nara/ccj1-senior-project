@@ -1,12 +1,8 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import Direction from "./Direction";
 
 import Search from "./Search";
 import Locate from "./Locate";
@@ -62,6 +58,27 @@ export default function Map() {
     mapRef.current.setZoom(10);
   }, []);
 
+  const directionsCallback = (googleResponse) => {
+    if (googleResponse) {
+      if (response) {
+        if (
+          googleResponse.status === "OK" &&
+          googleResponse.routes.overview_polyline !==
+            response.routes.overview_polyline
+        ) {
+          setResponse(() => googleResponse);
+        } else {
+          console.log("response: ", googleResponse);
+        }
+      } else {
+        if (googleResponse.status === "OK") {
+          setResponse(() => googleResponse);
+        } else {
+          console.log("response: ", googleResponse);
+        }
+      }
+    }
+  };
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
@@ -94,6 +111,7 @@ export default function Map() {
           activity={hotels}
           icon={hotelIcon}
         />
+        <Direction />
       </GoogleMap>
     </div>
   );
