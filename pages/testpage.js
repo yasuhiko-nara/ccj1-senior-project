@@ -20,7 +20,7 @@ export async function getStaticProps() {
 }
 
 const Index = (props) => {
-  // const name = useSelector((store) => store.users.name);
+  const name = useSelector((store) => store.users.name);
 
   const initialState = JSON.parse(props.data);
   const dispatch = useDispatch();

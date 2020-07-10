@@ -40,3 +40,11 @@ export const toggle_display = () => {
     type: "TOGGLE_DISPLAY",
   };
 };
+
+export const CHANGE_DIRECTION = "CHANGE_DIRECTION";
+export const change_direction = (directionResponse) => {
+  return {
+    type: "CHANGE_DIRECTION",
+    directionResponse,
+  };
+};

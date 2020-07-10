@@ -1,9 +1,14 @@
 import React, { useState, useCallback, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { change_direction } from "../../redux/travels/action";
 import { DirectionsRenderer, DirectionsService } from "@react-google-maps/api";
 
 export default function Direction({ origin, destination, activityLocations }) {
-  const [response, setResponse] = useState(null);
-
+  // const [currentDirection, setCurrentDirection] = useState(null);
+  const dispatch = useDispatch();
+  const currentDirection = useSelector(
+    (state) => state.travels.currentDirection
+  );
   //   const origin = { lat: 42.755955, lng: 141.32816 };
   //   const destination = { lat: 45.299023, lng: 141.65308 };
   //   const activityLocations = [
@@ -17,25 +22,37 @@ export default function Direction({ origin, destination, activityLocations }) {
 
   const directionsCallback = useCallback((googleResponse) => {
     if (googleResponse) {
-      if (response) {
+      if (currentDirection) {
         if (
           googleResponse.status === "OK" &&
-          googleResponse.routes.overview_polyline !==
-            response.routes.overview_polyline
+          googleResponse.geocoded_waypoints.length !==
+            currentDirection.geocoded_waypoints.length
         ) {
-          setResponse(() => googleResponse);
+          dispatch(change_direction(googleResponse));
+          console.log(
+            "case1: new wayPoint is added, response =>: ",
+            googleResponse
+          );
         } else {
-          console.log("response: ", googleResponse);
+          console.log(
+            "case2: stop rendering to avoid inifinit loop, response =>: ",
+            googleResponse
+          );
         }
       } else {
         if (googleResponse.status === "OK") {
-          setResponse(() => googleResponse);
+          console.log(
+            "case3: third place is located, response =>",
+            googleResponse
+          );
+          dispatch(change_direction(googleResponse));
         } else {
-          console.log("response: ", googleResponse);
+          console.log("case4: error, response => ", googleResponse);
         }
       }
     }
-  }, []);
+  });
+
   return (
     <>
       <DirectionsService
@@ -48,10 +65,10 @@ export default function Direction({ origin, destination, activityLocations }) {
         }}
         callback={directionsCallback}
       />
-      {response !== null && (
+      {currentDirection !== null && (
         <DirectionsRenderer
           options={{
-            directions: response,
+            directions: currentDirection,
           }}
         />
       )}
