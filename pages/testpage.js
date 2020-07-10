@@ -5,6 +5,7 @@ import { get_initial_status } from "../redux/travels/action";
 import Map from "../components/GoogleMap/GoogleMap";
 import CheckBox from "../components/CheckBox";
 import Schedules from "../components/Schedules";
+import Navbar from "../components/Navbar";
 
 export async function getStaticProps() {
   const res = await axios.get(
@@ -19,7 +20,7 @@ export async function getStaticProps() {
 }
 
 const Index = (props) => {
-  // const name = useSelector((store) => store.users.name);
+  const name = useSelector((store) => store.users.name);
 
   const initialState = JSON.parse(props.data);
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Index = (props) => {
   return (
     <>
       <div>
-        <h1 className="a">RAKUTABI</h1>
+        <Navbar />
         <CheckBox />
         <Map />
         <Schedules />

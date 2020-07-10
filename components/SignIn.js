@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { user_login } from "../redux/users/action";
+import Link from 'next/link'
 
 import {
   CognitoUserPool,
@@ -61,6 +62,9 @@ const SignIn = () => {
 
   return (
     <div className="SignIn">
+      <Link href='/list'>
+      aaaaaaaaa
+      </Link>
       <h1>SingIn</h1>
 
       <input type="text" placeholder="email" onChange={changeEmail} />

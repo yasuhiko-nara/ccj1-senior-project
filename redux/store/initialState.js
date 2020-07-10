@@ -3,6 +3,7 @@ const initialState = {
   map: {},
   travels: {
     show: true,
+    currentDirection: null,
     schedules: [
       {
         day: 1,
