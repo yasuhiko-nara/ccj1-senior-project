@@ -31,11 +31,20 @@ export default function Direction({ origin, destination, activityLocations }) {
           dispatch(change_direction(googleResponse));
           console.log(
             "case1: new wayPoint is added, response =>: ",
-            googleResponse
+            googleResponse,
+            "Route info =>",
+            googleResponse.routes[0].legs.map((leg) => {
+              return {
+                distance: leg.distance,
+                duration: leg.duration,
+              };
+            }),
+            "Route order =>",
+            googleResponse.routes[0].waypoint_order
           );
         } else {
           console.log(
-            "case2: stop rendering to avoid inifinit loop, response =>: ",
+            "case2: stop rendering to avoid infiinit loop, response =>: ",
             googleResponse
           );
         }
@@ -43,7 +52,16 @@ export default function Direction({ origin, destination, activityLocations }) {
         if (googleResponse.status === "OK") {
           console.log(
             "case3: third place is located, response =>",
-            googleResponse
+            googleResponse,
+            "Route info =>",
+            googleResponse.routes[0].legs.map((leg) => {
+              return {
+                distance: leg.distance,
+                duration: leg.duration,
+              };
+            }),
+            "Route order =>",
+            googleResponse.routes[0].waypoint_order
           );
           dispatch(change_direction(googleResponse));
         } else {
