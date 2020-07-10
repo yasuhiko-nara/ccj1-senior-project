@@ -1,30 +1,16 @@
 import React, { useState } from "react";
 import Link from "next/link";
-
-import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 import prefs from "../components/GoogleMap/mapUtils/pref";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-}));
+import Navbar from "../components/Navbar";
 
 const Toppage = () => {
   const [pref, setPref] = useState("");
 
   return (
     <div className="top">
-      <p>らくたび</p>
+      <Navbar />
       <img
         src="https://www.ana.co.jp/www2/plan-book/promotions/special-fares/spring.jpg"
         alt="らくたびトップ画"
