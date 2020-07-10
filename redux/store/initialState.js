@@ -1,5 +1,5 @@
 const initialState = {
-  users: { testNum: 0 },
+  users: {},
   map: {},
   travels: {
     show: true,
