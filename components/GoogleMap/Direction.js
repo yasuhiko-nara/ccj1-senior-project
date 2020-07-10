@@ -36,6 +36,7 @@ export default function Direction({ origin, destination, activityLocations }) {
       }
     }
   });
+
   return (
     <>
       <DirectionsService
