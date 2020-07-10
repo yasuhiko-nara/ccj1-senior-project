@@ -63,6 +63,9 @@ export const travelReducer = (state = initialState.travels, action) => {
         ...state,
         schedules: [...state.schedules, selectedActivity],
       };
+    case actions.CHANGE_DIRECTION:
+      const direction = action.directionResponse;
+      return { ...state, currentDirection: direction };
     default:
       return state;
   }
