@@ -42,18 +42,20 @@ export const toggle_display = () => {
 };
 
 export const CHANGE_DIRECTION = "CHANGE_DIRECTION";
-export const change_direction = (directionResponse) => {
+export const change_direction = (directionResponse, routeInfo, routeOrder) => {
   return {
     type: "CHANGE_DIRECTION",
     directionResponse,
-  };
-};
-
-export const CHANGE_SCHEDULES_ORDER = "CHANGE_SCHEDULES_ORDER";
-export const change_schedules_order = (routeInfo, routeOrder) => {
-  return {
-    type: "CHANGE_DIRECTION",
     routeInfo,
     routeOrder,
   };
 };
+
+// export const CHANGE_SCHEDULES_ORDER = "CHANGE_SCHEDULES_ORDER";
+// export const change_schedules_order = (routeInfo, routeOrder) => {
+//   return {
+//     type: "CHANGE_DIRECTION",
+//     routeInfo,
+//     routeOrder,
+//   };
+// };

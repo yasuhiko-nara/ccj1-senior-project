@@ -4,14 +4,14 @@ const initialState = {
   travels: {
     show: true,
     currentDirection: null,
-    routeInfo: [
-      // {
-      //   distance: { text: "257 km", value: 257155 },
-      //   duration: { text: "4 hours 46 mins", value: 17160 },
-      // },
-    ],
-    routeOrder: [],
-    // [0, 1, 2, 3, 4, 6, 5, 7] => 出発点と終点以外の場所の順番
+    // routeInfo: [
+    // {
+    //   distance: { text: "257 km", value: 257155 },
+    //   duration: { text: "4 hours 46 mins", value: 17160 },
+    // },
+    // ],
+    // routeOrder: [], //=> 出発点と終点以外の場所の順番
+
     selectedActivities: { restaurants: true, attractions: true, hotels: true }, // restaurants,attractions,hotelsのなかで表示するべきもの
     schedules: [
       // {

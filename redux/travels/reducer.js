@@ -65,11 +65,21 @@ export const travelReducer = (state = initialState.travels, action) => {
       };
     case actions.CHANGE_DIRECTION:
       const direction = action.directionResponse;
-      return { ...state, currentDirection: direction };
-    case actions.CHANGE_SCHEDULES_ORDER:
       const routeInfo = action.routeInfo;
       const routeOrder = action.routeOrder;
-      return { ...state, routeInfo, routeOrder };
+      const schedules = state.schedules;
+      const origin = schedules[0];
+      const destination = schedules[schedules.length - 1];
+      const waypoints = schedules.slice(1, schedules.length - 1);
+      const reOrderedWaypoints = routeOrder.map((order) => waypoints[order]);
+      const reOrderedSchedules = [origin, ...reOrderedWaypoints, destination];
+
+      return {
+        ...state,
+        currentDirection: direction,
+        schedules: reOrderedSchedules,
+      };
+
     default:
       return state;
   }
