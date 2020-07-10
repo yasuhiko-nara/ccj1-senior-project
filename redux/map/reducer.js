@@ -1,7 +1,7 @@
 import initialState from "../store/initialState";
 import * as actions from "./action";
 import { ActionSchedule } from "material-ui/svg-icons";
-
+import { HYDRATE } from "next-redux-wrapper";
 export const mapReducer = (state = initialState.map, action) => {
   //   const travels = action.travels; // state.travels
   //   const selectedPlace = action.selectedPlace; // state.selectedPlace =>hokkaido
@@ -9,6 +9,8 @@ export const mapReducer = (state = initialState.map, action) => {
   //   console.log(travels, selectedPlace);
   //   console.log(travels[selectedPlace]);
   switch (action.type) {
+    case HYDRATE:
+      return { ...state, ...action.payload };
     case actions.GET_LOCATIONS:
       console.log("uko!!");
       return {
