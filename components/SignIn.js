@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { user_login } from "../redux/users/action";
-import Link from 'next/link'
+
+import { useRouter } from "next/router";
 
 import {
   CognitoUserPool,
@@ -9,28 +10,31 @@ import {
   AuthenticationDetails,
 } from "amazon-cognito-identity-js";
 import awsConfiguration from "./awsConfiguration.js";
-
+console.log(process.env.NEXT_PUBLIC_CLIENTID);
+console.log(process.env.NEXT_PUBLIC_REGIN);
+console.log(process.env.NEXT_PUBLIC_IDENTITYPOOLID);
 const userPool = new CognitoUserPool({
-  UserPoolId: awsConfiguration.UserPoolId,
-  ClientId: awsConfiguration.ClientId,
+  // UserPoolId: awsConfiguration.UserPoolId,
+  // ClientId: awsConfiguration.ClientId,
+  UserPoolId: process.env.NEXT_PUBLIC_USERPOOLID,
+  ClientId: process.env.NEXT_PUBLIC_CLIENTID,
 });
 
 const SignIn = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const email = "nakauchi.tyuy@gmail.com";
-  // const password = "Urara1222";
+  const a = "nakauchi.tyuy@gmail.com";
+  const b = "Urara1222";
 
   const changeEmail = (event) => {
     setEmail(event.target.value);
-    console.log(email);
   };
   const changePassword = (event) => {
     setPassword(event.target.value);
-    console.log(password);
   };
 
   const signIn = () => {
@@ -49,10 +53,10 @@ const SignIn = () => {
 
         const userName = result.idToken.payload.name;
         const userId = result.idToken.payload["cognito:username"];
-        dispatch(user_login({ userName, userId, userFlag: true }));
+        localStorage.setItem('loginFlag','true')
+        dispatch(user_login({ userName, userId, loginFlag: true }));
 
-        setEmail("");
-        setPassword("");
+        router.push("/");
       },
       onFailure: (err) => {
         console.error(err);
@@ -62,9 +66,6 @@ const SignIn = () => {
 
   return (
     <div className="SignIn">
-      <Link href='/list'>
-      aaaaaaaaa
-      </Link>
       <h1>SingIn</h1>
 
       <input type="text" placeholder="email" onChange={changeEmail} />
