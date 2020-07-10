@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -56,7 +57,13 @@ const Navbar = () => {
       </FormGroup>
       <AppBar position="static" color="white">
         <Toolbar>
-          <img src="https://pbs.twimg.com/profile_images/1087001401413128192/b3WuEqTF.jpg"></img>
+          <Link
+            href={{
+              pathname: "toppage",
+            }}
+          >
+            <img src="https://pbs.twimg.com/profile_images/1087001401413128192/b3WuEqTF.jpg"></img>
+          </Link>
           <Typography className={classes.title}></Typography>
           {auth && (
             <div>
