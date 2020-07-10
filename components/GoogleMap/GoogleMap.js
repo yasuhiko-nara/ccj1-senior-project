@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import Direction from "./Direction";
+import TestMap from "./mapUtils/TestMap";
 
 import Search from "./Search";
 import Locate from "./Locate";
@@ -19,9 +20,13 @@ const hotelIcon =
 
 const libraries = ["places"];
 const mapContainerStyle = {
-  height: "100vh",
+  height: "60vh",
   width: "100vw",
 };
+// const mapContainerStyle = {
+//   height: "600px",
+//   width: "1000px",
+// };
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
@@ -114,6 +119,7 @@ export default function Map() {
             activityLocations={activityLocations}
           />
         )}
+        {/* <TestMap /> */}
       </GoogleMap>
     </div>
   );
