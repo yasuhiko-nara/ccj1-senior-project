@@ -123,7 +123,7 @@ export default function Map() {
           />
         )}
 
-        {/* <TestMap /> */}
+        <TestMap />
       </GoogleMap>
     </div>
   );

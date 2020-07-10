@@ -47,7 +47,7 @@ export default function Direction({ origin, destination, activityLocations }) {
             routeOrder
           );
           dispatch(change_direction(googleResponse));
-          dispatch(change_schedules_order(routeInfo, routeOrder));
+          // dispatch(change_schedules_order(routeInfo, routeOrder));
         } else {
           console.log(
             "case2: stop rendering to avoid infiinit loop, response =>: ",
@@ -72,7 +72,7 @@ export default function Direction({ origin, destination, activityLocations }) {
             routeOrder
           );
           dispatch(change_direction(googleResponse));
-          dispatch(change_schedules_order(routeInfo, routeOrder));
+          // dispatch(change_schedules_order(routeInfo, routeOrder));
         } else {
           console.log("case4: error, response => ", googleResponse);
         }

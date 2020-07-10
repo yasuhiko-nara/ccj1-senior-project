@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "@react-google-maps/api";
 import { Checkbox } from "@material-ui/core";
@@ -17,20 +17,20 @@ export default function Activity({ icon, show, activity }) {
   const [selected, setSelected] = useState(null);
 
   const dispatch = useDispatch();
-  const handleClickOpen = () => {
+  const handleClickOpen = useCallback(() => {
     setOpen(true);
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setOpen(false);
-  };
+  }, []);
 
   return (
-    <div>
+    <>
       {show &&
-        activity.map((marker) => (
+        activity.map((marker, index) => (
           <Marker
-            key={`${marker.location.lat}-${marker.location.lng}`}
+            key={`${marker.location.lat * (index + 1)}`}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
             onMouseOver={() => {
               console.log(marker);
@@ -89,8 +89,8 @@ export default function Activity({ icon, show, activity }) {
               {selected ? (
                 <div>
                   <img src={selected.image} width="100%" />
-                  {selected.reviews.map((review) => (
-                    <div>
+                  {selected.reviews.map((review, index) => (
+                    <div key={`${index}+${new Date().toISOString()}`}>
                       <h2>{review.title}</h2>
                       <p>{review.published_date}</p>
                       <Rating name="read-only" value={review.rating} readOnly />
@@ -111,6 +111,6 @@ export default function Activity({ icon, show, activity }) {
           </DialogActions>
         </Dialog>
       </>
-    </div>
+    </>
   );
 }
