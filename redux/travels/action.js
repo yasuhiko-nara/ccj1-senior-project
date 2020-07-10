@@ -42,9 +42,11 @@ export const toggle_display = () => {
 };
 
 export const CHANGE_DIRECTION = "CHANGE_DIRECTION";
-export const change_direction = (directionResponse) => {
+export const change_direction = (directionResponse, routeInfo, routeOrder) => {
   return {
     type: "CHANGE_DIRECTION",
     directionResponse,
+    routeInfo,
+    routeOrder,
   };
 };

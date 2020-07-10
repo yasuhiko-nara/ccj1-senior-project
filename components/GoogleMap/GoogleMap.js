@@ -74,11 +74,12 @@ export default function Map() {
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
-
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(10);
   }, []);
+  //再レンダーを必要としないステートの管理はuseRef+useCallbackをつかう
+  //https://www.to-r.net/media/react-tutorial-hooks-useref/
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";

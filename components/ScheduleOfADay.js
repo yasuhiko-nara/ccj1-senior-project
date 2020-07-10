@@ -66,9 +66,9 @@ export default function ScheduleOfADay({
           <Typography className={classes.heading}>Schedule</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {schedules.map((activity) => (
+          {schedules.map((activity, index) => (
             <Card
-              key={`${activity.location.lat}-${activity.location.lng}`}
+              key={`${activity.location.lat * (index + 1)}`}
               name={activity.name}
               image={activity.image}
               location={activity.location}
