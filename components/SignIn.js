@@ -9,13 +9,11 @@ import {
   CognitoUser,
   AuthenticationDetails,
 } from "amazon-cognito-identity-js";
-import awsConfiguration from "./awsConfiguration.js";
+
 console.log(process.env.NEXT_PUBLIC_CLIENTID);
 console.log(process.env.NEXT_PUBLIC_REGIN);
 console.log(process.env.NEXT_PUBLIC_IDENTITYPOOLID);
 const userPool = new CognitoUserPool({
-  // UserPoolId: awsConfiguration.UserPoolId,
-  // ClientId: awsConfiguration.ClientId,
   UserPoolId: process.env.NEXT_PUBLIC_USERPOOLID,
   ClientId: process.env.NEXT_PUBLIC_CLIENTID,
 });
@@ -26,9 +24,6 @@ const SignIn = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const a = "nakauchi.tyuy@gmail.com";
-  const b = "Urara1222";
 
   const changeEmail = (event) => {
     setEmail(event.target.value);
@@ -49,11 +44,9 @@ const SignIn = () => {
 
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
-        console.log("result : ", result);
-
         const userName = result.idToken.payload.name;
         const userId = result.idToken.payload["cognito:username"];
-        localStorage.setItem('loginFlag','true')
+        localStorage.setItem("loginFlag", "true");
         dispatch(user_login({ userName, userId, loginFlag: true }));
 
         router.push("/");
