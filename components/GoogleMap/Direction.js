@@ -43,9 +43,9 @@ export default function Direction({ origin, destination, activityLocations }) {
             "case1: new wayPoint is added, response =>: ",
             googleResponse,
             "Route info =>",
-            routeInfo,
+            routeInfo.current,
             "Route order =>",
-            routeOrder
+            routeOrder.current
           );
           dispatch(
             change_direction(
@@ -74,9 +74,9 @@ export default function Direction({ origin, destination, activityLocations }) {
             "case3: third place is located, response =>",
             googleResponse,
             "Route info =>",
-            routeInfo,
+            routeInfo.current,
             "Route order =>",
-            routeOrder
+            routeOrder.current
           );
           dispatch(
             change_direction(
