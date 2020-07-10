@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 import {
   GoogleMap,
@@ -32,10 +33,6 @@ const options = {
   disableDefaultUI: true,
   zoomControl: true,
 };
-const center = {
-  lat: 43.048225,
-  lng: 141.49701,
-};
 
 export default function Map() {
   const { isLoaded, loadError } = useLoadScript({
@@ -43,6 +40,8 @@ export default function Map() {
     libraries,
   });
   const dispatch = useDispatch();
+
+  const router = useRouter();
 
   // const selectedPlace = useSelector((state) => state.selectedPlace);
   const selectedActivities = useSelector(
@@ -74,7 +73,10 @@ export default function Map() {
         id="map"
         mapContainerStyle={mapContainerStyle}
         zoom={8}
-        center={center}
+        center={{
+          lat: Number(router.query.lat),
+          lng: Number(router.query.lng),
+        }}
         options={options}
         // onClick={onMapClick}
         onLoad={onMapLoad}
