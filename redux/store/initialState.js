@@ -3,7 +3,6 @@ const initialState = {
   map: {},
   travels: {
     show: true,
-    // selectedPlace: "hokkaido", // 表示すべき地域や都道府県
     schedules: [
       {
         day: 1,
