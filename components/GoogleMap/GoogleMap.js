@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { useRouter } from "next/router";
 
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
@@ -40,6 +41,7 @@ export default function Map() {
     libraries,
   });
   const dispatch = useDispatch();
+
   const router = useRouter();
 
   const selectedActivities = useSelector(
@@ -120,6 +122,7 @@ export default function Map() {
             activityLocations={activityLocations}
           />
         )}
+
         {/* <TestMap /> */}
       </GoogleMap>
     </div>

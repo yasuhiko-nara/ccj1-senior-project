@@ -17,12 +17,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Day({
-  day = 1,
+export default function ScheduleOfADay({
   schedules = [
     {
-      activityClass: "restaurants",
       day: 1,
+      activityClass: "restaurants",
       checked: false,
 
       place: "hokkaido",
@@ -64,7 +63,7 @@ export default function Day({
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Day {day}</Typography>
+          <Typography className={classes.heading}>Schedule</Typography>
         </AccordionSummary>
         <AccordionDetails>
           {schedules.map((activity) => (
