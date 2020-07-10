@@ -1,6 +1,9 @@
 import React, { useState, useCallback, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { change_direction } from "../../redux/travels/action";
+import {
+  change_direction,
+  change_schedules_order,
+} from "../../redux/travels/action";
 import { DirectionsRenderer, DirectionsService } from "@react-google-maps/api";
 
 export default function Direction({ origin, destination, activityLocations }) {
@@ -28,20 +31,23 @@ export default function Direction({ origin, destination, activityLocations }) {
           googleResponse.geocoded_waypoints.length !==
             currentDirection.geocoded_waypoints.length
         ) {
-          dispatch(change_direction(googleResponse));
+          const routeInfo = googleResponse.routes[0].legs.map((leg) => {
+            return {
+              distance: leg.distance,
+              duration: leg.duration,
+            };
+          });
+          const routeOrder = googleResponse.routes[0].waypoint_order;
           console.log(
             "case1: new wayPoint is added, response =>: ",
             googleResponse,
             "Route info =>",
-            googleResponse.routes[0].legs.map((leg) => {
-              return {
-                distance: leg.distance,
-                duration: leg.duration,
-              };
-            }),
+            routeInfo,
             "Route order =>",
-            googleResponse.routes[0].waypoint_order
+            routeOrder
           );
+          dispatch(change_direction(googleResponse));
+          dispatch(change_schedules_order(routeInfo, routeOrder));
         } else {
           console.log(
             "case2: stop rendering to avoid infiinit loop, response =>: ",
@@ -50,20 +56,23 @@ export default function Direction({ origin, destination, activityLocations }) {
         }
       } else {
         if (googleResponse.status === "OK") {
+          const routeInfo = googleResponse.routes[0].legs.map((leg) => {
+            return {
+              distance: leg.distance,
+              duration: leg.duration,
+            };
+          });
+          const routeOrder = googleResponse.routes[0].waypoint_order;
           console.log(
             "case3: third place is located, response =>",
             googleResponse,
             "Route info =>",
-            googleResponse.routes[0].legs.map((leg) => {
-              return {
-                distance: leg.distance,
-                duration: leg.duration,
-              };
-            }),
+            routeInfo,
             "Route order =>",
-            googleResponse.routes[0].waypoint_order
+            routeOrder
           );
           dispatch(change_direction(googleResponse));
+          dispatch(change_schedules_order(routeInfo, routeOrder));
         } else {
           console.log("case4: error, response => ", googleResponse);
         }

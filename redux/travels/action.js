@@ -48,3 +48,12 @@ export const change_direction = (directionResponse) => {
     directionResponse,
   };
 };
+
+export const CHANGE_SCHEDULES_ORDER = "CHANGE_SCHEDULES_ORDER";
+export const change_schedules_order = (routeInfo, routeOrder) => {
+  return {
+    type: "CHANGE_DIRECTION",
+    routeInfo,
+    routeOrder,
+  };
+};

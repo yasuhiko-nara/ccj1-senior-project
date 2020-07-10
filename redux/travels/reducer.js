@@ -66,6 +66,10 @@ export const travelReducer = (state = initialState.travels, action) => {
     case actions.CHANGE_DIRECTION:
       const direction = action.directionResponse;
       return { ...state, currentDirection: direction };
+    case actions.CHANGE_SCHEDULES_ORDER:
+      const routeInfo = action.routeInfo;
+      const routeOrder = action.routeOrder;
+      return { ...state, routeInfo, routeOrder };
     default:
       return state;
   }
