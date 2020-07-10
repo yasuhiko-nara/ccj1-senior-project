@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
-import { createStore } from "../redux/store/store";
+import { wrapper } from "../redux/store/store";
 import Head from "next/head";
 import { StylesProvider } from "@material-ui/core/styles";
 import "../styles/global.scss";
@@ -9,8 +9,8 @@ import "../styles/reset.css";
 import "@reach/combobox/styles.css";
 import "react-multi-carousel/lib/styles.css";
 
-export default function MyApp({ Component, pageProps }) {
-  const store = createStore(pageProps.initialReduxState);
+function MyApp({ Component, pageProps }) {
+  // const store = createStore(pageProps.initialReduxState);
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -30,10 +30,12 @@ export default function MyApp({ Component, pageProps }) {
         />
       </Head>
       <StylesProvider>
-        <Provider store={store}>
-          <Component {...pageProps} />
-        </Provider>
+        {/* <Provider store={store}> */}
+        <Component {...pageProps} />
+        {/* </Provider> */}
       </StylesProvider>
     </>
   );
 }
+
+export default wrapper.withRedux(MyApp);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
-
+import { test } from "../redux/users/action";
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -19,10 +20,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Toppage = () => {
+  const dispatch = useDispatch();
+  const testNum = useSelector((store) => store.users.testNum);
   const [pref, setPref] = useState("");
+  console.log(testNum);
 
   return (
     <div className="top">
+      <Link href="/testpage">
+        <button onClick={() => dispatch(test())}>test</button>
+      </Link>
       <p>らくたび</p>
       <img
         src="https://www.ana.co.jp/www2/plan-book/promotions/special-fares/spring.jpg"

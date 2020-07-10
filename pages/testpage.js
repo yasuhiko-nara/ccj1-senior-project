@@ -19,10 +19,11 @@ export async function getStaticProps() {
 
 const Index = (props) => {
   // const name = useSelector((store) => store.users.name);
-
+  const testNum = useSelector((store) => store.users.testNum);
   const initialState = JSON.parse(props.data);
   const dispatch = useDispatch();
   dispatch(get_initial_status(initialState));
+  console.log(testNum);
 
   return (
     <>

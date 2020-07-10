@@ -1,10 +1,14 @@
 import initialState from "../store/initialState";
 import * as actions from "./action";
+import { HYDRATE } from "next-redux-wrapper";
+
 // import { ActionSchedule } from "material-ui/svg-icons";
 // import restaurant from "material-ui/svg-icons/maps/restaurant";
 
 export const travelReducer = (state = initialState.travels, action) => {
   switch (action.type) {
+    case HYDRATE:
+      return { ...state, ...action.payload };
     case actions.TOGGLE_DISPLAY:
       return { ...state, toggleDisplay: !state.toggleDisplay };
     case actions.SELECT_ACTIVITIES:
