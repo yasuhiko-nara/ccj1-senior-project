@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
 import List from "../components/List";
 import CheckBox from "../components/CheckBox";
+import SignOut from "../components/SignOut";
 
 export async function getStaticProps() {
   const res = await axios.get(
@@ -27,6 +28,7 @@ const Index = (props) => {
 
   return (
     <>
+      <SignOut />
       <CheckBox />
       <List selectedActivities={selectedActivities} />
     </>
