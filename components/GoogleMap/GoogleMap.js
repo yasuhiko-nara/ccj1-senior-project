@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { useRouter } from "next/router";
+
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import Direction from "./Direction";
 import TestMap from "./mapUtils/TestMap";
@@ -32,10 +34,6 @@ const options = {
   disableDefaultUI: true,
   zoomControl: true,
 };
-const center = {
-  lat: 43.048225,
-  lng: 141.49701,
-};
 
 export default function Map() {
   const { isLoaded, loadError } = useLoadScript({
@@ -43,6 +41,8 @@ export default function Map() {
     libraries,
   });
   const dispatch = useDispatch();
+
+  const router = useRouter();
 
   const selectedActivities = useSelector(
     (state) => state.travels.selectedActivities
@@ -92,7 +92,10 @@ export default function Map() {
         id="map"
         mapContainerStyle={mapContainerStyle}
         zoom={8}
-        center={center}
+        center={{
+          lat: Number(router.query.lat) || 43.048225,
+          lng: Number(router.query.lng) || 141.49701,
+        }}
         options={options}
         // onClick={onMapClick}
         onLoad={onMapLoad}
@@ -119,6 +122,7 @@ export default function Map() {
             activityLocations={activityLocations}
           />
         )}
+
         {/* <TestMap /> */}
       </GoogleMap>
     </div>
