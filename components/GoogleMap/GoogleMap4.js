@@ -1,15 +1,18 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { useRouter } from "next/router";
 
-import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-import Direction from "./Direction";
-import TestMap from "./mapUtils/TestMap";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 
 import Search from "./Search";
 import Locate from "./Locate";
 import Activity from "./Activity";
+
 import mapStyles from "./mapUtils/mapStyles";
 
 const restaurantIcon =
@@ -22,13 +25,9 @@ const hotelIcon =
 
 const libraries = ["places"];
 const mapContainerStyle = {
-  height: "60vh",
+  height: "100vh",
   width: "100vw",
 };
-// const mapContainerStyle = {
-//   height: "600px",
-//   width: "1000px",
-// };
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
@@ -44,31 +43,13 @@ export default function Map() {
 
   const router = useRouter();
 
+  // const selectedPlace = useSelector((state) => state.selectedPlace);
   const selectedActivities = useSelector(
     (state) => state.travels.selectedActivities
   );
   const restaurants = useSelector((state) => state.travels.restaurants);
   const attractions = useSelector((state) => state.travels.attractions);
   const hotels = useSelector((state) => state.travels.hotels);
-
-  const origin = useSelector((state) => {
-    const schedules = state.travels.schedules;
-    return schedules.length > 2 ? schedules[0].location : null;
-  });
-  const destination = useSelector((state) => {
-    const schedules = state.travels.schedules;
-    return schedules.length > 2
-      ? schedules[schedules.length - 1].location
-      : null;
-  });
-  const activityLocations = useSelector((state) => {
-    const schedules = state.travels.schedules;
-    return schedules.length > 2
-      ? schedules.slice(1, schedules.length - 1).map((activity) => {
-          return { location: activity.location };
-        })
-      : null;
-  });
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -93,8 +74,8 @@ export default function Map() {
         mapContainerStyle={mapContainerStyle}
         zoom={8}
         center={{
-          lat: Number(router.query.lat) || 43.048225,
-          lng: Number(router.query.lng) || 141.49701,
+          lat: Number(router.query.lat),
+          lng: Number(router.query.lng),
         }}
         options={options}
         // onClick={onMapClick}
@@ -115,15 +96,6 @@ export default function Map() {
           activity={hotels}
           icon={hotelIcon}
         />
-        {origin && destination && activityLocations && (
-          <Direction
-            origin={origin}
-            destination={destination}
-            activityLocations={activityLocations}
-          />
-        )}
-
-        {/* <TestMap /> */}
       </GoogleMap>
     </div>
   );
