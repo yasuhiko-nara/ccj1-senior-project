@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 });
 
 export default function ImgMediaCard({
-  place = "hokkaido",
+  prefecture = "hokkaido",
   location = { lat: 43.048583, lng: 141.318944 },
   name = "test",
   image = "https://i.postimg.cc/3wtRLxHM/9.jpg",

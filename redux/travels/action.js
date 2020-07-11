@@ -26,10 +26,9 @@ export const get_initial_status = (initialState) => {
 };
 
 export const SELECT_PLAN = "SELECT_PLAN";
-export const select_plan = (target, activity) => {
+export const select_plan = (activity) => {
   return {
     type: "SELECT_PLAN",
-    target,
     activity,
   };
 };

@@ -17,9 +17,6 @@ export default function Activity({ icon, show, activity }) {
   const [selected, setSelected] = useState(null);
 
   const dispatch = useDispatch();
-  const handleClickOpen = useCallback(() => {
-    setOpen(true);
-  }, []);
 
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -33,10 +30,11 @@ export default function Activity({ icon, show, activity }) {
             key={`${marker.location.lat * (index + 1)}`}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
             onMouseOver={() => {
-              console.log(marker);
               setSelected(marker);
             }}
-            onClick={handleClickOpen}
+            onClick={() => {
+              setOpen(true);
+            }}
             icon={{
               url: icon,
               origin: new window.google.maps.Point(0, 0),
@@ -58,14 +56,6 @@ export default function Activity({ icon, show, activity }) {
         >
           <div>
             <h2>
-              <Button
-                onClick={(event) => {
-                  dispatch(select_plan(event.target, selected));
-                }}
-                inputProps={{ "aria-label": "primary checkbox" }}
-              >
-                Add
-              </Button>
               <span role="img" aria-label="bear">
                 {selected.name}
               </span>
@@ -105,9 +95,18 @@ export default function Activity({ icon, show, activity }) {
             <Button onClick={handleClose} color="primary">
               戻る
             </Button>
-            <Button onClick={handleClose} color="primary" autoFocus>
-              追加する
-            </Button>
+            {selected && (
+              <Button
+                onClick={() => {
+                  setOpen(false);
+                  dispatch(select_plan(selected));
+                }}
+                color="primary"
+                autoFocus
+              >
+                <strong>{selected.name}</strong>を追加する
+              </Button>
+            )}
           </DialogActions>
         </Dialog>
       </>
