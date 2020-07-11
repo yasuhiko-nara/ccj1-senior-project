@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import Card from "./Card";
+import Separator from "./Separator";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,10 +19,7 @@ export default function Breadcrumb({ schedules }) {
 
   return (
     <div className={classes.root}>
-      <Breadcrumbs
-        separator={<NavigateNextIcon fontSize="small" />}
-        aria-label="breadcrumb"
-      >
+      <Breadcrumbs separator={<Separator />} aria-label="breadcrumb">
         {schedules.map((activity, index) => (
           <Card
             key={`${activity.location.lat * (index + 1)}`}

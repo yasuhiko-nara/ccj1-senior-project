@@ -104,7 +104,7 @@ export default function Activity({ icon, show, activity }) {
                 color="primary"
                 autoFocus
               >
-                <strong>{selected.name}</strong>を追加する
+                <strong>{selected.name}</strong>を追加
               </Button>
             )}
           </DialogActions>
