@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -31,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SingleLineGridList({ schedules, routeInfo }) {
   const classes = useStyles();
-  console.log(schedules);
+
+  console.log("routeInfo", routeInfo);
+  // const combineScheduleAndRoute =
 
   return (
     <>
@@ -39,21 +42,46 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
         <div className={classes.root}>
           <GridList className={classes.gridList} cols={2.5}>
             {schedules.map((activity, index) => (
-              <GridListTile key={`${activity.location.lat * (index + 1)}`}>
-                <img src={activity.image} alt={activity.name} />
-                <GridListTileBar
-                  title={activity.name}
-                  classes={{
-                    root: classes.titleBar,
-                    title: classes.title,
-                  }}
-                  actionIcon={
-                    <IconButton aria-label={`star ${activity.name}`}>
-                      <StarBorderIcon className={classes.title} />
-                    </IconButton>
-                  }
-                />
-              </GridListTile>
+              <div key={`${activity.location.lat * (index + 1)}`}>
+                {index % 2 === 0 ? (
+                  <GridListTile key={`${activity.location.lat * (index + 1)}`}>
+                    <img src={activity.image} alt={activity.name} />
+                    <GridListTileBar
+                      title={activity.name}
+                      classes={{
+                        root: classes.titleBar,
+                        title: classes.title,
+                      }}
+                      actionIcon={
+                        <IconButton aria-label={`star ${activity.name}`}>
+                          <StarBorderIcon className={classes.title} />
+                        </IconButton>
+                      }
+                    />
+                  </GridListTile>
+                ) : (
+                  <>
+                    <GridListTile
+                      key={`${activity.location.lat * (index + 1)}`}
+                    >
+                      <img src={activity.image} alt={activity.name} />
+                      <GridListTileBar
+                        title={activity.name}
+                        classes={{
+                          root: classes.titleBar,
+                          title: classes.title,
+                        }}
+                        actionIcon={
+                          <IconButton aria-label={`star ${activity.name}`}>
+                            <StarBorderIcon className={classes.title} />
+                          </IconButton>
+                        }
+                      />
+                    </GridListTile>
+                    <div>unkounko</div>
+                  </>
+                )}
+              </div>
             ))}
           </GridList>
         </div>
