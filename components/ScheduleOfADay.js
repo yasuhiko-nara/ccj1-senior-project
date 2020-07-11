@@ -5,7 +5,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Card from "./Card";
+import Breadcrumb from "./Breadcrumb";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,18 +66,7 @@ export default function ScheduleOfADay({
           <Typography className={classes.heading}>Schedule</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {schedules.map((activity, index) => (
-            <Card
-              key={`${activity.location.lat * (index + 1)}`}
-              name={activity.name}
-              image={activity.image}
-              location={activity.location}
-              place={activity.place}
-              category={activity.category}
-              reviews={activity.reviews}
-              rating={activity.rating}
-            />
-          ))}
+          <Breadcrumb schedules={schedules} />
         </AccordionDetails>
       </Accordion>
     </>
