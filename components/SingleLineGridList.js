@@ -34,17 +34,34 @@ const bikeIcon =
 
 export default function SingleLineGridList({ schedules, routeInfo }) {
   const classes = useStyles();
-  // const exRouteInfo=[{distance: {text: "465 km", value: 464556},duration:{text: "8 hours 9 mins", value: 29323}}]
   const routeInfoAndSchedules = [];
   for (let i = 0; i < schedules.length; i++) {
     routeInfoAndSchedules.push(schedules[i]);
     if (i !== schedules.length - 1) routeInfoAndSchedules.push(routeInfo[i]);
   }
-  console.log("combined", routeInfoAndSchedules);
 
+  if (schedules.length <= 2) {
+    console.log(
+      "route and schedule are combined, but not rendered because route is not calculated",
+      routeInfoAndSchedules
+    );
+  } else if (
+    schedules.length > 2 &&
+    schedules.length - 1 === routeInfo.length
+  ) {
+    console.log(
+      "route and schedule are combined and rendered",
+      routeInfoAndSchedules
+    );
+  } else {
+    console.log(
+      "route and schedule are combined, but not rendered because only schedule is revised and routeInfo is not revised",
+      routeInfoAndSchedules
+    );
+  }
   return (
     <>
-      {schedules.length > 3 && (
+      {schedules.length > 2 && schedules.length - 1 === routeInfo.length && (
         <div className={classes.root}>
           <GridList className={classes.gridList} cols={2.5}>
             {routeInfoAndSchedules.map((activity, index) => (
@@ -67,8 +84,12 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
                   </GridListTile>
                 ) : (
                   <GridListTile key={`${activity.distance.value}`}>
-                    <div>{activity.distance.text}</div>
-                    <div>{activity.duration.text}</div>
+                    <div>{Math.round(activity.distance.value / 1000)}km</div>
+                    <div>
+                      {new Date(activity.duration.value * 1000)
+                        .toISOString()
+                        .substr(11, 8)}
+                    </div>
                     <img src={bikeIcon} alt="routeInfo" />
                     <GridListTileBar
                       title="route info"
