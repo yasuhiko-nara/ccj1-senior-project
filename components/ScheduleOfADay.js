@@ -19,6 +19,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ScheduleOfADay({ schedules, routeInfo }) {
   const classes = useStyles();
+  const distanceInKm =
+    routeInfo.length > 0
+      ? Math.round(
+          routeInfo
+            .map((route) => route.distance.value)
+            .reduce((prev, curr) => prev + curr) / 1000
+        )
+      : null;
+  const durationInSec =
+    routeInfo.length > 0
+      ? routeInfo
+          .map((route) => route.duration.value)
+          .reduce((prev, curr) => prev + curr)
+      : null;
+
+  const durationTime = durationInSec
+    ? new Date(durationInSec * 1000).toISOString().substr(11, 8)
+    : null;
 
   return (
     <>
@@ -28,10 +46,16 @@ export default function ScheduleOfADay({ schedules, routeInfo }) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Schedule</Typography>
+          <Typography className={classes.heading}>
+            移動距離：{distanceInKm}km
+          </Typography>
+
+          <Typography className={classes.heading}>
+            所要時間：{durationTime}
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Breadcrumb schedules={schedules} />
+          <Breadcrumb schedules={schedules} routeInfo={routeInfo} />
         </AccordionDetails>
       </Accordion>
     </>

@@ -29,20 +29,26 @@ const useStyles = makeStyles((theme) => ({
       "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
   },
 }));
+const bikeIcon =
+  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%82%99%E3%82%A4%E3%82%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=260673d7-dafc-4496-b5d1-2a41ffab66a6";
 
 export default function SingleLineGridList({ schedules, routeInfo }) {
   const classes = useStyles();
-
-  console.log("routeInfo", routeInfo);
-  // const combineScheduleAndRoute =
+  // const exRouteInfo=[{distance: {text: "465 km", value: 464556},duration:{text: "8 hours 9 mins", value: 29323}}]
+  const routeInfoAndSchedules = [];
+  for (let i = 0; i < schedules.length; i++) {
+    routeInfoAndSchedules.push(schedules[i]);
+    if (i !== schedules.length - 1) routeInfoAndSchedules.push(routeInfo[i]);
+  }
+  console.log("combined", routeInfoAndSchedules);
 
   return (
     <>
-      {schedules.length > 0 && (
+      {schedules.length > 3 && (
         <div className={classes.root}>
           <GridList className={classes.gridList} cols={2.5}>
-            {schedules.map((activity, index) => (
-              <div key={`${activity.location.lat * (index + 1)}`}>
+            {routeInfoAndSchedules.map((activity, index) => (
+              <div key={`${index}`}>
                 {index % 2 === 0 ? (
                   <GridListTile key={`${activity.location.lat * (index + 1)}`}>
                     <img src={activity.image} alt={activity.name} />
@@ -60,26 +66,23 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
                     />
                   </GridListTile>
                 ) : (
-                  <>
-                    <GridListTile
-                      key={`${activity.location.lat * (index + 1)}`}
-                    >
-                      <img src={activity.image} alt={activity.name} />
-                      <GridListTileBar
-                        title={activity.name}
-                        classes={{
-                          root: classes.titleBar,
-                          title: classes.title,
-                        }}
-                        actionIcon={
-                          <IconButton aria-label={`star ${activity.name}`}>
-                            <StarBorderIcon className={classes.title} />
-                          </IconButton>
-                        }
-                      />
-                    </GridListTile>
-                    <div>unkounko</div>
-                  </>
+                  <GridListTile key={`${activity.distance.value}`}>
+                    <div>{activity.distance.text}</div>
+                    <div>{activity.duration.text}</div>
+                    <img src={bikeIcon} alt="routeInfo" />
+                    <GridListTileBar
+                      title="route info"
+                      classes={{
+                        root: classes.titleBar,
+                        title: classes.title,
+                      }}
+                      actionIcon={
+                        <IconButton aria-label={`star ${activity.name}`}>
+                          <StarBorderIcon className={classes.title} />
+                        </IconButton>
+                      }
+                    />
+                  </GridListTile>
                 )}
               </div>
             ))}

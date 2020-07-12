@@ -9,7 +9,7 @@ export default function Schedules() {
   return (
     <>
       <ScheduleOfADay schedules={schedules} routeInfo={routeInfo} />
-      <SingleLineGridList schedules={schedules} routeInfo={routeInfo} />
+      {/* <SingleLineGridList schedules={schedules} routeInfo={routeInfo} /> */}
     </>
   );
 }
