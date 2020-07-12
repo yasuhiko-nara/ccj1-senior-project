@@ -63,7 +63,7 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
     <>
       {schedules.length > 2 && schedules.length - 1 === routeInfo.length && (
         <div className={classes.root}>
-          <GridList className={classes.gridList} cols={2.5}>
+          <GridList spacing="10" className={classes.gridList} cols={2.5}>
             {routeInfoAndSchedules.map((activity, index) => (
               <div key={`${index}`}>
                 {index % 2 === 0 ? (
@@ -84,6 +84,7 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
                   </GridListTile>
                 ) : (
                   <GridListTile key={`${activity.distance.value}`}>
+                    <div>所要時間</div>
                     <div>
                       {new Date(activity.duration.value * 1000)
                         .toISOString()
