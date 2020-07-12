@@ -40,7 +40,7 @@ const List = (props) => {
             name={obj.name}
             reviews={obj.reviews}
             rating={obj.rationg}
-            key={i.toString()}
+            key={obj.name + i.toString()}
           />
         );
       });

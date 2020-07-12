@@ -77,6 +77,7 @@ export const travelReducer = (state = initialState.travels, action) => {
       return {
         ...state,
         currentDirection: direction,
+        routeInfo,
         schedules: reOrderedSchedules,
       };
 

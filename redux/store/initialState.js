@@ -4,6 +4,7 @@ const initialState = {
   travels: {
     show: true,
     currentDirection: null,
+    routeInfo: [],
     // routeInfo: [
     // {
     //   distance: { text: "257 km", value: 257155 },

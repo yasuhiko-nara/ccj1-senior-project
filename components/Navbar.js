@@ -54,7 +54,8 @@ const Navbar = () => {
           label={auth ? "Logout" : "Login"}
         />
       </FormGroup>
-      <AppBar position="static" color="white">
+      <AppBar position="static" color="default">
+        {/* ["default","inherit","primary","secondary","transparent"]. => whiteだとエラーが出てるので変更しました*/}
         <Toolbar>
           <img src="https://pbs.twimg.com/profile_images/1087001401413128192/b3WuEqTF.jpg"></img>
           <Typography className={classes.title}></Typography>

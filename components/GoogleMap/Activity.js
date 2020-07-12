@@ -11,6 +11,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Rating from "@material-ui/lab/Rating";
+import Typography from "@material-ui/core/Typography";
 
 export default function Activity({ icon, show, activity }) {
   const [open, setOpen] = useState(false);
@@ -75,21 +76,28 @@ export default function Activity({ icon, show, activity }) {
             {selected ? selected.name : null}
           </DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              {selected ? (
-                <div>
-                  <img src={selected.image} width="100%" />
-                  {selected.reviews.map((review, index) => (
-                    <div key={`${index}+${new Date().toISOString()}`}>
-                      <h2>{review.title}</h2>
-                      <p>{review.published_date}</p>
-                      <Rating name="read-only" value={review.rating} readOnly />
-                      <p>{review.text}</p>
-                    </div>
-                  ))}
-                </div>
-              ) : null}
-            </DialogContentText>
+            {selected ? (
+              <>
+                <img src={selected.image} width="100%" />
+                {/* DialogContentTextの中にテキスト以外（pタグやh2タグ）を入れるとエラーが起きるので修正しました */}
+                {selected.reviews.map((review, index) => (
+                  <div key={`${review.title}+${index}`}>
+                    <Typography>{review.title}</Typography>
+                    <DialogContentText id="alert-dialog-description">
+                      {review.published_date}
+                    </DialogContentText>
+                    <Rating
+                      name="read-only"
+                      value={Number(review.rating)}
+                      readOnly
+                    />
+                    <DialogContentText id="alert-dialog-description">
+                      {review.text}
+                    </DialogContentText>
+                  </div>
+                ))}
+              </>
+            ) : null}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
@@ -104,7 +112,7 @@ export default function Activity({ icon, show, activity }) {
                 color="primary"
                 autoFocus
               >
-                <strong>{selected.name}</strong>を追加する
+                <strong>{selected.name}</strong>を追加
               </Button>
             )}
           </DialogActions>

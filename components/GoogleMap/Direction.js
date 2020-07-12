@@ -57,7 +57,7 @@ export default function Direction({ origin, destination, activityLocations }) {
           // dispatch(change_schedules_order(routeInfo, routeOrder));
         } else {
           console.log(
-            "case2: stop rendering to avoid infiinit loop, response =>: ",
+            "case2: stop rendering by unchanging state to avoid infiinit loop, response =>: ",
             googleResponse
           );
         }
