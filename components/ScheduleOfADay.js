@@ -5,7 +5,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Card from "./Card";
+import Breadcrumb from "./Breadcrumb";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,43 +17,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ScheduleOfADay({
-  schedules = [
-    {
-      day: 1,
-      activityClass: "restaurants",
-      checked: false,
-
-      place: "hokkaido",
-      location: { lat: 43.048583, lng: 141.318944 },
-      name: "testRestaurants1",
-      image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
-      category: "",
-      reviews: [
-        {
-          titile: "test1",
-          text: "testtesttesttesttest",
-          rating: "4",
-          published_data: "2020-02-22T20:52:08-05:00",
-        },
-        {
-          titile: "test1",
-          text: "testtesttesttesttest",
-          rating: "4",
-          published_data: "2020-02-22T20:52:08-05:00",
-        },
-        {
-          titile: "test1",
-          text: "testtesttesttesttest",
-          rating: "4",
-          published_data: "2020-02-22T20:52:08-05:00",
-        },
-      ],
-      rating: 1.7,
-    },
-  ],
-}) {
+export default function ScheduleOfADay({ schedules, routeInfo }) {
   const classes = useStyles();
+  const distanceInKm =
+    routeInfo.length > 0
+      ? Math.round(
+          routeInfo
+            .map((route) => route.distance.value)
+            .reduce((prev, curr) => prev + curr) / 1000
+        )
+      : null;
+  const durationInSec =
+    routeInfo.length > 0
+      ? routeInfo
+          .map((route) => route.duration.value)
+          .reduce((prev, curr) => prev + curr)
+      : null;
+
+  const durationTime = durationInSec
+    ? new Date(durationInSec * 1000).toISOString().substr(11, 8)
+    : null;
 
   return (
     <>
@@ -63,21 +46,16 @@ export default function ScheduleOfADay({
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Schedule</Typography>
+          <Typography className={classes.heading}>
+            移動距離：{distanceInKm}km
+          </Typography>
+
+          <Typography className={classes.heading}>
+            所要時間：{durationTime}
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {schedules.map((activity) => (
-            <Card
-              key={`${activity.location.lat}-${activity.location.lng}`}
-              name={activity.name}
-              image={activity.image}
-              location={activity.location}
-              place={activity.place}
-              category={activity.category}
-              reviews={activity.reviews}
-              rating={activity.rating}
-            />
-          ))}
+          <Breadcrumb schedules={schedules} routeInfo={routeInfo} />
         </AccordionDetails>
       </Accordion>
     </>

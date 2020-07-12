@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "@react-google-maps/api";
 import { Checkbox } from "@material-ui/core";
@@ -11,32 +11,31 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Rating from "@material-ui/lab/Rating";
+import Typography from "@material-ui/core/Typography";
 
 export default function Activity({ icon, show, activity }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
 
   const dispatch = useDispatch();
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setOpen(false);
-  };
+  }, []);
 
   return (
-    <div>
+    <>
       {show &&
-        activity.map((marker) => (
+        activity.map((marker, index) => (
           <Marker
-            key={`${marker.location.lat}-${marker.location.lng}`}
+            key={`${marker.location.lat * (index + 1)}`}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
             onMouseOver={() => {
-              console.log(marker);
               setSelected(marker);
             }}
-            onClick={handleClickOpen}
+            onClick={() => {
+              setOpen(true);
+            }}
             icon={{
               url: icon,
               origin: new window.google.maps.Point(0, 0),
@@ -58,14 +57,6 @@ export default function Activity({ icon, show, activity }) {
         >
           <div>
             <h2>
-              <Button
-                onClick={(event) => {
-                  dispatch(select_plan(event.target, selected));
-                }}
-                inputProps={{ "aria-label": "primary checkbox" }}
-              >
-                Add
-              </Button>
               <span role="img" aria-label="bear">
                 {selected.name}
               </span>
@@ -85,32 +76,48 @@ export default function Activity({ icon, show, activity }) {
             {selected ? selected.name : null}
           </DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              {selected ? (
-                <div>
-                  <img src={selected.image} width="100%" />
-                  {selected.reviews.map((review) => (
-                    <div>
-                      <h2>{review.title}</h2>
-                      <p>{review.published_date}</p>
-                      <Rating name="read-only" value={review.rating} readOnly />
-                      <p>{review.text}</p>
-                    </div>
-                  ))}
-                </div>
-              ) : null}
-            </DialogContentText>
+            {selected ? (
+              <>
+                <img src={selected.image} width="100%" />
+                {/* DialogContentTextの中にテキスト以外（pタグやh2タグ）を入れるとエラーが起きるので修正しました */}
+                {selected.reviews.map((review, index) => (
+                  <div key={`${review.title}+${index}`}>
+                    <Typography>{review.title}</Typography>
+                    <DialogContentText id="alert-dialog-description">
+                      {review.published_date}
+                    </DialogContentText>
+                    <Rating
+                      name="read-only"
+                      value={Number(review.rating)}
+                      readOnly
+                    />
+                    <DialogContentText id="alert-dialog-description">
+                      {review.text}
+                    </DialogContentText>
+                  </div>
+                ))}
+              </>
+            ) : null}
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
               戻る
             </Button>
-            <Button onClick={handleClose} color="primary" autoFocus>
-              追加する
-            </Button>
+            {selected && (
+              <Button
+                onClick={() => {
+                  setOpen(false);
+                  dispatch(select_plan(selected));
+                }}
+                color="primary"
+                autoFocus
+              >
+                <strong>{selected.name}</strong>を追加
+              </Button>
+            )}
           </DialogActions>
         </Dialog>
       </>
-    </div>
+    </>
   );
 }

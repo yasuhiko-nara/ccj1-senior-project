@@ -26,10 +26,9 @@ export const get_initial_status = (initialState) => {
 };
 
 export const SELECT_PLAN = "SELECT_PLAN";
-export const select_plan = (target, activity) => {
+export const select_plan = (activity) => {
   return {
     type: "SELECT_PLAN",
-    target,
     activity,
   };
 };
@@ -42,9 +41,11 @@ export const toggle_display = () => {
 };
 
 export const CHANGE_DIRECTION = "CHANGE_DIRECTION";
-export const change_direction = (directionResponse) => {
+export const change_direction = (directionResponse, routeInfo, routeOrder) => {
   return {
     type: "CHANGE_DIRECTION",
     directionResponse,
+    routeInfo,
+    routeOrder,
   };
 };
