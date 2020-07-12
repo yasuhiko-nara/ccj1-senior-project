@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "translateZ(0)",
   },
   title: {
-    color: theme.palette.primary.light,
+    color: theme.palette.success.light,
   },
   titleBar: {
     background:
@@ -63,7 +63,7 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
     <>
       {schedules.length > 2 && schedules.length - 1 === routeInfo.length && (
         <div className={classes.root}>
-          <GridList className={classes.gridList} cols={2.5}>
+          <GridList spacing="10" className={classes.gridList} cols={2.5}>
             {routeInfoAndSchedules.map((activity, index) => (
               <div key={`${index}`}>
                 {index % 2 === 0 ? (
@@ -84,25 +84,14 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
                   </GridListTile>
                 ) : (
                   <GridListTile key={`${activity.distance.value}`}>
-                    <div>{Math.round(activity.distance.value / 1000)}km</div>
+                    <div>所要時間</div>
                     <div>
                       {new Date(activity.duration.value * 1000)
                         .toISOString()
                         .substr(11, 8)}
                     </div>
                     <img src={bikeIcon} alt="routeInfo" />
-                    <GridListTileBar
-                      title="route info"
-                      classes={{
-                        root: classes.titleBar,
-                        title: classes.title,
-                      }}
-                      actionIcon={
-                        <IconButton aria-label={`star ${activity.name}`}>
-                          <StarBorderIcon className={classes.title} />
-                        </IconButton>
-                      }
-                    />
+                    <div>{Math.round(activity.distance.value / 1000)}km</div>
                   </GridListTile>
                 )}
               </div>

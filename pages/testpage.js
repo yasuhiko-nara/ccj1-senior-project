@@ -2,6 +2,10 @@ import axios from "axios";
 
 import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+
 import Map from "../components/GoogleMap/GoogleMap";
 import CheckBox from "../components/CheckBox";
 import Schedules from "../components/Schedules";
@@ -19,8 +23,20 @@ export async function getStaticProps() {
   };
 }
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+}));
+
 const Index = (props) => {
   // const name = useSelector((store) => store.users.name);
+  const classes = useStyles();
 
   const initialState = JSON.parse(props.data);
   const dispatch = useDispatch();
@@ -28,11 +44,35 @@ const Index = (props) => {
 
   return (
     <>
-      <div>
+      {/* <div>
         <Navbar />
         <CheckBox />
         <Map />
         <Schedules />
+      </div> */}
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <Navbar />
+            </Paper>
+          </Grid>
+          <Grid item xs={4}>
+            <Paper className={classes.paper}>
+              <CheckBox />
+            </Paper>
+          </Grid>
+          <Grid item xs={8}>
+            <Paper className={classes.paper}>
+              <Schedules />
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <Map />
+            </Paper>
+          </Grid>
+        </Grid>
       </div>
     </>
   );
