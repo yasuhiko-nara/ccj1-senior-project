@@ -16,28 +16,35 @@ const Toppage = () => {
         alt="らくたびトップ画"
       />
       <div className="search-bar">
-        <text>{pref.pref}</text>
-        <button>検索する</button>
+        <input
+          type="text"
+          id="text"
+          value={pref.pref}
+          placeholder="どこに行きますか？"
+          disabled
+        ></input>
+        <Link
+          href={{
+            pathname: "testpage",
+            query: { lat: pref.lat, lng: pref.lng },
+          }}
+        >
+          <button>検索する</button>
+        </Link>
       </div>
       <div className="prefecture">
         <h2>都道府県一覧</h2>
         <Grid container spacing={1} justify="left">
           {prefs.map((pref) => (
             <Grid item xs={1.5}>
-              <Link
-                href={{
-                  pathname: "testpage",
-                  query: { lat: pref.lat, lng: pref.lng },
+              <button
+                className="btn-border"
+                onClick={() => {
+                  setPref(pref);
                 }}
               >
-                <button
-                  onClick={() => {
-                    setPref(pref);
-                  }}
-                >
-                  {pref.pref}
-                </button>
-              </Link>
+                {pref.pref}
+              </button>
             </Grid>
           ))}
         </Grid>
@@ -50,13 +57,36 @@ const Toppage = () => {
           margin-top: 20px;
           text-align: center;
         }
-        select {
-          width: 750px;
-          height: 45px;
-          margin-right: 10px;
-        }
         button {
           height: 45px;
+        }
+        #text {
+          width: 50%;
+          padding: 10px 15px;
+          font-size: 16px;
+          border-radius: 3px;
+          border: 2px solid #ddd;
+          box-sizing: border-box;
+          margin-right: 15px;
+        }
+        .btn-border {
+          display: inline-block;
+          max-width: 180px;
+          text-align: left;
+          border: 2px solid #6aafe6;
+          font-size: 16px;
+          color: #6aafe6;
+          text-decoration: none;
+          font-weight: bold;
+          padding: 8px 16px;
+          border-radius: 4px;
+          transition: 0.4s;
+          background-color: white;
+        }
+        .btn-border:hover {
+          background-color: #6aafe6;
+          border-color: #6aafe6;
+          color: #fff;
         }
         .prefecture {
           margin: 0 15%;
