@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "translateZ(0)",
   },
   title: {
-    color: theme.palette.primary.light,
+    color: theme.palette.success.light,
   },
   titleBar: {
     background:
@@ -84,25 +84,13 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
                   </GridListTile>
                 ) : (
                   <GridListTile key={`${activity.distance.value}`}>
-                    <div>{Math.round(activity.distance.value / 1000)}km</div>
                     <div>
                       {new Date(activity.duration.value * 1000)
                         .toISOString()
                         .substr(11, 8)}
                     </div>
                     <img src={bikeIcon} alt="routeInfo" />
-                    <GridListTileBar
-                      title="route info"
-                      classes={{
-                        root: classes.titleBar,
-                        title: classes.title,
-                      }}
-                      actionIcon={
-                        <IconButton aria-label={`star ${activity.name}`}>
-                          <StarBorderIcon className={classes.title} />
-                        </IconButton>
-                      }
-                    />
+                    <div>{Math.round(activity.distance.value / 1000)}km</div>
                   </GridListTile>
                 )}
               </div>

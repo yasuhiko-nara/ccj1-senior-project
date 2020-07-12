@@ -39,7 +39,7 @@ export default function CheckboxesGroup() {
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">表示を限定</FormLabel>
+        <FormLabel component="legend">アクティビティを選びましょう！</FormLabel>
         <FormGroup row>
           <FormControlLabel
             control={
