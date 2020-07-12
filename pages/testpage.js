@@ -57,20 +57,19 @@ const Index = (props) => {
               <Navbar />
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={4}>
             <Paper className={classes.paper}>
               <CheckBox />
             </Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={8}>
             <Paper className={classes.paper}>
-              <Map />
+              <Schedules />
             </Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Paper className={classes.paper}>
-              {" "}
-              <Schedules />
+              <Map />
             </Paper>
           </Grid>
         </Grid>
