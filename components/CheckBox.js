@@ -10,6 +10,8 @@ import {
   FormHelperText,
   Checkbox,
 } from "@material-ui/core";
+import Favorite from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,11 +39,13 @@ export default function CheckboxesGroup() {
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Assign responsibility</FormLabel>
-        <FormGroup>
+        <FormLabel component="legend">表示を限定</FormLabel>
+        <FormGroup row>
           <FormControlLabel
             control={
               <Checkbox
+                icon={<FavoriteBorder />}
+                checkedIcon={<Favorite />}
                 checked={restaurants}
                 onChange={handleChange}
                 name="restaurants"
@@ -52,6 +56,8 @@ export default function CheckboxesGroup() {
           <FormControlLabel
             control={
               <Checkbox
+                icon={<FavoriteBorder />}
+                checkedIcon={<Favorite />}
                 checked={attractions}
                 onChange={handleChange}
                 name="attractions"
@@ -62,6 +68,8 @@ export default function CheckboxesGroup() {
           <FormControlLabel
             control={
               <Checkbox
+                icon={<FavoriteBorder />}
+                checkedIcon={<Favorite />}
                 checked={hotels}
                 onChange={handleChange}
                 name="hotels"
@@ -70,7 +78,6 @@ export default function CheckboxesGroup() {
             label="ホテル"
           />
         </FormGroup>
-        <FormHelperText>Be careful</FormHelperText>
       </FormControl>
     </div>
   );
