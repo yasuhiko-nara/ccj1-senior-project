@@ -15,20 +15,13 @@ const useStyles = makeStyles({
 });
 
 export default function ImgMediaCard({
-  prefecture = "hokkaido",
-  location = { lat: 43.048583, lng: 141.318944 },
-  name = "test",
-  image = "https://i.postimg.cc/3wtRLxHM/9.jpg",
-  category = "",
-  reviews = [
-    {
-      titile: "test1",
-      text: "this is supposed to be the first review",
-      rating: "4",
-      published_data: "2020-02-22T20:52:08-05:00",
-    },
-  ],
-  rating = 3,
+  prefecture,
+  location,
+  name,
+  image,
+  category,
+  reviews,
+  rating,
 }) {
   const classes = useStyles();
 
