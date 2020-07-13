@@ -8,7 +8,8 @@ import Direction from "./Direction";
 import TestMap from "./mapUtils/TestMap";
 
 import Search from "./Search";
-import Locate from "./Locate";
+// import Locate from "./Locate";
+// import RouteDeleteButton from "./RouteDeleteButtun";
 import Activity from "./Activity";
 import mapStyles from "./mapUtils/mapStyles";
 
@@ -88,6 +89,7 @@ export default function Map() {
     <div>
       {/* <Locate panTo={panTo} /> */}
       <Search panTo={panTo} />
+      {/* <RouteDeleteButton /> */}
 
       <GoogleMap
         id="map"
