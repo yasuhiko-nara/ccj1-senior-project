@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
 import { toggle_display } from "../redux/travels/action";
@@ -12,7 +12,7 @@ import Map from "../components/GoogleMap/GoogleMap";
 import CheckBox from "../components/CheckBox";
 import Schedules from "../components/Schedules";
 import Navbar from "../components/Navbar";
-import List from "../components/List";
+import SpotList from "../components/SpotList";
 
 export async function getStaticProps() {
   const res = await axios.get(
@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Index = (props) => {
-  // const name = useSelector((store) => store.users.name);
   const classes = useStyles();
+  const router = useRouter();
 
   const initialState = JSON.parse(props.data);
   const dispatch = useDispatch();
@@ -47,18 +47,17 @@ const Index = (props) => {
 
   const mapToList = useSelector((store) => store.travels.toggleDisplay);
 
-  const selectedActivities = useSelector(
-    (store) => store.travels.selectedActivities
+  const restaurantsOfTargetPref = initialState.restaurants.filter(
+    (restaurant) => restaurant.prefecture === router.query.pref
   );
-
+  const attractionsOfTargetPref = initialState.attractions.filter(
+    (attraction) => attraction.prefecture === router.query.pref
+  );
+  const hotelsOfTargetPref = initialState.hotels.filter(
+    (hotel) => hotel.prefecture === router.query.pref
+  );
   return (
     <>
-      {/* <div>
-        <Navbar />
-        <CheckBox />
-        <Map />
-        <Schedules />
-      </div> */}
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -66,17 +65,7 @@ const Index = (props) => {
               <Navbar />
             </Paper>
           </Grid>
-          <Grid item xs={4}>
-            <Paper className={classes.paper}>
-              <CheckBox />
-            </Paper>
-          </Grid>
-          <Grid item xs={8}>
-            <Paper className={classes.paper}>
-              <Schedules />
-            </Paper>
-          </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Paper className={classes.paper}>
               <Button
                 onClick={() => dispatch(toggle_display())}
@@ -89,11 +78,23 @@ const Index = (props) => {
           {mapToList ? (
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <List selectedActivities={selectedActivities} />
+                <SpotList spotsOfTargetPref={attractionsOfTargetPref} />
+                <SpotList spotsOfTargetPref={restaurantsOfTargetPref} />
+                <SpotList spotsOfTargetPref={hotelsOfTargetPref} />
               </Paper>
             </Grid>
           ) : (
             <>
+              <Grid item xs={8}>
+                <Paper className={classes.paper}>
+                  <CheckBox />
+                </Paper>
+              </Grid>
+              <Grid item xs={8}>
+                <Paper className={classes.paper}>
+                  <Schedules />
+                </Paper>
+              </Grid>
               <Grid item xs={12}>
                 <Paper className={classes.paper}>
                   <Map />
