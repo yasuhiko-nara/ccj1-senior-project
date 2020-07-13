@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { user_login } from "../redux/users/action";
-
+import Button from "@material-ui/core/Button";
 import { useRouter } from "next/router";
 
 import {
@@ -10,9 +10,6 @@ import {
   AuthenticationDetails,
 } from "amazon-cognito-identity-js";
 
-console.log(process.env.NEXT_PUBLIC_CLIENTID);
-console.log(process.env.NEXT_PUBLIC_REGIN);
-console.log(process.env.NEXT_PUBLIC_IDENTITYPOOLID);
 const userPool = new CognitoUserPool({
   UserPoolId: process.env.NEXT_PUBLIC_USERPOOLID,
   ClientId: process.env.NEXT_PUBLIC_CLIENTID,
