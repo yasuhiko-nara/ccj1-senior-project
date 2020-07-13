@@ -13,7 +13,12 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 
-export default function Activity({ icon, show, activity }) {
+export default function Activity({
+  icon,
+  show,
+  activity,
+  showAddPlanButton = true,
+}) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
 
@@ -103,7 +108,7 @@ export default function Activity({ icon, show, activity }) {
             <Button onClick={handleClose} color="primary">
               戻る
             </Button>
-            {selected && (
+            {selected && showAddPlanButton && (
               <Button
                 onClick={() => {
                   setOpen(false);
