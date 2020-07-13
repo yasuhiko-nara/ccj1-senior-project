@@ -59,11 +59,13 @@ export default function GooleMapForRouteView({ myRoute }) {
         options={options}
         onLoad={onMapLoad}
       >
-        <DirectionsRenderer
-          options={{
-            directions: myRoute,
-          }}
-        />
+        {myRoute && (
+          <DirectionsRenderer
+            options={{
+              directions: myRoute,
+            }}
+          />
+        )}
       </GoogleMap>
     </div>
   );
