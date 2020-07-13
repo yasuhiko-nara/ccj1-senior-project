@@ -1,37 +1,41 @@
 #! /bin/bash
 # run in bash
 
-# recognize node js
+# recognize other programs
 source /home/ec2-user/.bash_profile
 
-# change user app directory
-cd /home/ec2-user/
-sudo chown -R ec2-user:ec2-user rakutabi
+# yum update
+sudo yum update
 
-# json操作用にjqインストール
-sudo yum install -y jq
+# install code deploy agent
+## stop previous codedeploy-agent
+sudo service codedeploy-agetnt stop
+## prepare for code deploy agent install
+sudo yum install ruby
+sudo yum install wget
+cd /home/ec2-user
+## codedeploy agent download
+wget https://aws-codedeploy-ap-northeast-1.s3.amazonaws.com/latest/install
+chmod +x ./install
+## install codedeploy agent 
+sudo ./install auto
+## 実行
+sudo service codedeploy-agent start
+sudo service codedeploy-agent status
 
-#parameter storeからparams 取得して変数envsに入れる　jsonを加工
-env=$(aws ssm get-parameters-by-path --path "/RakuTabi/" | jq '.Parameters | . [0] | .Value')
+# node install
+## nodeパッケージマネージャー(nvm)インストール
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
+## nvm有効化
+. ~/.nvm/nvm.sh
+##  nvmからnodeインストール
+nvm install node 
+node -v
 
-#編集対象定義
-envfile=/home/ec2-user/rakutabi/.env
+# nginx setup
+## stop previoust nginx server
+sudo service nginx stop
+sudo service nginx status
 
-# 書き込み
-echo "REACT_APP_googleMapsApiKey=${env}" >> ${envfile}
-
-# move to app directory
-cd /home/ec2-user/rakutabi/
-
-# install paclages
-npm install -g yarn
-yarn 
-
-# stop previous server
-yarn forever stop node_modules/.bin/next
-
-# build server
-yarn build
-
-# start server 
-yarn forever start node_modules/.bin/next start
+## install nginx
+sudo amazon-linux-extras install -y nginx1.12
