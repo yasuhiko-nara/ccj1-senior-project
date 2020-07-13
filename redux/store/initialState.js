@@ -1,5 +1,5 @@
 const initialState = {
-  users: { loginFlag: false, userId: "", userName: "" },
+  users: { loginFlag: false, userId: "", userName: "", email: "" },
   map: {},
   travels: {
     show: true,
