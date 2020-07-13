@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { user_login } from "../redux/users/action";
-
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import { useRouter } from "next/router";
 
 import {
@@ -10,9 +11,6 @@ import {
   AuthenticationDetails,
 } from "amazon-cognito-identity-js";
 
-console.log(process.env.NEXT_PUBLIC_CLIENTID);
-console.log(process.env.NEXT_PUBLIC_REGIN);
-console.log(process.env.NEXT_PUBLIC_IDENTITYPOOLID);
 const userPool = new CognitoUserPool({
   UserPoolId: process.env.NEXT_PUBLIC_USERPOOLID,
   ClientId: process.env.NEXT_PUBLIC_CLIENTID,
@@ -47,6 +45,7 @@ const SignIn = () => {
         const userName = result.idToken.payload.name;
         const userId = result.idToken.payload["cognito:username"];
         localStorage.setItem("loginFlag", "true");
+        localStorage.setItem("userId", `${userId}`);
         dispatch(user_login({ userName, userId, loginFlag: true }));
 
         router.push("/");
@@ -59,11 +58,23 @@ const SignIn = () => {
 
   return (
     <div className="SignIn">
-      <h1>SingIn</h1>
-
-      <input type="text" placeholder="email" onChange={changeEmail} />
-      <input type="password" placeholder="password" onChange={changePassword} />
-      <button onClick={signIn}>Sign In</button>
+      <h1>SingInしてください</h1>
+      <TextField
+        onChange={changeEmail}
+        id="filled-basic"
+        label="Email"
+        variant="filled"
+      />
+      <TextField
+        onChange={changePassword}
+        id="standard-password-input"
+        label="Password"
+        type="password"
+        autoComplete="current-password"
+      />
+      <Button variant="contained" onClick={signIn} color="primary">
+        Login
+      </Button>
     </div>
   );
 };
