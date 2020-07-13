@@ -63,10 +63,13 @@ const Authentication = () => {
 
         const userName = result.idToken.payload.name;
         const userId = result.idToken.payload["cognito:username"];
+        const idToken = result.idToken.jwtToken;
 
         localStorage.setItem("loginFlag", "true");
         localStorage.setItem("userId", `${userId}`);
-        dispatch(user_login({ userName, userId, loginFlag: true }));
+        localStorage.setItem("idToken", `${idToken}`);
+        dispatch(user_login({ userName, userId, loginFlag: true, idToken }));
+
         dispatch(change_email(""));
 
         setPassword("");
