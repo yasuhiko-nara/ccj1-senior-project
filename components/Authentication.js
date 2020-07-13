@@ -66,8 +66,12 @@ const Authentication = () => {
         const idToken = result.idToken.jwtToken;
 
         localStorage.setItem("loginFlag", "true");
+        localStorage.setItem("userId", `${userId}`);
+        localStorage.setItem("idToken", `${idToken}`);
         dispatch(user_login({ userName, userId, loginFlag: true, idToken }));
+
         dispatch(change_email(""));
+
         setPassword("");
         router.push("/");
 

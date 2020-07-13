@@ -6,7 +6,8 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Breadcrumb from "./Breadcrumb";
-import RouteDeleteButton from "./GoogleMap/RouteDeleteButtun";
+import RouteDeleteButton from "./GoogleMap/RouteDeleteButton";
+import RouteSaveButton from "./GoogleMap/RouteSaveButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,6 +56,7 @@ export default function ScheduleOfADay({ schedules, routeInfo }) {
             所要時間：{durationTime}
           </Typography>
           <RouteDeleteButton />
+          <RouteSaveButton />
         </AccordionSummary>
         <AccordionDetails>
           <Breadcrumb schedules={schedules} routeInfo={routeInfo} />

@@ -10,6 +10,9 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { signOut } from "./lib/signout";
+import { useDispatch } from "react-redux";
+import { user_logout } from "../redux/users/action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -38,6 +42,7 @@ const Navbar = () => {
   };
 
   const handleClose = () => {
+    dispatch(user_logout());
     setAnchorEl(null);
   };
   return (
@@ -90,7 +95,8 @@ const Navbar = () => {
                 <MenuItem onClick={handleClose}>お気に入り一覧</MenuItem>
                 <MenuItem
                   onClick={() => {
-                    setAuth(false);
+                    signOut();
+
                     handleClose();
                   }}
                 >
