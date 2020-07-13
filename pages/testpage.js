@@ -2,9 +2,11 @@ import axios from "axios";
 
 import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
+import { toggle_display } from "../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 import Map from "../components/GoogleMap/GoogleMap";
 import CheckBox from "../components/CheckBox";
@@ -42,6 +44,8 @@ const Index = (props) => {
   const dispatch = useDispatch();
   dispatch(get_initial_status(initialState));
 
+  const mapToList = useSelector((store) => store.travels.toggleDisplay);
+
   return (
     <>
       {/* <div>
@@ -67,11 +71,27 @@ const Index = (props) => {
               <Schedules />
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={3}>
             <Paper className={classes.paper}>
-              <Map />
+              <Button
+                onClick={() => dispatch(toggle_display())}
+                variant="contained"
+              >
+                TOGGLE
+              </Button>
             </Paper>
           </Grid>
+          {mapToList ? (
+            <>a</>
+          ) : (
+            <>
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <Map />
+                </Paper>
+              </Grid>
+            </>
+          )}
         </Grid>
       </div>
     </>
