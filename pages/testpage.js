@@ -13,6 +13,7 @@ import CheckBox from "../components/CheckBox";
 import Schedules from "../components/Schedules";
 import Navbar from "../components/Navbar";
 import SpotList from "../components/SpotList";
+import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
 
 export async function getStaticProps() {
   const res = await axios.get(
@@ -40,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
 const Index = (props) => {
   const classes = useStyles();
   const router = useRouter();
+  const currentDirection = useSelector(
+    (state) => state.travels.currentDirection
+  );
 
   const initialState = JSON.parse(props.data);
   const dispatch = useDispatch();
@@ -104,6 +108,7 @@ const Index = (props) => {
           )}
         </Grid>
       </div>
+      {/* <GoogleMapForRouteView myRoute={currentDirection} /> */}
     </>
   );
 };
