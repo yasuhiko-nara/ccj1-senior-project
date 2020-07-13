@@ -12,6 +12,7 @@ import Map from "../components/GoogleMap/GoogleMap";
 import CheckBox from "../components/CheckBox";
 import Schedules from "../components/Schedules";
 import Navbar from "../components/Navbar";
+import List from "../components/List";
 
 export async function getStaticProps() {
   const res = await axios.get(
@@ -45,6 +46,10 @@ const Index = (props) => {
   dispatch(get_initial_status(initialState));
 
   const mapToList = useSelector((store) => store.travels.toggleDisplay);
+
+  const selectedActivities = useSelector(
+    (store) => store.travels.selectedActivities
+  );
 
   return (
     <>
@@ -82,7 +87,11 @@ const Index = (props) => {
             </Paper>
           </Grid>
           {mapToList ? (
-            <>a</>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <List selectedActivities={selectedActivities} />
+              </Paper>
+            </Grid>
           ) : (
             <>
               <Grid item xs={12}>

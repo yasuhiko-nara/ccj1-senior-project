@@ -1,11 +1,13 @@
 import Item from "./Item";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 import Carousel from "react-multi-carousel";
 
 import { Divider } from "material-ui";
 
 const List = (props) => {
+  const router = useRouter();
   const travels = useSelector((store) => store.travels);
 
   const selectedActivities = props.selectedActivities;
@@ -32,18 +34,20 @@ const List = (props) => {
 
   for (const key in selectedActivities) {
     if (selectedActivities[key]) {
-      let tmp = travels[key].map((obj, i) => {
-        if (i === 0) console.log(i);
-        return (
-          <Item
-            image={obj.image}
-            name={obj.name}
-            reviews={obj.reviews}
-            rating={obj.rationg}
-            key={obj.name + i.toString()}
-          />
-        );
-      });
+      let tmp = travels[key]
+        .filter((spot) => spot.prefecture === router.query.pref)
+        .map((obj, i) => {
+          if (i === 0) console.log(i);
+          return (
+            <Item
+              image={obj.image}
+              name={obj.name}
+              reviews={obj.reviews}
+              rating={obj.rationg}
+              key={obj.name + i.toString()}
+            />
+          );
+        });
 
       result.push(
         <div>
