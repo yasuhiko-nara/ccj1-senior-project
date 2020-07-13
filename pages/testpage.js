@@ -1,15 +1,18 @@
 import axios from "axios";
-
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
+import { toggle_display } from "../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 import Map from "../components/GoogleMap/GoogleMap";
 import CheckBox from "../components/CheckBox";
 import Schedules from "../components/Schedules";
 import Navbar from "../components/Navbar";
+import SpotList from "../components/SpotList";
 import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
 
 export async function getStaticProps() {
@@ -36,8 +39,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Index = (props) => {
-  // const name = useSelector((store) => store.users.name);
   const classes = useStyles();
+  const router = useRouter();
   const currentDirection = useSelector(
     (state) => state.travels.currentDirection
   );
@@ -46,14 +49,19 @@ const Index = (props) => {
   const dispatch = useDispatch();
   dispatch(get_initial_status(initialState));
 
+  const mapToList = useSelector((store) => store.travels.toggleDisplay);
+
+  const restaurantsOfTargetPref = initialState.restaurants.filter(
+    (restaurant) => restaurant.prefecture === router.query.pref
+  );
+  const attractionsOfTargetPref = initialState.attractions.filter(
+    (attraction) => attraction.prefecture === router.query.pref
+  );
+  const hotelsOfTargetPref = initialState.hotels.filter(
+    (hotel) => hotel.prefecture === router.query.pref
+  );
   return (
     <>
-      {/* <div>
-        <Navbar />
-        <CheckBox />
-        <Map />
-        <Schedules />
-      </div> */}
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -61,21 +69,43 @@ const Index = (props) => {
               <Navbar />
             </Paper>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2}>
             <Paper className={classes.paper}>
-              <CheckBox />
+              <Button
+                onClick={() => dispatch(toggle_display())}
+                variant="contained"
+              >
+                TOGGLE
+              </Button>
             </Paper>
           </Grid>
-          <Grid item xs={8}>
-            <Paper className={classes.paper}>
-              <Schedules />
-            </Paper>
-          </Grid>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              <Map />
-            </Paper>
-          </Grid>
+          {mapToList ? (
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <SpotList spotsOfTargetPref={attractionsOfTargetPref} />
+                <SpotList spotsOfTargetPref={restaurantsOfTargetPref} />
+                <SpotList spotsOfTargetPref={hotelsOfTargetPref} />
+              </Paper>
+            </Grid>
+          ) : (
+            <>
+              <Grid item xs={8}>
+                <Paper className={classes.paper}>
+                  <CheckBox />
+                </Paper>
+              </Grid>
+              <Grid item xs={8}>
+                <Paper className={classes.paper}>
+                  <Schedules />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <Map />
+                </Paper>
+              </Grid>
+            </>
+          )}
         </Grid>
       </div>
       {/* <GoogleMapForRouteView myRoute={currentDirection} /> */}
