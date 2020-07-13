@@ -13,3 +13,10 @@ export const change_email = (email) => {
     email,
   };
 };
+
+export const USER_LOGOUT = "USER_LOGOUT";
+export const user_logout = ()=>{
+  return {
+    type:'USER_LOGOUT'
+  }
+}

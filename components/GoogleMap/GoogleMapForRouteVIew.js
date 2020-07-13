@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
+import axios from "axios";
 import { useSelector } from "react-redux";
 
 import { useRouter } from "next/router";
@@ -30,16 +31,20 @@ const options = {
 
 export default function GooleMapForRouteView({ myRoute }) {
   const userId = useSelector((state) => state.users.userId);
-  useEffect(async () => {
+  const idToken = useSelector((state) => state.users.idToken);
+  const [favoriteActivities, setFavoriteActivities] = useState([]);
+  useEffect(() => {
     const opt = {
       method: "get",
-      headers: {
-        Authorization: process.env.Authorization,
+      params: {
+        userId: userId,
       },
-      url: `https://b8aalc26tj.execute-api.ap-northeast-1.amazonaws.com/favoriteSpot?userId=”ユーザーのId`,
+      headers: {
+        Authorization: idToken,
+      },
+      url: `https://b8aalc26tj.execute-api.ap-northeast-1.amazonaws.com/favoriteSpot`,
     };
-    const res = await axios(opt);
-    console.log("get favorite activities and this is the response", res.data);
+    axios(opt).then((res) => setFavoriteActivities(JSON.parse(res.data.body)));
   }, []);
 
   const { isLoaded, loadError } = useLoadScript({
@@ -80,7 +85,7 @@ export default function GooleMapForRouteView({ myRoute }) {
 
         <Activity
           showAddPlanButton={false}
-          show={favoriteActivities ? true : false}
+          show={favoriteActivities.length > 0}
           activity={favoriteActivities}
           icon={favoriteIcon}
         />
