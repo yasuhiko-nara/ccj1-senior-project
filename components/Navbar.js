@@ -111,7 +111,7 @@ const Navbar = () => {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              defaultValue={router.query.lat}
+              defaultValue={router.query.pref}
               inputProps={{ "aria-label": "search", readOnly: true }}
             />
           </div>
