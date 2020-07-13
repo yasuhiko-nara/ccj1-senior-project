@@ -63,7 +63,7 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
     <>
       {schedules.length > 2 && schedules.length - 1 === routeInfo.length && (
         <div className={classes.root}>
-          <GridList spacing="10" className={classes.gridList} cols={2.5}>
+          <GridList spacing={10} className={classes.gridList} cols={2.5}>
             {routeInfoAndSchedules.map((activity, index) => (
               <div key={`${index}`}>
                 {index % 2 === 0 ? (

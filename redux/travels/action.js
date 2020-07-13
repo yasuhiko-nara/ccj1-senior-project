@@ -49,3 +49,10 @@ export const change_direction = (directionResponse, routeInfo, routeOrder) => {
     routeOrder,
   };
 };
+
+export const DELETE_SCHEDULES_AND_ROUTE = "DELETE_SCHEDULES_AND_ROUTE";
+export const delete_schedules_and_route = () => {
+  return {
+    type: "DELETE_SCHEDULES_AND_ROUTE",
+  };
+};

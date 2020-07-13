@@ -17,7 +17,6 @@ export async function getStaticProps() {
 }
 
 const Index = (props) => {
-  // const name = useSelector((store) => store.users.name);
   const selectedActivities = useSelector(
     (store) => store.travels.selectedActivities
   );

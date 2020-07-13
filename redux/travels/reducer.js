@@ -81,6 +81,14 @@ export const travelReducer = (state = initialState.travels, action) => {
         schedules: reOrderedSchedules,
       };
 
+    case actions.DELETE_SCHEDULES_AND_ROUTE:
+      return {
+        ...state,
+        currentDirection: null,
+        routeInfo: [],
+        schedules: [],
+      };
+
     default:
       return state;
   }
