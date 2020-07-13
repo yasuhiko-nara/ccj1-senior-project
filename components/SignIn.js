@@ -43,8 +43,10 @@ const SignIn = () => {
       onSuccess: (result) => {
         const userName = result.idToken.payload.name;
         const userId = result.idToken.payload["cognito:username"];
+        const idToken = result.idToken.jwtToken;
+
         localStorage.setItem("loginFlag", "true");
-        dispatch(user_login({ userName, userId, loginFlag: true }));
+        dispatch(user_login({ userName, userId, loginFlag: true, idToken }));
 
         router.push("/");
       },
