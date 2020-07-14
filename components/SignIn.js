@@ -61,24 +61,50 @@ const SignIn = () => {
   };
 
   return (
-    <div className="SignIn">
-      <h1>SingInしてください</h1>
-      <TextField
-        onChange={changeEmail}
-        id="filled-basic"
-        label="Email"
-        variant="filled"
-      />
-      <TextField
-        onChange={changePassword}
-        id="standard-password-input"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-      />
-      <Button variant="contained" onClick={signIn} color="primary">
-        Login
-      </Button>
+    <div className="main-container">
+      <div className="SignIn">
+        <h1 style={{ marginBottom: "50px" }}>SingInしてください</h1>
+        <TextField
+          style={{ marginBottom: "50px" }}
+          onChange={changeEmail}
+          id="filled-basic"
+          label="Email"
+          variant="filled"
+        />
+        <TextField
+          style={{ marginBottom: "50px" }}
+          onChange={changePassword}
+          id="standard-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+        />
+        <Button variant="contained" onClick={signIn} color="primary">
+          Login
+        </Button>
+        <style jsx>
+          {`
+            .main-container {
+              position: relative;
+              width: 100vw;
+              height: 100vh;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .SignIn {
+              text-align: center;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translateY(-50%) translateX(-50%);
+              width: 20%;
+              height: 50%;
+            }
+          `}
+        </style>
+      </div>
     </div>
   );
 };
