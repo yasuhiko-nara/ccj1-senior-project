@@ -26,7 +26,7 @@ const Toppage = () => {
         <Link
           href={{
             pathname: "testpage",
-            query: { lat: pref.lat, lng: pref.lng },
+            query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
           }}
         >
           <button>検索する</button>
