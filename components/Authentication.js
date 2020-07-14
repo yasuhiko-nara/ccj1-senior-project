@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { user_login, change_email } from "../redux/users/action";
 import { useRouter } from "next/router";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 import {
   CognitoUserPool,
@@ -93,15 +95,51 @@ const Authentication = () => {
     });
   };
   return (
-    <div className="Authenticate">
-      <h1>Authenticate</h1>
-      <input
-        type="text"
-        placeholder="confirmation code"
-        onChange={changeConfirmationCode}
-      />
-      <input type="password" placeholder="password" onChange={changePassword} />
-      <button onClick={authenticate}>Authenticate</button>
+    <div className="main-container">
+      <div className="Authenticate">
+        <h1 style={{ marginBottom: "50px" }}>Authenticate</h1>
+        <TextField
+          style={{ marginBottom: "50px" }}
+          onChange={changeConfirmationCode}
+          id="filled-basic"
+          label="confirmation code"
+          variant="filled"
+        />
+        <TextField
+          style={{ marginBottom: "50px" }}
+          onChange={changePassword}
+          id="standard-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+        />
+
+        <Button variant="contained" onClick={authenticate} color="primary">
+          Authenticate
+        </Button>
+        <style jsx>
+          {`
+            .main-container {
+              position: relative;
+              width: 100vw;
+              height: 100vh;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .Authenticate {
+              text-align: center;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translateY(-50%) translateX(-50%);
+              width: 20%;
+              height: 50%;
+            }
+          `}
+        </style>
+      </div>
     </div>
   );
 };
