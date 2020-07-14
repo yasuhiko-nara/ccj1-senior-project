@@ -1,4 +1,7 @@
 import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8";
+axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
@@ -6,13 +9,19 @@ import Button from "@material-ui/core/Button";
 export default function () {
   const userLoginFlag = useSelector((state) => state.users.loginFlag);
   const userId = useSelector((state) => state.users.userId);
+  const idToken = useSelector((state) => state.users.idToken);
 
   const saveRoute = useCallback(async () => {
     const data = JSON.stringify(["data1", "data2", "data3"]);
     const opt = {
+      withCredentials: true,
       method: "post",
       headers: {
-        Authorization: process.env.Authorization,
+        Authorization: idToken,
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Origin":
+          "https://e2uo59wqde.execute-api.ap-northeast-1.amazonaws.com/savedRoot",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
       },
       url:
         "https://e2uo59wqde.execute-api.ap-northeast-1.amazonaws.com/savedRoot",
@@ -21,18 +30,6 @@ export default function () {
     const res = await axios(opt);
     console.log("saved route data and this is the response", res.data);
   }, []);
-
-  //   export async function getStaticProps() {
-  //     const res = await axios.get(
-  //       "https://ala5g0w56m.execute-api.ap-northeast-1.amazonaws.com/Rakutabi_API"
-  //     );
-  //     const data = JSON.stringify(res.data);
-  //     return {
-  //       props: {
-  //         data,
-  //       },
-  //     };
-  //   }
 
   return (
     <>
