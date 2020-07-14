@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Index = (props) => {
+const userpage = (props) => {
   // const name = useSelector((store) => store.users.name);
   const classes = useStyles();
   //   const currentDirection = useSelector(
@@ -80,4 +80,4 @@ const Index = (props) => {
   );
 };
 
-export default Index;
+export default userpage;
