@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { change_email } from "../redux/users/action";
 import { useState } from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 import {
   CognitoUserPool,
@@ -61,12 +63,65 @@ const SignUp = () => {
   };
 
   return (
-    <div className="SignUp">
-      <h1>SignUp</h1>
-      <input type="text" placeholder="name" onChange={changeName} />
-      <input type="text" placeholder="email" onChange={changeEmail} />
-      <input type="password" placeholder="password" onChange={changePassword} />
-      <button onClick={signUp}>SignUp</button>
+    <div className="main-container">
+      <div className="SignUp">
+        <h1 style={{ marginBottom: "50px" }}>SignUp</h1>
+        <TextField
+          style={{ marginBottom: "50px" }}
+          onChange={changeEmail}
+          id="filled-basic"
+          label="Email"
+          variant="filled"
+        />
+        <TextField
+          style={{ marginBottom: "50px" }}
+          onChange={changeName}
+          id="filled-basic"
+          label="Name"
+          variant="filled"
+        />
+        <TextField
+          style={{ marginBottom: "50px" }}
+          onChange={changePassword}
+          id="standard-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+        />
+        {/* <input type="text" placeholder="name" onChange={changeName} />
+        <input type="text" placeholder="email" onChange={changeEmail} />
+        <input
+          type="password"
+          placeholder="password"
+          onChange={changePassword}
+        /> */}
+        <Button variant="contained" onClick={signUp} color="primary">
+          SignUp
+        </Button>
+
+        <style jsx>
+          {`
+            .main-container {
+              position: relative;
+              width: 100vw;
+              height: 100vh;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .SignUp {
+              text-align: center;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translateY(-50%) translateX(-50%);
+              width: 20%;
+              height: 50%;
+            }
+          `}
+        </style>
+      </div>
     </div>
   );
 };
