@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-
+import React, { useState, useEffect } from "react";
+import Router, { useRouter } from "next/router";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -15,8 +14,8 @@ import Menu from "@material-ui/core/Menu";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import { signOut } from "./lib/signout";
-import { useDispatch } from "react-redux";
-import { user_logout } from "../redux/users/action";
+import { useDispatch, useSelector } from "react-redux";
+import { user_logout, user_login } from "../redux/users/action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,28 +68,53 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  let flag = useSelector((state) => state.users.loginFlag);
+  console.log(flag);
   const classes = useStyles();
-  const [auth, setAuth] = useState(true);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const router = useRouter();
+  useEffect(() => {
+    let str = localStorage.getItem("loginFlag");
+    let userId = localStorage.getItem("userId");
+    let idToken = localStorage.getItem("idToken");
+    let userName = localStorage.getItem("userName");
+    if (str === "true") {
+      dispatch(user_login({ userName, userId, loginFlag: true, idToken }));
+    }
+  }, []);
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
+  const handleClose = (event) => {
+    setAnchorEl(null);
   };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    dispatch(user_logout());
-    setAnchorEl(null);
+  const handleCloseRecommnd = () => {
+    Router.push("/recommendation");
   };
+
+  const handleCloseUser = () => {
+    Router.push("/userpage");
+  };
+
+  const deleteLogin = () => {
+    signOut();
+    dispatch(user_logout());
+    handleClose();
+  };
+
+  const changeUrl = (str) => {
+    Router.push(str);
+  };
+
   return (
     <div className={classes.root}>
       <FormGroup>
-        <FormControlLabel
+        {/* <FormControlLabel
           control={
             <Switch
               checked={auth}
@@ -99,7 +123,7 @@ const Navbar = () => {
             />
           }
           label={auth ? "Logout" : "Login"}
-        />
+        /> */}
       </FormGroup>
       <AppBar position="static" color="default">
         {/* ["default","inherit","primary","secondary","transparent"]. => whiteだとエラーが出てるので変更しました*/}
@@ -120,7 +144,7 @@ const Navbar = () => {
               inputProps={{ "aria-label": "search", readOnly: true }}
             />
           </div>
-          {auth && (
+          {flag ? (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -146,9 +170,73 @@ const Navbar = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>みんなのたびを見る</MenuItem>
-                <MenuItem onClick={handleClose}>たびを計画する</MenuItem>
-                <MenuItem onClick={handleClose}>お気に入り一覧</MenuItem>
+                <MenuItem onClick={handleCloseRecommnd}>
+                  みんなのたびを見る
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    changeUrl("/map");
+                  }}
+                >
+                  たびを計画する
+                </MenuItem>
+                <MenuItem onClick={handleCloseUser}>ユーザーページ</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    deleteLogin();
+                  }}
+                >
+                  サインアウト
+                </MenuItem>
+              </Menu>
+            </div>
+          ) : (
+            <div>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem
+                  onClick={() => {
+                    changeUrl("/map");
+                  }}
+                >
+                  みんなのたびを見る
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    changeUrl("/signin");
+                  }}
+                >
+                  サインイン
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    changeUrl("/signup/form");
+                  }}
+                >
+                  サインアップ
+                </MenuItem>
                 <MenuItem
                   onClick={() => {
                     signOut();
@@ -156,7 +244,7 @@ const Navbar = () => {
                     handleClose();
                   }}
                 >
-                  サインアウト
+                  地図を見る
                 </MenuItem>
               </Menu>
             </div>

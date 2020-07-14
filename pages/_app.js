@@ -30,9 +30,7 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <StylesProvider>
-        {/* <Provider store={store}> */}
         <Component {...pageProps} />
-        {/* </Provider> */}
       </StylesProvider>
     </>
   );
