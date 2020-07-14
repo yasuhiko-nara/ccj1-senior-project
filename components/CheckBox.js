@@ -13,12 +13,9 @@ import {
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
+const useStyles = makeStyles(() => ({
   formControl: {
-    margin: theme.spacing(3),
+    alignItems: "center",
   },
 }));
 
@@ -37,10 +34,24 @@ export default function CheckboxesGroup() {
   };
 
   return (
-    <div className={classes.root}>
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">アクティビティを選びましょう！</FormLabel>
-        <FormGroup row>
+    <div>
+      <FormControl>
+        <FormGroup row className={classes.formControl}>
+          <FormLabel component="legend" style={{ marginRight: "50px" }}>
+            アクティビティを選びましょう！
+          </FormLabel>
+          <FormControlLabel
+            control={
+              <Checkbox
+                icon={<FavoriteBorder />}
+                checkedIcon={<Favorite />}
+                checked={attractions}
+                onChange={handleChange}
+                name="attractions"
+              />
+            }
+            label="観光スポット"
+          />
           <FormControlLabel
             control={
               <Checkbox
@@ -52,18 +63,6 @@ export default function CheckboxesGroup() {
               />
             }
             label="レストラン"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                icon={<FavoriteBorder />}
-                checkedIcon={<Favorite />}
-                checked={attractions}
-                onChange={handleChange}
-                name="attractions"
-              />
-            }
-            label="アトラクション"
           />
           <FormControlLabel
             control={
