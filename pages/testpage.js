@@ -70,13 +70,24 @@ const Index = (props) => {
             </Paper>
           </Grid>
           {mapToList ? (
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <SpotList spotsOfTargetPref={attractionsOfTargetPref} />
-                <SpotList spotsOfTargetPref={restaurantsOfTargetPref} />
-                <SpotList spotsOfTargetPref={hotelsOfTargetPref} />
-              </Paper>
-            </Grid>
+            <>
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <SpotList spotsOfTargetPref={attractionsOfTargetPref} />
+                  <SpotList spotsOfTargetPref={restaurantsOfTargetPref} />
+                  <SpotList spotsOfTargetPref={hotelsOfTargetPref} />
+                </Paper>
+              </Grid>
+              <Grid item xs={0.5}>
+                <Paper>
+                  <AutorenewTwoToneIcon
+                    onClick={() => dispatch(toggle_display())}
+                    variant="contained"
+                    style={{ fontSize: "70px" }}
+                  />
+                </Paper>
+              </Grid>
+            </>
           ) : (
             <>
               <Grid item xs={11}>
