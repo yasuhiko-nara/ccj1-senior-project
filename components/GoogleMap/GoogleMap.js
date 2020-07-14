@@ -88,7 +88,7 @@ export default function Map() {
   return (
     <div>
       {/* <Locate panTo={panTo} /> */}
-      <Search panTo={panTo} />
+      {/*<Search panTo={panTo} />*/}
       {/* <RouteDeleteButton /> */}
 
       <GoogleMap
