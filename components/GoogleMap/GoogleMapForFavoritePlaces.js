@@ -1,8 +1,21 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 // import { useSelector } from "react-redux";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Rating from "@material-ui/lab/Rating";
+import Typography from "@material-ui/core/Typography";
 
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 
 import mapStyles from "./mapUtils/mapStyles";
 
@@ -35,6 +48,9 @@ export default function GoogleMapForFavoritePlaces({ favoritePlaces }) {
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
+  }, []);
+  const handleClose = useCallback(() => {
+    setOpen(false);
   }, []);
 
   if (loadError) return "Error";
@@ -75,6 +91,77 @@ export default function GoogleMapForFavoritePlaces({ favoritePlaces }) {
             }}
           />
         ))}
+        {selected ? (
+          <InfoWindow
+            position={{
+              lat: selected.location.lat,
+              lng: selected.location.lng,
+            }}
+            onCloseClick={() => {
+              setSelected(null);
+            }}
+          >
+            <div>
+              <h2>
+                <span role="img" aria-label="bear">
+                  {selected.name}
+                </span>
+              </h2>
+              <img src={selected.image} />
+            </div>
+          </InfoWindow>
+        ) : null}
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {selected ? selected.name : null}
+          </DialogTitle>
+          <DialogContent>
+            {selected ? (
+              <>
+                <img src={selected.image} width="100%" />
+                {/* DialogContentTextの中にテキスト以外（pタグやh2タグ）を入れるとエラーが起きるので修正しました */}
+                {selected.reviews.map((review, index) => (
+                  <div key={`${review.title}+${index}`}>
+                    <Typography>{review.title}</Typography>
+                    <DialogContentText id="alert-dialog-description">
+                      {review.published_date}
+                    </DialogContentText>
+                    <Rating
+                      name="read-only"
+                      value={Number(review.rating)}
+                      readOnly
+                    />
+                    <DialogContentText id="alert-dialog-description">
+                      {review.text}
+                    </DialogContentText>
+                  </div>
+                ))}
+              </>
+            ) : null}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              戻る
+            </Button>
+            {/* {selected && (
+              <Button
+                onClick={() => {
+                  setOpen(false);
+                  dispatch(select_plan(selected));
+                }}
+                color="primary"
+                autoFocus
+              >
+                <strong>{selected.name}</strong>を追加
+              </Button>
+            )} */}
+          </DialogActions>
+        </Dialog>
       </GoogleMap>
     </div>
   );
