@@ -12,6 +12,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
+import CheckForFavorite from "./CheckForFavorite";
 
 const restaurantIcon =
   "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF%E3%81%A8%E3%83%8A%E3%82%A4%E3%83%95%E3%81%AE%E3%81%8A%E9%A3%9F%E4%BA%8B%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E7%B4%A0%E6%9D%90%20(1).svg?alt=media&token=ca319d7f-5a67-4207-856f-28fc75f6875f";
@@ -97,6 +98,7 @@ export default function Activity({ showAddPlanButton = true }) {
         >
           <div>
             <h2>
+              <CheckForFavorite activity={selected} />
               <span role="img" aria-label="bear">
                 {selected.name}
               </span>

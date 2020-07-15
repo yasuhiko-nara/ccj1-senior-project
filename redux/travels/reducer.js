@@ -89,6 +89,23 @@ export const travelReducer = (state = initialState.travels, action) => {
         schedules: [],
       };
 
+    case actions.LIKE_ACTIVITY:
+      const targetActivity = action.activity;
+      const targetClass = action.activity.activityClass;
+      const revisedActivities = state[targetClass].map((activity) => {
+        if (activity.name === targetActivity.name) {
+          const revisedActivity = { ...activity };
+          revisedActivity.like = !activity.like;
+          return revisedActivity;
+        }
+        return activity;
+      });
+
+      return {
+        ...state,
+        [targetClass]: revisedActivities,
+      };
+
     default:
       return state;
   }

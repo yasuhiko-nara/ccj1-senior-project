@@ -56,3 +56,11 @@ export const delete_schedules_and_route = () => {
     type: "DELETE_SCHEDULES_AND_ROUTE",
   };
 };
+
+export const LIKE_ACTIVITY = "LIKE_ACTIVITY";
+export const like_activity = (activity) => {
+  return {
+    type: "LIKE_ACTIVITY",
+    activity,
+  };
+};
