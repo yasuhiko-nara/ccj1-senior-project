@@ -21,7 +21,15 @@ const activityIcon =
 const hotelIcon =
   "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%98%E3%82%99%E3%83%83%E3%83%88%E3%82%99%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B39.svg?alt=media&token=76f3bedd-c925-4561-b282-07b81a98a8e6";
 
-export default function Activity({ activity, showAddPlanButton = true }) {
+const favoriteIcon =
+  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%83%BC%E3%83%88%E3%81%AE%E3%83%9E%E3%83%BC%E3%82%AF3.svg?alt=media&token=485153b6-3a71-4443-bf2f-b2eaf1d033e5";
+
+export default function Activity({ showAddPlanButton = true }) {
+  const activities = useSelector((state) =>
+    state.travels.restaurants
+      .concat(state.travels.attractions)
+      .concat(state.travels.hotels)
+  );
   const selectedActivities = useSelector(
     (state) => state.travels.selectedActivities
   );
@@ -35,44 +43,45 @@ export default function Activity({ activity, showAddPlanButton = true }) {
     setOpen(false);
   }, []);
 
-  const selectIcon = (activityClass) => {
-    if (activityClass === "restaurants") {
+  const selectIcon = useCallback((activity) => {
+    if (activity.like) {
+      return favoriteIcon;
+    }
+    if (activity.activityClass === "restaurants") {
       return restaurantIcon;
     }
-    if (activityClass === "attractions") {
+    if (activity.activityClass === "attractions") {
       return activityIcon;
     }
-    if (activityClass === "hotels") {
+    if (activity.activityClass === "hotels") {
       return hotelIcon;
     }
-  };
+  }, []);
 
   return (
     <>
-      {activity.map(
+      {activities.map(
         (marker, index) =>
           selectedActivities[marker.activityClass] && (
-            <>
-              <Marker
-                key={`${marker.location.lat * (index + 1)}`}
-                position={{
-                  lat: marker.location.lat,
-                  lng: marker.location.lng,
-                }}
-                onMouseOver={() => {
-                  setSelected(marker);
-                }}
-                onClick={() => {
-                  setOpen(true);
-                }}
-                icon={{
-                  url: selectIcon(marker.activityClass),
-                  origin: new window.google.maps.Point(0, 0),
-                  anchor: new window.google.maps.Point(15, 15),
-                  scaledSize: new window.google.maps.Size(30, 30),
-                }}
-              />
-            </>
+            <Marker
+              key={`${marker.location.lat * (index + 1)}`}
+              position={{
+                lat: marker.location.lat,
+                lng: marker.location.lng,
+              }}
+              onMouseOver={() => {
+                setSelected(marker);
+              }}
+              onClick={() => {
+                setOpen(true);
+              }}
+              icon={{
+                url: selectIcon(marker),
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(15, 15),
+                scaledSize: new window.google.maps.Size(30, 30),
+              }}
+            />
           )
       )}
 

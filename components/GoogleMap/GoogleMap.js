@@ -45,11 +45,6 @@ export default function Map() {
 
   const router = useRouter();
 
-  const activities = useSelector((state) =>
-    state.travels.restaurants
-      .concat(state.travels.attractions)
-      .concat(state.travels.hotels)
-  );
   // const restaurants = useSelector((state) => state.travels.restaurants);
   // const attractions = useSelector((state) => state.travels.attractions);
   // const hotels = useSelector((state) => state.travels.hotels);
@@ -105,7 +100,7 @@ export default function Map() {
         // onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        <Activity activity={activities} />
+        <Activity />
 
         {origin && destination && activityLocations && (
           <Direction
