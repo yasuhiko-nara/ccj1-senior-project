@@ -64,3 +64,11 @@ export const like_activity = (activity) => {
     activity,
   };
 };
+
+export const GET_FAVORITE_PLACES = "GET_FAVORITE_PLACES";
+export const get_favorite_places = (activities) => {
+  return {
+    type: "GET_FAVORITE_PLACES",
+    activities,
+  };
+};

@@ -12,6 +12,7 @@ const initialState = {
     show: true,
     currentDirection: null,
     routeInfo: [],
+    favoritePlaces: [],
 
     // routeInfo: [
     // {

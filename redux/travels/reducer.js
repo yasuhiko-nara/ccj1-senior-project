@@ -106,6 +106,11 @@ export const travelReducer = (state = initialState.travels, action) => {
         [targetClass]: revisedActivities,
       };
 
+    case actions.GET_FAVORITE_PLACES:
+      return {
+        ...state,
+        favoritePlaces: action.activities,
+      };
     default:
       return state;
   }
