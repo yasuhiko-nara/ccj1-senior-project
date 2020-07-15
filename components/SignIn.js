@@ -80,7 +80,19 @@ const SignIn = () => {
           type="password"
           autoComplete="current-password"
         />
-        <Button variant="contained" onClick={signIn} color="primary">
+        <Button
+          style={{
+            display: "block",
+            width: "40%",
+            marginTop: "0px",
+            marginBottom: "0px",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+          variant="contained"
+          onClick={signIn}
+          color="primary"
+        >
           Login
         </Button>
         <style jsx>

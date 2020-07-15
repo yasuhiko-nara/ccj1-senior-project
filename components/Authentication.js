@@ -114,7 +114,19 @@ const Authentication = () => {
           autoComplete="current-password"
         />
 
-        <Button variant="contained" onClick={authenticate} color="primary">
+        <Button
+          style={{
+            display: "block",
+            width: "40%",
+            marginTop: "0px",
+            marginBottom: "0px",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+          variant="contained"
+          onClick={authenticate}
+          color="primary"
+        >
           Authenticate
         </Button>
         <style jsx>
