@@ -51,7 +51,10 @@ const userpage = (props) => {
         //   JSON.parse(res.data.body)
         // );
         {
-          const removeDuplication = _.uniq(JSON.parse(res.data.body));
+          const removeDuplication = _.uniqBy(
+            JSON.parse(res.data.body),
+            JSON.stringify
+          );
           // console.log(removeDuplication);
           dispatch(get_favorite_places(removeDuplication));
         }
