@@ -18,9 +18,9 @@ app.prepare().then(() => {
     })
   );
   server.use(
-    "/savedRoot",
+    "/savedRoutes",
     createProxyMiddleware({
-      target: "https://e2uo59wqde.execute-api.ap-northeast-1.amazonaws.com",
+      target: "https://2ivgwxgwgk.execute-api.ap-northeast-1.amazonaws.com",
       changeOrigin: true,
     })
   );
