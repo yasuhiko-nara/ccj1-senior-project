@@ -45,9 +45,12 @@ export default function Map() {
 
   const router = useRouter();
 
-  // const restaurants = useSelector((state) => state.travels.restaurants);
-  // const attractions = useSelector((state) => state.travels.attractions);
-  // const hotels = useSelector((state) => state.travels.hotels);
+  const selectedActivities = useSelector(
+    (state) => state.travels.selectedActivities
+  );
+  const restaurants = useSelector((state) => state.travels.restaurants);
+  const attractions = useSelector((state) => state.travels.attractions);
+  const hotels = useSelector((state) => state.travels.hotels);
 
   const origin = useSelector((state) => {
     const schedules = state.travels.schedules;
@@ -100,8 +103,21 @@ export default function Map() {
         // onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        <Activity />
-
+        <Activity
+          show={selectedActivities.restaurants}
+          activity={restaurants}
+          icon={restaurantIcon}
+        />
+        <Activity
+          show={selectedActivities.attractions}
+          activity={attractions}
+          icon={activityIcon}
+        />
+        <Activity
+          show={selectedActivities.hotels}
+          activity={hotels}
+          icon={hotelIcon}
+        />
         {origin && destination && activityLocations && (
           <Direction
             origin={origin}

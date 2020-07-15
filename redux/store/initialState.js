@@ -1,10 +1,18 @@
 const initialState = {
-  users: { loginFlag: false, userId: "", userName: "", email: "", idToken: "" },
+  users: {
+    loginFlag: false,
+    userId: "",
+    userName: "",
+    email: "",
+    idToken: "",
+  },
+
   map: {},
   travels: {
     show: true,
     currentDirection: null,
     routeInfo: [],
+
     // routeInfo: [
     // {
     //   distance: { text: "257 km", value: 257155 },
@@ -18,7 +26,7 @@ const initialState = {
       // {
       //   day: 1,
       //   activityClass: "restaurants",
-      //   checked: false,
+      //   like: false,
       //   prefecture: "hokkaido",
       //   location: { lat: 43.048583, lng: 141.318944 },
       //   name: "testRestaurants1",
@@ -52,8 +60,7 @@ const initialState = {
       // {
       //   activityClass: "restaurants",
       //   day: "",
-      //   checked: false,
-      //   like: true,
+      //   like: false,
       //   prefecture: "hokkaido",
       //   location: { lat: 43.048583, lng: 141.318944 },
       //   name: "testRestaurants1",
@@ -83,70 +90,10 @@ const initialState = {
       // },
     ],
     attractions: [
-      // {
-      //   activityClass: "attractions",
-      //   day: "",
-      //   checked: false,
-      //   prefecture: "hokkaido",
-      //   location: { lat: 43.090831, lng: 144.210956 },
-      //   name: "testAttraction3",
-      //   image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
-      //   category: "",
-      //   reviews: [
-      //     {
-      //       titile: "test1",
-      //       text: "testtesttesttesttest",
-      //       rating: "4",
-      //       published_data: "2020-02-22T20:52:08-05:00",
-      //     },
-      //     {
-      //       titile: "test1",
-      //       text: "testtesttesttesttest",
-      //       rating: "4",
-      //       published_data: "2020-02-22T20:52:08-05:00",
-      //     },
-      //     {
-      //       titile: "test1",
-      //       text: "testtesttesttesttest",
-      //       rating: "4",
-      //       published_data: "2020-02-22T20:52:08-05:00",
-      //     },
-      //   ],
-      //   rating: 2.9,
-      // },
+      // レストランと同じ
     ],
     hotels: [
-      // {
-      //   activityClass: "hotels",
-      //   day: "",
-      //   checked: false,
-      //   prefecture: "hokkaido",
-      //   location: { lat: 41.87144, lng: 140.467568 },
-      //   name: "testHotels3",
-      //   image: "https://i.postimg.cc/3wtRLxHM/9.jpg",
-      //   category: "",
-      //   reviews: [
-      //     {
-      //       titile: "test1",
-      //       text: "testtesttesttesttest",
-      //       rating: "4",
-      //       published_data: "2020-02-22T20:52:08-05:00",
-      //     },
-      //     {
-      //       titile: "test1",
-      //       text: "testtesttesttesttest",
-      //       rating: "4",
-      //       published_data: "2020-02-22T20:52:08-05:00",
-      //     },
-      //     {
-      //       titile: "test1",
-      //       text: "testtesttesttesttest",
-      //       rating: "4",
-      //       published_data: "2020-02-22T20:52:08-05:00",
-      //     },
-      //   ],
-      //   rating: 3.2,
-      // },
+      // レストランと同じ
     ],
   },
 };

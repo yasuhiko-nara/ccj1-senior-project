@@ -27,7 +27,7 @@ export const travelReducer = (state = initialState.travels, action) => {
           ...action.initialState.restaurants.map((elem) => {
             const modifiedElem = elem;
             modifiedElem.day = 1;
-            modifiedElem.checked = false;
+            modifiedElem.like = false;
             modifiedElem.activityClass = "restaurants";
             return modifiedElem;
           }),
@@ -37,7 +37,7 @@ export const travelReducer = (state = initialState.travels, action) => {
           ...action.initialState.attractions.map((elem) => {
             const modifiedElem = elem;
             modifiedElem.day = 1;
-            modifiedElem.checked = false;
+            modifiedElem.like = false;
             modifiedElem.activityClass = "attractions";
             return modifiedElem;
           }),
@@ -47,7 +47,7 @@ export const travelReducer = (state = initialState.travels, action) => {
           ...action.initialState.hotels.map((elem) => {
             const modifiedElem = elem;
             modifiedElem.day = 1;
-            modifiedElem.checked = false;
+            modifiedElem.like = false;
             modifiedElem.activityClass = "hotels";
             return modifiedElem;
           }),
@@ -87,6 +87,23 @@ export const travelReducer = (state = initialState.travels, action) => {
         currentDirection: null,
         routeInfo: [],
         schedules: [],
+      };
+
+    case actions.LIKE_ACTIVITY:
+      const targetActivity = action.activity;
+      const targetClass = action.activity.activityClass;
+      const revisedActivities = state[targetClass].map((activity) => {
+        if (activity.name === targetActivity.name) {
+          const revisedActivity = { ...activity };
+          revisedActivity.like = !activity.like;
+          return revisedActivity;
+        }
+        return activity;
+      });
+
+      return {
+        ...state,
+        [targetClass]: revisedActivities,
       };
 
     default:
