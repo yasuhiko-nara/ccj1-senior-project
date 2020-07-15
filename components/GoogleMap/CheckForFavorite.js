@@ -30,7 +30,6 @@ export default function CheckboxesGroup({ activity }) {
 
   const handleChange = useCallback(() => {
     dispatch(like_activity(activity));
-    console.log("can save like?", activity.like, userLoginFlag);
     if (!activity.like && userLoginFlag) {
       const opt = {
         method: "post",

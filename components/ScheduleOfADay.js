@@ -59,7 +59,7 @@ export default function ScheduleOfADay({ schedules, routeInfo }) {
           <RouteSaveButton />
         </AccordionSummary>
         <AccordionDetails>
-          <Breadcrumb schedules={schedules} routeInfo={routeInfo} />
+          <Breadcrumb schedules={schedules} />
         </AccordionDetails>
       </Accordion>
     </>
