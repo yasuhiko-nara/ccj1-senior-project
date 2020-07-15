@@ -95,7 +95,19 @@ const SignUp = () => {
           placeholder="password"
           onChange={changePassword}
         /> */}
-        <Button variant="contained" onClick={signUp} color="primary">
+        <Button
+          style={{
+            display: "block",
+            width: "40%",
+            marginTop: "0px",
+            marginBottom: "0px",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+          variant="contained"
+          onClick={signUp}
+          color="primary"
+        >
           SignUp
         </Button>
 
