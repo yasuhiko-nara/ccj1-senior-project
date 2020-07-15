@@ -49,6 +49,7 @@ const SignIn = () => {
         localStorage.setItem("loginFlag", "true");
         localStorage.setItem("userId", `${userId}`);
         localStorage.setItem("idToken", `${idToken}`);
+        localStorage.setItem("userName", `${userName}`);
 
         dispatch(user_login({ userName, userId, loginFlag: true, idToken }));
 

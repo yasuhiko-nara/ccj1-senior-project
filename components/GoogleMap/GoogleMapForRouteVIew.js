@@ -36,22 +36,17 @@ export default function GooleMapForRouteView({ myRoute }) {
   useEffect(() => {
     const opt = {
       method: "get",
-      withCredentials: true,
       params: {
         userId: userId,
       },
       headers: {
         Authorization: idToken,
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Origin":
-          "https://b8aalc26tj.execute-api.ap-northeast-1.amazonaws.com/favoriteSpot",
-        "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
       },
-      url: `https://b8aalc26tj.execute-api.ap-northeast-1.amazonaws.com/favoriteSpot`,
+      url: `/favoriteSpot`,
     };
     axios(opt).then((res) => {
       console.log(res.data);
-      setFavoriteActivities(JSON.parse(res.data.body));
+      // setFavoriteActivities(JSON.parse(res.data.body));
     });
   }, []);
 
