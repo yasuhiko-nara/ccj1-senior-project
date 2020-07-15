@@ -175,7 +175,7 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    changeUrl("/map");
+                    changeUrl("/testpage");
                   }}
                 >
                   たびを計画する
@@ -218,10 +218,17 @@ const Navbar = () => {
               >
                 <MenuItem
                   onClick={() => {
-                    changeUrl("/map");
+                    changeUrl("/recommendation");
                   }}
                 >
                   みんなのたびを見る
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    changeUrl("/testpage");
+                  }}
+                >
+                  たびを計画する
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
@@ -236,15 +243,6 @@ const Navbar = () => {
                   }}
                 >
                   サインアップ
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    signOut();
-
-                    handleClose();
-                  }}
-                >
-                  地図を見る
                 </MenuItem>
               </Menu>
             </div>
