@@ -221,6 +221,13 @@ const Navbar = () => {
                     changeUrl("/map");
                   }}
                 >
+                  地図を見る
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    changeUrl("/recommendation");
+                  }}
+                >
                   みんなのたびを見る
                 </MenuItem>
                 <MenuItem
@@ -236,15 +243,6 @@ const Navbar = () => {
                   }}
                 >
                   サインアップ
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    signOut();
-
-                    handleClose();
-                  }}
-                >
-                  地図を見る
                 </MenuItem>
               </Menu>
             </div>
