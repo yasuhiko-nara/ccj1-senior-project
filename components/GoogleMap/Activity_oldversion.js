@@ -13,19 +13,12 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 
-const restaurantIcon =
-  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF%E3%81%A8%E3%83%8A%E3%82%A4%E3%83%95%E3%81%AE%E3%81%8A%E9%A3%9F%E4%BA%8B%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E7%B4%A0%E6%9D%90%20(1).svg?alt=media&token=ca319d7f-5a67-4207-856f-28fc75f6875f";
-
-const activityIcon =
-  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%82%99%E3%82%A4%E3%82%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=260673d7-dafc-4496-b5d1-2a41ffab66a6";
-const hotelIcon =
-  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%98%E3%82%99%E3%83%83%E3%83%88%E3%82%99%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B39.svg?alt=media&token=76f3bedd-c925-4561-b282-07b81a98a8e6";
-
-export default function Activity({ activity, showAddPlanButton = true }) {
-  const selectedActivities = useSelector(
-    (state) => state.travels.selectedActivities
-  );
-
+export default function Activity({
+  icon,
+  show,
+  activity,
+  showAddPlanButton = true,
+}) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
 
@@ -35,46 +28,27 @@ export default function Activity({ activity, showAddPlanButton = true }) {
     setOpen(false);
   }, []);
 
-  const selectIcon = (activityClass) => {
-    if (activityClass === "restaurants") {
-      return restaurantIcon;
-    }
-    if (activityClass === "attractions") {
-      return activityIcon;
-    }
-    if (activityClass === "hotels") {
-      return hotelIcon;
-    }
-  };
-
   return (
     <>
-      {activity.map(
-        (marker, index) =>
-          selectedActivities[marker.activityClass] && (
-            <>
-              <Marker
-                key={`${marker.location.lat * (index + 1)}`}
-                position={{
-                  lat: marker.location.lat,
-                  lng: marker.location.lng,
-                }}
-                onMouseOver={() => {
-                  setSelected(marker);
-                }}
-                onClick={() => {
-                  setOpen(true);
-                }}
-                icon={{
-                  url: selectIcon(marker.activityClass),
-                  origin: new window.google.maps.Point(0, 0),
-                  anchor: new window.google.maps.Point(15, 15),
-                  scaledSize: new window.google.maps.Size(30, 30),
-                }}
-              />
-            </>
-          )
-      )}
+      {show &&
+        activity.map((marker, index) => (
+          <Marker
+            key={`${marker.location.lat * (index + 1)}`}
+            position={{ lat: marker.location.lat, lng: marker.location.lng }}
+            onMouseOver={() => {
+              setSelected(marker);
+            }}
+            onClick={() => {
+              setOpen(true);
+            }}
+            icon={{
+              url: icon,
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(15, 15),
+              scaledSize: new window.google.maps.Size(30, 30),
+            }}
+          />
+        ))}
 
       {selected ? (
         <InfoWindow
