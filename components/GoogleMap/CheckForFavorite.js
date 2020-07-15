@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { like_activity } from "../../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,11 +23,31 @@ const useStyles = makeStyles(() => ({
 export default function CheckboxesGroup({ activity }) {
   const classes = useStyles();
 
+  const userLoginFlag = useSelector((state) => state.users.loginFlag);
+  const userId = useSelector((state) => state.users.userId);
+  const idToken = useSelector((state) => state.users.idToken);
   const dispatch = useDispatch();
 
-  const handleChange = () => {
+  const handleChange = useCallback(() => {
     dispatch(like_activity(activity));
-  };
+    console.log("can save like?", activity.like, userLoginFlag);
+    if (!activity.like && userLoginFlag) {
+      const opt = {
+        method: "post",
+        headers: {
+          Authorization: idToken,
+        },
+        url: "/favoriteSpot",
+        data: {
+          action: "save",
+          userId,
+          favoriteSpot: activity,
+        },
+        // data: activity,
+      };
+      axios(opt);
+    }
+  });
 
   return (
     <div>
