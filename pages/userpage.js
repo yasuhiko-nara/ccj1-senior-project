@@ -1,3 +1,4 @@
+import _ from "lodash";
 import axios from "axios";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -48,7 +49,11 @@ const userpage = (props) => {
         //   "got favorite places of this user => ",
         //   JSON.parse(res.data.body)
         // );
-        dispatch(get_favorite_places(JSON.parse(res.data.body)))
+        {
+          const removeDuplication = _.uniq(JSON.parse(res.data.body));
+          // console.log(removeDuplication);
+          dispatch(get_favorite_places(removeDuplication));
+        }
       );
     }
   }, []);

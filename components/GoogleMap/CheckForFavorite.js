@@ -42,7 +42,6 @@ export default function CheckboxesGroup({ activity }) {
           userId,
           favoriteSpot: activity,
         },
-        // data: activity,
       };
       axios(opt);
     }
