@@ -17,6 +17,13 @@ app.prepare().then(() => {
       changeOrigin: true,
     })
   );
+  server.use(
+    "/savedRoot",
+    createProxyMiddleware({
+      target: "https://e2uo59wqde.execute-api.ap-northeast-1.amazonaws.com",
+      changeOrigin: true,
+    })
+  );
 
   server.all("*", (req, res) => {
     return handle(req, res);

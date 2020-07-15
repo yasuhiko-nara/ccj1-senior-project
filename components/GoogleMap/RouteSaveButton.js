@@ -14,17 +14,11 @@ export default function () {
   const saveRoute = useCallback(async () => {
     const data = JSON.stringify(["data1", "data2", "data3"]);
     const opt = {
-      withCredentials: true,
       method: "post",
       headers: {
         Authorization: idToken,
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Origin":
-          "https://e2uo59wqde.execute-api.ap-northeast-1.amazonaws.com/savedRoot",
-        "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
       },
-      url:
-        "https://e2uo59wqde.execute-api.ap-northeast-1.amazonaws.com/savedRoot",
+      url: "/savedRoot",
       data: data,
     };
     const res = await axios(opt);
