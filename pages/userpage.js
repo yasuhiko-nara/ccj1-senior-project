@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 
 import Navbar from "../components/Navbar";
 import FavoritePlaces from "../components/FavoritePlaces";
+import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
 // import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
 
 const useStyles = makeStyles((theme) => ({
@@ -73,6 +74,11 @@ const userpage = (props) => {
                 <FavoritePlaces favoritePlaces={favoritePlaces} />
               )}
               {/* <GoogleMapForRouteView /> */}
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <GoogleMapForFavoritePlaces favoritePlaces={favoritePlaces} />
             </Paper>
           </Grid>
         </Grid>
