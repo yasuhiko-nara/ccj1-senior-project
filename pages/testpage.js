@@ -6,7 +6,7 @@ import { toggle_display } from "../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+import AutorenewTwoToneIcon from "@material-ui/icons/AutorenewTwoTone";
 
 import Map from "../components/GoogleMap/GoogleMap";
 import CheckBox from "../components/CheckBox";
@@ -63,38 +63,48 @@ const Index = (props) => {
   return (
     <>
       <div className={classes.root}>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Navbar />
             </Paper>
           </Grid>
-          <Grid item xs={2}>
-            <Paper className={classes.paper}>
-              <Button
-                onClick={() => dispatch(toggle_display())}
-                variant="contained"
-              >
-                TOGGLE
-              </Button>
-            </Paper>
-          </Grid>
           {mapToList ? (
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <SpotList spotsOfTargetPref={attractionsOfTargetPref} />
-                <SpotList spotsOfTargetPref={restaurantsOfTargetPref} />
-                <SpotList spotsOfTargetPref={hotelsOfTargetPref} />
-              </Paper>
-            </Grid>
+            <>
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <SpotList spotsOfTargetPref={attractionsOfTargetPref} />
+                  <SpotList spotsOfTargetPref={restaurantsOfTargetPref} />
+                  <SpotList spotsOfTargetPref={hotelsOfTargetPref} />
+                </Paper>
+              </Grid>
+              <Grid item xs={0.5}>
+                <Paper>
+                  <AutorenewTwoToneIcon
+                    onClick={() => dispatch(toggle_display())}
+                    variant="contained"
+                    style={{ fontSize: "70px" }}
+                  />
+                </Paper>
+              </Grid>
+            </>
           ) : (
             <>
-              <Grid item xs={8}>
+              <Grid item xs={11}>
                 <Paper className={classes.paper}>
                   <CheckBox />
                 </Paper>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={0.5}>
+                <Paper>
+                  <AutorenewTwoToneIcon
+                    onClick={() => dispatch(toggle_display())}
+                    variant="contained"
+                    style={{ fontSize: "70px" }}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
                 <Paper className={classes.paper}>
                   <Schedules />
                 </Paper>
