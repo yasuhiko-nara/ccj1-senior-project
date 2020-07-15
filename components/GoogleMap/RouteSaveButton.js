@@ -12,7 +12,7 @@ export default function () {
   const idToken = useSelector((state) => state.users.idToken);
 
   const saveRoute = useCallback(async () => {
-    const data = JSON.stringify(["data1", "data2", "data3"]);
+    const data = JSON.stringify(["test1", "test2", "test3"]);
     const opt = {
       method: "post",
       headers: {

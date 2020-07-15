@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
   },
 }));
-const bikeIcon =
+const icon =
   "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%82%99%E3%82%A4%E3%82%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=260673d7-dafc-4496-b5d1-2a41ffab66a6";
 
 export default function SingleLineGridList({ schedules, routeInfo }) {
@@ -90,7 +90,7 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
                         .toISOString()
                         .substr(11, 8)}
                     </div>
-                    <img src={bikeIcon} alt="routeInfo" />
+                    <img src={icon} alt="routeInfo" />
                     <div>{Math.round(activity.distance.value / 1000)}km</div>
                   </GridListTile>
                 )}
