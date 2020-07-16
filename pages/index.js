@@ -10,24 +10,24 @@ import MapCategory from "../components/Category/MapCategory";
 import prefs, { categoryMap } from "../components/GoogleMap/mapUtils/pref";
 import Navbar from "../components/Navbar";
 
-export async function getStaticProps() {
-  const res = await axios.get(
-    "https://ala5g0w56m.execute-api.ap-northeast-1.amazonaws.com/Rakutabi_API"
-  );
-  const data = JSON.stringify(res.data);
-  return {
-    props: {
-      data,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const res = await axios.get(
+//     "https://ala5g0w56m.execute-api.ap-northeast-1.amazonaws.com/Rakutabi_API"
+//   );
+//   const data = JSON.stringify(res.data);
+//   return {
+//     props: {
+//       data,
+//     },
+//   };
+// }
 
 const Index = (props) => {
   let flag;
   const [pref, setPref] = useState("");
-  const initialState = JSON.parse(props.data);
+  //const initialState = JSON.parse(props.data);
   const dispatch = useDispatch();
-  dispatch(get_initial_status(initialState));
+  // dispatch(get_initial_status(initialState));
 
   return (
     <div className="top">
