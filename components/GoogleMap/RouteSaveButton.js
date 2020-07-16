@@ -17,7 +17,7 @@ export default function () {
     action: "save",
     userId,
     schedules,
-    route: routeInfo, // 本来なら、currentDirecitonを送りたいが、要領オーバーで、mongoDBが受け付けない
+    route: routeInfo,
   };
   const saveRoute = useCallback(async () => {
     const opt = {

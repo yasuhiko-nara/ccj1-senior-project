@@ -36,11 +36,7 @@ const options = {
   zoomControl: true,
 };
 
-export default function GoogleMapForFavoritePlaces({
-  // favoritePlaces,
-  myRoute,
-}) {
-  // const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
+export default function GoogleMapForFavoritePlaces({ myRoute }) {
   const origin = myRoute[0].location;
   const destination = myRoute[myRoute.length - 1].location;
   const activityLocations = myRoute
@@ -48,9 +44,6 @@ export default function GoogleMapForFavoritePlaces({
     .map((activity) => {
       return { location: activity.location };
     });
-
-  // const [selected, setSelected] = useState(null);
-  // const [open, setOpen] = useState(false);
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_googleMapsApiKey,
@@ -63,9 +56,6 @@ export default function GoogleMapForFavoritePlaces({
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
-  // const handleClose = useCallback(() => {
-  //   setOpen(false);
-  // }, []);
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
@@ -85,86 +75,7 @@ export default function GoogleMapForFavoritePlaces({
         onLoad={onMapLoad}
       >
         <ActivityForFavoritePlaces />
-        {/* {favoritePlaces.map((marker, index) => (
-          <Marker
-            key={`${marker.location.lat * (index + 1)}`}
-            position={{
-              lat: marker.location.lat,
-              lng: marker.location.lng,
-            }}
-            onMouseOver={() => {
-              setSelected(marker);
-            }}
-            onClick={() => {
-              setOpen(true);
-            }}
-            icon={{
-              url: favoriteIcon,
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-              scaledSize: new window.google.maps.Size(30, 30),
-            }}
-          />
-        ))} */}
-        {/* {selected ? (
-          <InfoWindow
-            position={{
-              lat: selected.location.lat,
-              lng: selected.location.lng,
-            }}
-            onCloseClick={() => {
-              setSelected(null);
-            }}
-          >
-            <div>
-              <h2>
-                <span role="img" aria-label="bear">
-                  {selected.name}
-                </span>
-              </h2>
-              <img src={selected.image} />
-            </div>
-          </InfoWindow>
-        ) : null} */}
-        {/* <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-            {selected ? selected.name : null}
-          </DialogTitle>
-          <DialogContent>
-            {selected ? (
-              <>
-                <img src={selected.image} width="100%" />
 
-                {selected.reviews.map((review, index) => (
-                  <div key={`${review.title}+${index}`}>
-                    <Typography>{review.title}</Typography>
-                    <DialogContentText id="alert-dialog-description">
-                      {review.published_date}
-                    </DialogContentText>
-                    <Rating
-                      name="read-only"
-                      value={Number(review.rating)}
-                      readOnly
-                    />
-                    <DialogContentText id="alert-dialog-description">
-                      {review.text}
-                    </DialogContentText>
-                  </div>
-                ))}
-              </>
-            ) : null}
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              戻る
-            </Button>
-          </DialogActions>
-        </Dialog> */}
         {myRoute.length > 2 && (
           <DirectionForUserPage
             origin={origin}
