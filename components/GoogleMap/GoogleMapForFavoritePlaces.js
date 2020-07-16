@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -9,7 +9,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
-
+import Direction from "./Direction";
+import SingleLineGridList from "../SingleLineGridList";
 import {
   GoogleMap,
   useLoadScript,
@@ -34,7 +35,20 @@ const options = {
   zoomControl: true,
 };
 
-export default function GoogleMapForFavoritePlaces({ favoritePlaces }) {
+export default function GoogleMapForFavoritePlaces({
+  favoritePlaces,
+  myRoute,
+}) {
+  console.log("this is myroute from googlemap", myRoute);
+  const origin = myRoute[0].location;
+  const destination = myRoute[myRoute.length - 1].location;
+  const activityLocations = myRoute
+    .slice(1, myRoute.length - 1)
+    .map((activity) => {
+      return { location: activity.location };
+    });
+
+  const routeInfo = useSelector((state) => state.travels.routeInfo);
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -58,13 +72,16 @@ export default function GoogleMapForFavoritePlaces({ favoritePlaces }) {
 
   return (
     <div>
+      {myRoute.length > 2 && routeInfo && (
+        <SingleLineGridList schedules={myRoute} routeInfo={routeInfo} />
+      )}
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
-        zoom={8}
+        zoom={6}
         center={{
-          lat: Number(router.query.lat) || 43.048225,
-          lng: Number(router.query.lng) || 141.49701,
+          lat: Number(router.query.lat) || 40,
+          lng: Number(router.query.lng) || 138,
         }}
         options={options}
         // onClick={onMapClick}
@@ -162,6 +179,13 @@ export default function GoogleMapForFavoritePlaces({ favoritePlaces }) {
             )} */}
           </DialogActions>
         </Dialog>
+        {myRoute.length > 2 && (
+          <Direction
+            origin={origin}
+            destination={destination}
+            activityLocations={activityLocations}
+          />
+        )}
       </GoogleMap>
     </div>
   );
