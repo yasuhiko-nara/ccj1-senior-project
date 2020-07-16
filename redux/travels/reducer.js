@@ -112,7 +112,7 @@ export const travelReducer = (state = initialState.travels, action) => {
     case actions.GET_MY_ROUTES:
       return {
         ...state,
-        myRoutes: action.myRoutes,
+        myRoutesAndSchedules: action.myRoutesAndSchedules,
       };
 
     default:
