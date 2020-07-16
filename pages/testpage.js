@@ -16,6 +16,7 @@ import SpotList from "../components/SpotList";
 import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
 
 export async function getStaticProps() {
+  console.log("server");
   const res = await axios.get(
     "https://ala5g0w56m.execute-api.ap-northeast-1.amazonaws.com/Rakutabi_API"
   );
@@ -46,6 +47,7 @@ const Index = (props) => {
   );
 
   const initialState = JSON.parse(props.data);
+  console.log("aaa", initialState);
   const dispatch = useDispatch();
   dispatch(get_initial_status(initialState));
 
