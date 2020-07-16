@@ -6,7 +6,8 @@ import CheckBox from "../components/CheckBox";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
-import prefs from "../components/GoogleMap/mapUtils/pref";
+import MapCategory from "../components/Category/MapCategory";
+import prefs, { categoryMap } from "../components/GoogleMap/mapUtils/pref";
 import Navbar from "../components/Navbar";
 
 export async function getStaticProps() {
@@ -49,25 +50,26 @@ const Index = (props) => {
             query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
           }}
         >
-          <button>検索する</button>
+          <button>調べる</button>
         </Link>
       </div>
       <div className="prefecture">
-        <h2>都道府県一覧</h2>
-        <Grid container spacing={1} justify="left">
-          {prefs.map((pref) => (
-            <Grid item xs={1.5}>
-              <button
-                className="btn-border"
-                onClick={() => {
-                  setPref(pref);
-                }}
-              >
-                {pref.pref}
-              </button>
-            </Grid>
-          ))}
-        </Grid>
+        <h2 style={{ textAlign: "center" }}>都道府県一覧</h2>
+        {/* <div style={{ height: "2em" }}> */}
+        <div className="small__container">
+          <Grid container spacing={7} justify="center">
+            {categoryMap.map((obj) => (
+              <Grid style={{ marginBottom: "30px" }} item xs={3}>
+                <MapCategory
+                  feeld={obj.feeld}
+                  category={obj.category}
+                  setLocation={(obj) => setPref(obj)}
+                  pref={pref}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
       </div>
       <style jsx>{`
         img {
@@ -109,8 +111,18 @@ const Index = (props) => {
           color: #fff;
         }
         .prefecture {
+          position: relative;
+          height: 27em;
           margin: 0 15%;
           margin-top: 30px;
+        }
+        .small__container{
+          width:100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateY(-50%) translateX(-50%);
+          -webkit- transform: translateY(-50%) translateX(-50%);
         }
         h2 {
           margin-bottom: 15px;
