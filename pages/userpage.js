@@ -29,7 +29,9 @@ const userpage = (props) => {
   const userId = useSelector((state) => state.users.userId);
   const idToken = useSelector((state) => state.users.idToken);
   const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
-  const myRoutes = useSelector((state) => state.travels.myRoutes);
+  const myRoutesAndSchedules = useSelector(
+    (state) => state.travels.myRoutesAndSchedules
+  );
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -68,14 +70,12 @@ const userpage = (props) => {
         url: `/savedRoutes`,
       };
       axios(opt).then((res) => {
-        const routesAndSchedules = JSON.parse(res.data.body);
-        const schedules = routesAndSchedules.map((data) => data.schedules);
-        dispatch(get_my_routes(schedules));
+        const myRoutesAndSchedules = JSON.parse(res.data.body);
+
+        dispatch(get_my_routes(myRoutesAndSchedules));
       });
     }
   }, []);
-
-  console.log("myRoute", myRoutes);
 
   return (
     <>
@@ -86,22 +86,13 @@ const userpage = (props) => {
               <Navbar />
             </Paper>
           </Grid>
-          {/* <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              {favoritePlaces.length > 0 && myRoutes.length > 0 && (
-                <GoogleMapForFavoritePlaces
-                  favoritePlaces={favoritePlaces}
-                  myRoute={myRoutes[0]}
-                />
-              )}
-            </Paper>
-          </Grid> */}
+
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              {favoritePlaces.length > 0 && myRoutes.length > 0 && (
+              {favoritePlaces.length > 0 && myRoutesAndSchedules.length > 0 && (
                 <SingleLineGridListOfMaps
                   favoritePlaces={favoritePlaces}
-                  myRoutes={myRoutes}
+                  myRoutesAndSchedules={myRoutesAndSchedules}
                 />
               )}
             </Paper>

@@ -9,7 +9,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
-import Direction from "./Direction";
+import DirectionForUserPage from "./DirectionForUserPage";
 import SingleLineGridList from "../SingleLineGridList";
 import {
   GoogleMap,
@@ -38,8 +38,8 @@ const options = {
 export default function GoogleMapForFavoritePlaces({
   favoritePlaces,
   myRoute,
+  routeInfo,
 }) {
-  console.log("this is myroute from googlemap", myRoute);
   const origin = myRoute[0].location;
   const destination = myRoute[myRoute.length - 1].location;
   const activityLocations = myRoute
@@ -48,7 +48,6 @@ export default function GoogleMapForFavoritePlaces({
       return { location: activity.location };
     });
 
-  const routeInfo = useSelector((state) => state.travels.routeInfo);
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -165,22 +164,10 @@ export default function GoogleMapForFavoritePlaces({
             <Button onClick={handleClose} color="primary">
               戻る
             </Button>
-            {/* {selected && (
-              <Button
-                onClick={() => {
-                  setOpen(false);
-                  dispatch(select_plan(selected));
-                }}
-                color="primary"
-                autoFocus
-              >
-                <strong>{selected.name}</strong>を追加
-              </Button>
-            )} */}
           </DialogActions>
         </Dialog>
         {myRoute.length > 2 && (
-          <Direction
+          <DirectionForUserPage
             origin={origin}
             destination={destination}
             activityLocations={activityLocations}

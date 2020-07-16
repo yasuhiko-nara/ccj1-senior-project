@@ -32,18 +32,23 @@ const useStyles = makeStyles((theme) => ({
 const icon =
   "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%82%99%E3%82%A4%E3%82%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=260673d7-dafc-4496-b5d1-2a41ffab66a6";
 
-export default function SingleLineGridListOfMaps({ favoritePlaces, myRoutes }) {
+export default function SingleLineGridListOfMaps({
+  favoritePlaces,
+  myRoutesAndSchedules,
+}) {
   const classes = useStyles();
 
   return (
     <>
       <div className={classes.root}>
         <GridList spacing={10} className={classes.gridList} cols={2.5}>
-          {myRoutes.map((route, index) => (
+          {myRoutesAndSchedules.map((routesAndSchedule, index) => (
             <GoogleMapForFavoritePlaces
               key={`${index}`}
               favoritePlaces={favoritePlaces}
-              myRoute={route}
+              myRoute={routesAndSchedule.schedules}
+              routeInfo={routesAndSchedule.route}
+              // ここにルートとスケジュールをいれる
             />
           ))}
         </GridList>
