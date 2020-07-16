@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 
 import Navbar from "../components/Navbar";
 import FavoritePlaces from "../components/FavoritePlaces";
+import SingleLineGridListOfMaps from '../components/SingleLineGridListOfMaps'
 import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
 // import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
 
@@ -46,21 +47,17 @@ const userpage = (props) => {
         url: "/favoriteSpot",
       };
       axios(opt).then((res) =>
-        // console.log(
-        //   "got favorite places of this user => ",
-        //   JSON.parse(res.data.body)
-        // );
         {
           const removeDuplication = _.uniqBy(
             JSON.parse(res.data.body),
             JSON.stringify
           );
-          // console.log(removeDuplication);
+
           dispatch(get_favorite_places(removeDuplication));
         }
       );
     }
-    console.log("now loading my favorite route");
+    console.log("now loading my favorite routes");
     if (userLoginFlag) {
       const opt = {
         method: "get",
@@ -98,7 +95,8 @@ const userpage = (props) => {
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <GoogleMapForFavoritePlaces favoritePlaces={favoritePlaces} />
+              <>
+              {/* <GoogleMapForFavoritePlaces favoritePlaces={favoritePlaces} /> */}
             </Paper>
           </Grid>
         </Grid>
