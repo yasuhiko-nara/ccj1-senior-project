@@ -34,7 +34,10 @@ const options = {
   zoomControl: true,
 };
 
-export default function GoogleMapForFavoritePlaces({ favoritePlaces }) {
+export default function GoogleMapForFavoritePlaces({
+  favoritePlaces,
+  favoriteRoute,
+}) {
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -162,6 +165,11 @@ export default function GoogleMapForFavoritePlaces({ favoritePlaces }) {
             )} */}
           </DialogActions>
         </Dialog>
+        <DirectionsRenderer
+          options={{
+            directions: favoriteRoute,
+          }}
+        />
       </GoogleMap>
     </div>
   );

@@ -60,6 +60,23 @@ const userpage = (props) => {
         }
       );
     }
+    console.log("now loading my favorite route");
+    if (userLoginFlag) {
+      const opt = {
+        method: "get",
+        params: {
+          userId,
+        },
+        headers: {
+          Authorization: idToken,
+        },
+        url: `/favoriteSpot`,
+      };
+      axios(opt).then((res) => {
+        console.log(res.data);
+        // setFavoriteActivities(JSON.parse(res.data.body));
+      });
+    }
   }, []);
 
   return (
