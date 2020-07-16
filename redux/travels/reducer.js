@@ -23,7 +23,6 @@ export const travelReducer = (state = initialState.travels, action) => {
       return {
         ...state,
         restaurants: [
-          ...state.restaurants,
           ...action.initialState.restaurants.map((elem) => {
             const modifiedElem = elem;
             modifiedElem.day = 1;
@@ -33,7 +32,6 @@ export const travelReducer = (state = initialState.travels, action) => {
           }),
         ],
         attractions: [
-          ...state.attractions,
           ...action.initialState.attractions.map((elem) => {
             const modifiedElem = elem;
             modifiedElem.day = 1;
@@ -43,7 +41,6 @@ export const travelReducer = (state = initialState.travels, action) => {
           }),
         ],
         hotels: [
-          ...state.hotels,
           ...action.initialState.hotels.map((elem) => {
             const modifiedElem = elem;
             modifiedElem.day = 1;

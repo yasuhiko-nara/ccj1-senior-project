@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { user_login, change_email } from "../redux/users/action";
+import Navbar from "./Navbar";
 import { useRouter } from "next/router";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -76,17 +77,6 @@ const Authentication = () => {
 
         setPassword("");
         router.push("/");
-
-        // dispatch({
-        //   type: "SET_USERNAME",
-        //   userName: userName,
-        // });
-        // dispatch({
-        //   type: "SET_USERID",
-        //   userId: userId,
-        // });
-
-        // dispatch({ type: "CHANGE_EMAIL", email: "" });
       },
       onFailure: (err) => {
         console.log("a");
@@ -95,64 +85,54 @@ const Authentication = () => {
     });
   };
   return (
-    <div className="main-container">
+    <>
+      <Navbar />
       <div className="Authenticate">
-        <h1 style={{ marginBottom: "50px" }}>Authenticate</h1>
+        <h1>認証確認</h1>
+        <h2>メールを確認して6桁の認証コードを入力してください</h2>
         <TextField
-          style={{ marginBottom: "50px" }}
+          style={{ width: "100%", marginTop: "30px" }}
           onChange={changeConfirmationCode}
           id="filled-basic"
-          label="confirmation code"
+          label="認証コード"
           variant="filled"
         />
         <TextField
-          style={{ marginBottom: "50px" }}
+          style={{ width: "100%", marginTop: "30px" }}
           onChange={changePassword}
           id="standard-password-input"
-          label="Password"
+          label="パスワード"
           type="password"
           autoComplete="current-password"
         />
 
         <Button
           style={{
-            display: "block",
-            width: "40%",
-            marginTop: "0px",
-            marginBottom: "0px",
-            marginLeft: "auto",
-            marginRight: "auto",
+            width: "50%",
+            height: "50px",
+            marginLeft: "25%",
+            marginTop: "50px",
+            color: "white",
+            backgroundColor: "#2b90d9",
           }}
           variant="contained"
           onClick={authenticate}
-          color="primary"
         >
-          Authenticate
+          完了
         </Button>
-        <style jsx>
-          {`
-            .main-container {
-              position: relative;
-              width: 100vw;
-              height: 100vh;
-
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .Authenticate {
-              text-align: center;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translateY(-50%) translateX(-50%);
-              width: 20%;
-              height: 50%;
-            }
-          `}
-        </style>
+        <style jsx>{`
+          h2 {
+            margin-top: 20px;
+            font-size: 14px;
+          }
+          .Authenticate {
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 100px;
+          }
+        `}</style>
       </div>
-    </div>
+    </>
   );
 };
 
