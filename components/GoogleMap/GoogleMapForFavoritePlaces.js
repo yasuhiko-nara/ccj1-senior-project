@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -10,7 +10,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import Direction from "./Direction";
-
+import SingleLineGridList from "../SingleLineGridList";
 import {
   GoogleMap,
   useLoadScript,
@@ -48,6 +48,7 @@ export default function GoogleMapForFavoritePlaces({
       return { location: activity.location };
     });
 
+  const routeInfo = useSelector((state) => state.travels.routeInfo);
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -71,6 +72,9 @@ export default function GoogleMapForFavoritePlaces({
 
   return (
     <div>
+      {myRoute.length > 2 && routeInfo && (
+        <SingleLineGridList schedules={myRoute} routeInfo={routeInfo} />
+      )}
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
