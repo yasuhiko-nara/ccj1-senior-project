@@ -72,19 +72,19 @@ const SignUp = () => {
           style={{ width: "100%", marginTop: "20px" }}
           onChange={changeEmail}
           id="filled-basic"
-          label="Email"
+          label="メールアドレス"
         />
         <TextField
           style={{ width: "100%", marginTop: "20px" }}
           onChange={changeName}
           id="filled-basic"
-          label="Name"
+          label="名前"
         />
         <TextField
           style={{ width: "100%", marginTop: "20px" }}
           onChange={changePassword}
           id="standard-password-input"
-          label="Password"
+          label="パスワード"
           type="password"
           autoComplete="current-password"
         />

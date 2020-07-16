@@ -94,14 +94,14 @@ const Authentication = () => {
           style={{ width: "100%", marginTop: "30px" }}
           onChange={changeConfirmationCode}
           id="filled-basic"
-          label="confirmation code"
+          label="認証コード"
           variant="filled"
         />
         <TextField
           style={{ width: "100%", marginTop: "30px" }}
           onChange={changePassword}
           id="standard-password-input"
-          label="Password"
+          label="パスワード"
           type="password"
           autoComplete="current-password"
         />
