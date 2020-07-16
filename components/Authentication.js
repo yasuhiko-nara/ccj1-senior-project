@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { user_login, change_email } from "../redux/users/action";
+import Navbar from "./Navbar";
 import { useRouter } from "next/router";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -84,16 +85,20 @@ const Authentication = () => {
     });
   };
   return (
-    <div className="main-container">
+    <>
+      <Navbar />
       <div className="Authenticate">
-        <h1>Authenticate</h1>
+        <h1>認証確認</h1>
+        <h2>メールを確認して6桁の認証コードを入力してください</h2>
         <TextField
+          style={{ width: "100%", marginTop: "30px" }}
           onChange={changeConfirmationCode}
           id="filled-basic"
           label="confirmation code"
           variant="filled"
         />
         <TextField
+          style={{ width: "100%", marginTop: "30px" }}
           onChange={changePassword}
           id="standard-password-input"
           label="Password"
@@ -101,12 +106,33 @@ const Authentication = () => {
           autoComplete="current-password"
         />
 
-        <Button variant="contained" onClick={authenticate} color="primary">
+        <Button
+          style={{
+            width: "50%",
+            height: "50px",
+            marginLeft: "25%",
+            marginTop: "50px",
+            color: "white",
+            backgroundColor: "#2b90d9",
+          }}
+          variant="contained"
+          onClick={authenticate}
+        >
           Authenticate
         </Button>
-        <style jsx>{``}</style>
+        <style jsx>{`
+          h2 {
+            margin-top: 20px;
+            font-size: 14px;
+          }
+          .Authenticate {
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 100px;
+          }
+        `}</style>
       </div>
-    </div>
+    </>
   );
 };
 
