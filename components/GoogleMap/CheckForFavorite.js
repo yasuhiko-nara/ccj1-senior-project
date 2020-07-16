@@ -43,26 +43,33 @@ export default function CheckboxesGroup({ activity }) {
           favoriteSpot: activity,
         },
       };
+      console.log(opt);
       axios(opt);
     }
   });
 
   return (
-    <div>
-      <FormControl>
-        <FormGroup row className={classes.formControl}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                icon={<FavoriteBorder />}
-                checkedIcon={<Favorite />}
-                checked={activity.like}
-                onChange={handleChange}
-              />
-            }
-          />
-        </FormGroup>
-      </FormControl>
-    </div>
+    // <div>
+    //   <FormControl>
+    //     <FormGroup row className={classes.formControl}>
+    //       <FormControlLabel
+    //         control={
+    //           <Checkbox
+    //             icon={<FavoriteBorder />}
+    //             checkedIcon={<Favorite />}
+    //             checked={activity.like}
+    //             onChange={handleChange}
+    //           />
+    //         }
+    //       />
+    //     </FormGroup>
+    //   </FormControl>
+    // </div>
+    <Checkbox
+      icon={<FavoriteBorder />}
+      checkedIcon={<Favorite />}
+      checked={activity.like}
+      onChange={handleChange}
+    />
   );
 }
