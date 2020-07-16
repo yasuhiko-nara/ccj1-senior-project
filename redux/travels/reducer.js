@@ -111,6 +111,13 @@ export const travelReducer = (state = initialState.travels, action) => {
         ...state,
         favoritePlaces: action.activities,
       };
+
+    case actions.GET_MY_ROUTES:
+      return {
+        ...state,
+        myRoutes: action.myRoutes,
+      };
+
     default:
       return state;
   }
