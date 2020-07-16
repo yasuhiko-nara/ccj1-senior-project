@@ -9,6 +9,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
+import Direction from "./Direction";
 
 import {
   GoogleMap,
@@ -36,8 +37,17 @@ const options = {
 
 export default function GoogleMapForFavoritePlaces({
   favoritePlaces,
-  favoriteRoute,
+  myRoute,
 }) {
+  console.log("this is myroute from googlemap", myRoute);
+  const origin = myRoute[0].location;
+  const destination = myRoute[myRoute.length - 1].location;
+  const activityLocations = myRoute
+    .slice(1, myRoute.length - 1)
+    .map((activity) => {
+      return { location: activity.location };
+    });
+
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -165,11 +175,13 @@ export default function GoogleMapForFavoritePlaces({
             )} */}
           </DialogActions>
         </Dialog>
-        <DirectionsRenderer
-          options={{
-            directions: favoriteRoute,
-          }}
-        />
+        {myRoute.length > 2 && (
+          <Direction
+            origin={origin}
+            destination={destination}
+            activityLocations={activityLocations}
+          />
+        )}
       </GoogleMap>
     </div>
   );
