@@ -33,7 +33,6 @@ export default function Map() {
     googleMapsApiKey: process.env.REACT_APP_googleMapsApiKey,
     libraries,
   });
-  const dispatch = useDispatch();
 
   const router = useRouter();
 

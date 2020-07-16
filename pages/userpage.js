@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import Navbar from "../components/Navbar";
 // import FavoritePlaces from "../components/FavoritePlaces";
 import SingleLineGridListOfMaps from "../components/SingleLineGridListOfMaps";
-import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
+// import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
 // import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +28,7 @@ const userpage = (props) => {
   const userLoginFlag = useSelector((state) => state.users.loginFlag);
   const userId = useSelector((state) => state.users.userId);
   const idToken = useSelector((state) => state.users.idToken);
-  const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
+  // const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
   const myRoutesAndSchedules = useSelector(
     (state) => state.travels.myRoutesAndSchedules
   );
@@ -88,14 +88,12 @@ const userpage = (props) => {
           </Grid>
 
           <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              {favoritePlaces.length > 0 && myRoutesAndSchedules.length > 0 && (
-                <SingleLineGridListOfMaps
-                  favoritePlaces={favoritePlaces}
-                  myRoutesAndSchedules={myRoutesAndSchedules}
-                />
-              )}
-            </Paper>
+            {myRoutesAndSchedules.length > 0 && (
+              <SingleLineGridListOfMaps
+                // favoritePlaces={favoritePlaces}
+                myRoutesAndSchedules={myRoutesAndSchedules}
+              />
+            )}
           </Grid>
         </Grid>
       </div>
