@@ -28,7 +28,7 @@ const userpage = (props) => {
   const userLoginFlag = useSelector((state) => state.users.loginFlag);
   const userId = useSelector((state) => state.users.userId);
   const idToken = useSelector((state) => state.users.idToken);
-  const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
+  // const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
   const myRoutesAndSchedules = useSelector(
     (state) => state.travels.myRoutesAndSchedules
   );
@@ -89,9 +89,9 @@ const userpage = (props) => {
 
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              {favoritePlaces.length > 0 && myRoutesAndSchedules.length > 0 && (
+              {myRoutesAndSchedules.length > 0 && (
                 <SingleLineGridListOfMaps
-                  favoritePlaces={favoritePlaces}
+                  // favoritePlaces={favoritePlaces}
                   myRoutesAndSchedules={myRoutesAndSchedules}
                 />
               )}

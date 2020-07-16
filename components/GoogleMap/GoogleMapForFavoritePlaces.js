@@ -11,6 +11,7 @@ import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import DirectionForUserPage from "./DirectionForUserPage";
 import SingleLineGridList from "../SingleLineGridList";
+import ActivityForFavoritePlaces from "./ActivityForFavoritePlaces";
 import {
   GoogleMap,
   useLoadScript,
@@ -36,10 +37,10 @@ const options = {
 };
 
 export default function GoogleMapForFavoritePlaces({
-  favoritePlaces,
+  // favoritePlaces,
   myRoute,
-  routeInfo,
 }) {
+  // const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
   const origin = myRoute[0].location;
   const destination = myRoute[myRoute.length - 1].location;
   const activityLocations = myRoute
@@ -48,8 +49,8 @@ export default function GoogleMapForFavoritePlaces({
       return { location: activity.location };
     });
 
-  const [selected, setSelected] = useState(null);
-  const [open, setOpen] = useState(false);
+  // const [selected, setSelected] = useState(null);
+  // const [open, setOpen] = useState(false);
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_googleMapsApiKey,
@@ -62,18 +63,15 @@ export default function GoogleMapForFavoritePlaces({
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
-  const handleClose = useCallback(() => {
-    setOpen(false);
-  }, []);
+  // const handleClose = useCallback(() => {
+  //   setOpen(false);
+  // }, []);
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
   return (
     <div>
-      {myRoute.length > 2 && routeInfo && (
-        <SingleLineGridList schedules={myRoute} routeInfo={routeInfo} />
-      )}
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
@@ -86,7 +84,8 @@ export default function GoogleMapForFavoritePlaces({
         // onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        {favoritePlaces.map((marker, index) => (
+        <ActivityForFavoritePlaces />
+        {/* {favoritePlaces.map((marker, index) => (
           <Marker
             key={`${marker.location.lat * (index + 1)}`}
             position={{
@@ -106,8 +105,8 @@ export default function GoogleMapForFavoritePlaces({
               scaledSize: new window.google.maps.Size(30, 30),
             }}
           />
-        ))}
-        {selected ? (
+        ))} */}
+        {/* {selected ? (
           <InfoWindow
             position={{
               lat: selected.location.lat,
@@ -126,8 +125,8 @@ export default function GoogleMapForFavoritePlaces({
               <img src={selected.image} />
             </div>
           </InfoWindow>
-        ) : null}
-        <Dialog
+        ) : null} */}
+        {/* <Dialog
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
@@ -140,7 +139,7 @@ export default function GoogleMapForFavoritePlaces({
             {selected ? (
               <>
                 <img src={selected.image} width="100%" />
-                {/* DialogContentTextの中にテキスト以外（pタグやh2タグ）を入れるとエラーが起きるので修正しました */}
+
                 {selected.reviews.map((review, index) => (
                   <div key={`${review.title}+${index}`}>
                     <Typography>{review.title}</Typography>
@@ -165,7 +164,7 @@ export default function GoogleMapForFavoritePlaces({
               戻る
             </Button>
           </DialogActions>
-        </Dialog>
+        </Dialog> */}
         {myRoute.length > 2 && (
           <DirectionForUserPage
             origin={origin}
