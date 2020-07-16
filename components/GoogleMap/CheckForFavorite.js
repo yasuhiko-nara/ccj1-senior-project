@@ -65,6 +65,8 @@ export default function CheckboxesGroup({ activity }) {
     //     </FormGroup>
     //   </FormControl>
     // </div>
+
+    // ♡の位置の変更をしました
     <Checkbox
       icon={<FavoriteBorder />}
       checkedIcon={<Favorite />}
