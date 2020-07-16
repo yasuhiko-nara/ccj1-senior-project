@@ -86,13 +86,13 @@ const userpage = (props) => {
               <Navbar />
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Paper className={classes.paper}>
               {favoritePlaces.length > 0 && (
                 <FavoritePlaces favoritePlaces={favoritePlaces} />
               )}
             </Paper>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               {favoritePlaces.length > 0 && myRoutes.length > 0 && (
