@@ -8,7 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 import Navbar from "../components/Navbar";
-import FavoritePlaces from "../components/FavoritePlaces";
+// import FavoritePlaces from "../components/FavoritePlaces";
 import SingleLineGridListOfMaps from "../components/SingleLineGridListOfMaps";
 import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
 // import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
@@ -88,17 +88,20 @@ const userpage = (props) => {
           </Grid>
           {/* <Grid item xs={12}>
             <Paper className={classes.paper}>
-              {favoritePlaces.length > 0 && (
-                <FavoritePlaces favoritePlaces={favoritePlaces} />
+              {favoritePlaces.length > 0 && myRoutes.length > 0 && (
+                <GoogleMapForFavoritePlaces
+                  favoritePlaces={favoritePlaces}
+                  myRoute={myRoutes[0]}
+                />
               )}
             </Paper>
           </Grid> */}
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               {favoritePlaces.length > 0 && myRoutes.length > 0 && (
-                <GoogleMapForFavoritePlaces
+                <SingleLineGridListOfMaps
                   favoritePlaces={favoritePlaces}
-                  myRoute={myRoutes[0]}
+                  myRoutes={myRoutes}
                 />
               )}
             </Paper>
