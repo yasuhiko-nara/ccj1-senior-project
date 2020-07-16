@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { user_login } from "../redux/users/action";
+import Navbar from "./Navbar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { useRouter } from "next/router";
@@ -62,63 +63,47 @@ const SignIn = () => {
   };
 
   return (
-    <div className="main-container">
+    <>
+      <Navbar />
       <div className="SignIn">
-        <h1 style={{ marginBottom: "50px" }}>SingInしてください</h1>
+        <h1>メールアドレスでログインする。</h1>
         <TextField
-          style={{ marginBottom: "50px" }}
+          style={{ width: "100%", marginTop: "20px" }}
           onChange={changeEmail}
           id="filled-basic"
-          label="Email"
-          variant="filled"
+          label="メールアドレス"
         />
         <TextField
-          style={{ marginBottom: "50px" }}
+          style={{ width: "100%", marginTop: "20px" }}
           onChange={changePassword}
           id="standard-password-input"
-          label="Password"
+          label="パスワード"
           type="password"
           autoComplete="current-password"
         />
         <Button
           style={{
-            display: "block",
-            width: "40%",
-            marginTop: "0px",
-            marginBottom: "0px",
-            marginLeft: "auto",
-            marginRight: "auto",
+            width: "50%",
+            height: "50px",
+            marginLeft: "25%",
+            marginTop: "50px",
+            color: "white",
+            backgroundColor: "#2b90d9",
           }}
           variant="contained"
           onClick={signIn}
-          color="primary"
         >
-          Login
+          ログイン
         </Button>
-        <style jsx>
-          {`
-            .main-container {
-              position: relative;
-              width: 100vw;
-              height: 100vh;
-
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-            .SignIn {
-              text-align: center;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translateY(-50%) translateX(-50%);
-              width: 20%;
-              height: 50%;
-            }
-          `}
-        </style>
+        <style jsx>{`
+          .SignIn {
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 100px;
+          }
+        `}</style>
       </div>
-    </div>
+    </>
   );
 };
 
