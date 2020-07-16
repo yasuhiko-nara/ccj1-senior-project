@@ -118,7 +118,7 @@ const Authentication = () => {
           variant="contained"
           onClick={authenticate}
         >
-          Authenticate
+          完了
         </Button>
         <style jsx>{`
           h2 {
