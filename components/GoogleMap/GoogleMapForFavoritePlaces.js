@@ -34,7 +34,10 @@ const options = {
   zoomControl: true,
 };
 
-export default function GoogleMapForFavoritePlaces({ favoritePlaces }) {
+export default function GoogleMapForFavoritePlaces({
+  favoritePlaces,
+  favoriteRoute,
+}) {
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -61,10 +64,10 @@ export default function GoogleMapForFavoritePlaces({ favoritePlaces }) {
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
-        zoom={8}
+        zoom={6}
         center={{
-          lat: Number(router.query.lat) || 43.048225,
-          lng: Number(router.query.lng) || 141.49701,
+          lat: Number(router.query.lat) || 40,
+          lng: Number(router.query.lng) || 138,
         }}
         options={options}
         // onClick={onMapClick}
@@ -162,6 +165,11 @@ export default function GoogleMapForFavoritePlaces({ favoritePlaces }) {
             )} */}
           </DialogActions>
         </Dialog>
+        <DirectionsRenderer
+          options={{
+            directions: favoriteRoute,
+          }}
+        />
       </GoogleMap>
     </div>
   );
