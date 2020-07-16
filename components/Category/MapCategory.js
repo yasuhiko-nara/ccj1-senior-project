@@ -6,7 +6,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
-import SendIcon from "@material-ui/icons/Send";
 
 const StyledMenu = withStyles({
   paper: {
@@ -17,7 +16,7 @@ const StyledMenu = withStyles({
     elevation={0}
     getContentAnchorEl={null}
     anchorOrigin={{
-      vertical: "bottom",
+      vertical: "top",
       horizontal: "center",
     }}
     transformOrigin={{
@@ -41,7 +40,7 @@ const StyledMenuItem = withStyles((theme) => ({
 
 export default function CustomizedMenus(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const current = React.useRef(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -50,23 +49,34 @@ export default function CustomizedMenus(props) {
     setAnchorEl(null);
   };
 
+  const toggle = (obj) => {
+    const pref = JSON.stringify(obj);
+    const o = JSON.stringify(props.pref);
+    console.log(o, pref);
+    if (pref === o) {
+      props.setLocation({ pref: "" });
+    } else {
+      props.setLocation(obj);
+    }
+  };
+
   const result = props.feeld.map((obj) => {
     return (
-      <StyledMenuItem>
-        <ListItemIcon>
-          {/* <SendIcon fontSize="small" /> */}
-          <DirectionsRunIcon fontSize="small" />
-        </ListItemIcon>
-        <ListItemText primary={obj.pref} />
-      </StyledMenuItem>
+      <div onClick={() => toggle(obj)}>
+        <StyledMenuItem>
+          <ListItemIcon>
+            <DirectionsRunIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary={obj.pref} />
+        </StyledMenuItem>
+      </div>
     );
   });
-
-  console.log(result);
 
   return (
     <div>
       <Button
+        style={{ width: "140px" }}
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
