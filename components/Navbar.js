@@ -186,7 +186,7 @@ const Navbar = () => {
                     deleteLogin();
                   }}
                 >
-                  サインアウト
+                  ログアウトする
                 </MenuItem>
               </Menu>
             </div>
@@ -235,14 +235,14 @@ const Navbar = () => {
                     changeUrl("/signin");
                   }}
                 >
-                  サインイン
+                  ログインする
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
                     changeUrl("/signup/form");
                   }}
                 >
-                  サインアップ
+                  新規登録する
                 </MenuItem>
               </Menu>
             </div>
