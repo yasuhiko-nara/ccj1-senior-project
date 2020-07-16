@@ -12,15 +12,13 @@ export default function () {
     (state) => state.travels.currentDirection
   );
   const schedules = useSelector((state) => state.travels.schedules);
-
+  const data = {
+    action: "save",
+    userId,
+    schedules,
+    route: {}, // 本来なら、currentDirecitonを送りたいが、要領オーバーで、mongoDBが受け付けない
+  };
   const saveRoute = useCallback(async () => {
-    const data = {
-      action: "save",
-      userId,
-      route: [currentDirection, ...schedules],
-      // AWSラムダの設計都合上、一つのrouteとして配列を用意している。
-      // そのため、route[0]に地図上にレンダーするためのcurrentDirectionを埋め込み、route.slice(1)にスライダー表示のためのscheduleを入れている
-    };
     const opt = {
       method: "post",
       headers: {
@@ -31,7 +29,7 @@ export default function () {
     };
     const res = await axios(opt);
     console.log("saved route data and this is the response", res.data);
-  }, []);
+  }, [data]);
 
   return (
     <>
