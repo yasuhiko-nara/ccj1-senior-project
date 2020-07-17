@@ -47,7 +47,7 @@ const Index = (props) => {
         ></input>
         <Link
           href={{
-            pathname: "testpage",
+            pathname: "/map",
             query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
           }}
         >

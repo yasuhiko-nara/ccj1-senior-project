@@ -175,7 +175,7 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    changeUrl("/testpage");
+                    changeUrl("/map");
                   }}
                 >
                   たびを計画する
@@ -225,7 +225,7 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    changeUrl("/testpage");
+                    changeUrl("/map");
                   }}
                 >
                   たびを計画する
