@@ -1,15 +1,16 @@
 import _ from "lodash";
 import axios from "axios";
-import { useState, useEffect, useRef, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { get_favorite_places, get_my_routes } from "../redux/travels/action";
+import { useState, useCallback } from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 import Navbar from "../components/Navbar";
 // import FavoritePlaces from "../components/FavoritePlaces";
 import SingleLineGridListOfMaps from "../components/SingleLineGridListOfMaps";
+import { SocialSentimentSatisfied } from "material-ui/svg-icons";
 // import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
 // import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
 
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -48,6 +50,7 @@ const recommend = (props) => {
         JSON.stringify
       );
       console.log(removeDuplication);
+      setMyRoutesAndSchedules(removeDuplication);
     });
   }, []);
 
@@ -60,6 +63,13 @@ const recommend = (props) => {
               <Navbar />
             </Paper>
           </Grid>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={getRecommendRoutes}
+          >
+            青森のルート取得
+          </Button>
 
           <Grid item xs={12}>
             {myRoutesAndSchedules && myRoutesAndSchedules.length > 0 && (
