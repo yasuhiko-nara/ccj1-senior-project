@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
 import List from "../components/List";
 import CheckBox from "../components/CheckBox";
+import Button from "@material-ui/core/Button";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
@@ -50,7 +51,8 @@ const Index = (props) => {
             query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
           }}
         >
-          <button>調べる</button>
+          <Button variant="contained">調べる</Button>
+          {/* <button>調べる</button> */}
         </Link>
       </div>
       <div className="prefecture">
@@ -74,6 +76,7 @@ const Index = (props) => {
       <style jsx>{`
         img {
           width: 100%;
+          
         }
         .search-bar {
           margin-top: 20px;
@@ -127,6 +130,11 @@ const Index = (props) => {
         h2 {
           margin-bottom: 15px;
         }
+
+        // .top{
+        //   background-image:url("https://www.ana.co.jp/www2/plan-book/promotions/special-fares/spring.jpg");
+        //   object-fit: cover;
+        // }
       `}</style>
     </div>
   );
