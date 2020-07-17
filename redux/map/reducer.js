@@ -11,6 +11,11 @@ export const mapReducer = (state = initialState.map, action) => {
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload };
+    case actions.SET_PREFECTURE:
+      return {
+        ...state,
+        targetPrefecture: action.targetPrefecture,
+      };
     case actions.GET_LOCATIONS:
       console.log("uko!!");
       return {
