@@ -25,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
   margin: { flexBasis: "35%" },
 }));
 
-export default function ScheduleOfADay({ schedules, routeInfo }) {
+export default function ScheduleOfADay({
+  // schedules,
+  routeInfo,
+}) {
   const userLoginFlag = useSelector((state) => state.users.loginFlag);
   const currentDirection = useSelector(
     (state) => state.travels.currentDirection
@@ -77,9 +80,9 @@ export default function ScheduleOfADay({ schedules, routeInfo }) {
               <RouteSaveButton />
             </div>
           </AccordionSummary>
-          <AccordionDetails>
+          {/* <AccordionDetails>
             <Breadcrumb schedules={schedules} />
-          </AccordionDetails>
+          </AccordionDetails> */}
         </Accordion>
       )}
     </>
