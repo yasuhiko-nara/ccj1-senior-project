@@ -11,43 +11,29 @@ import MapCategory from "../components/Category/MapCategory";
 import prefs, { categoryMap } from "../components/GoogleMap/mapUtils/pref";
 import Navbar from "../components/Navbar";
 
-// export async function getStaticProps() {
-//   const res = await axios.get(
-//     "https://ala5g0w56m.execute-api.ap-northeast-1.amazonaws.com/Rakutabi_API"
-//   );
-//   const data = JSON.stringify(res.data);
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// }
-
 const Index = (props) => {
   let flag;
   const [pref, setPref] = useState("");
-  //const initialState = JSON.parse(props.data);
+
   const dispatch = useDispatch();
-  // dispatch(get_initial_status(initialState));
 
   return (
     <div className="top">
       <Navbar />
-      <img
+      <div className="back">
+        <h2 className="back__h2 fadein">あなたの旅をサポートします</h2>
+      </div>
+
+      {/* <img
         src="https://www.ana.co.jp/www2/plan-book/promotions/special-fares/spring.jpg"
         alt="らくたびトップ画"
-      />
+      /> */}
       <div className="search-bar">
-        <input
-          type="text"
-          id="text"
-          value={pref.pref}
-          placeholder="どこに行きますか？"
-          disabled
-        ></input>
+        <p className="result">{pref.pref}</p>
+
         <Link
           href={{
-            pathname: "/map",
+            pathname: "/testpage",
             query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
           }}
         >
@@ -74,11 +60,18 @@ const Index = (props) => {
         </div>
       </div>
       <style jsx>{`
+      .back{
+        background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
+        height:100vh;
+        width: 100vw;
+      }
         img {
           width: 100%;
           
         }
         .search-bar {
+          display:flex;
+          justify-content: center;
           margin-top: 20px;
           text-align: center;
         }
@@ -131,10 +124,51 @@ const Index = (props) => {
           margin-bottom: 15px;
         }
 
-        // .top{
-        //   background-image:url("https://www.ana.co.jp/www2/plan-book/promotions/special-fares/spring.jpg");
-        //   object-fit: cover;
-        // }
+       .result{
+         
+         height:3em;
+         width: 10%;
+          padding: 10px 15px;
+          font-size: 16px;
+          border-radius: 3px;
+          border: 2px solid #ddd;
+          box-sizing: border-box;
+          margin-right: 15px;
+       }
+
+       .fadein{
+        opacity: 0;
+        animation: fadein 3s ease forwards;
+       }
+
+       .aa{
+        animation-delay: 2s;
+        font-size:4em;
+        font-family: 'Noto Serif JP', sans-serif;
+        // animation-name: fadein;
+        // animation-duration: 3s;
+        
+       }
+
+       .back__h2{
+        padding:3%;
+        font-size:4em;
+        font-family: 'Noto Serif JP', sans-serif;
+        // animation-name: fadein;
+        // animation-duration: 3s;
+       }
+
+     
+      @keyframes fadein {
+      // from {
+      //   opacity: 0;
+      //   transform: translateY(20px);
+      // }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      }
       `}</style>
     </div>
   );
