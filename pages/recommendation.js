@@ -8,11 +8,9 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
 import Navbar from "../components/Navbar";
-// import FavoritePlaces from "../components/FavoritePlaces";
+
 import SingleLineGridListOfMaps from "../components/SingleLineGridListOfMaps";
-import { SocialSentimentSatisfied } from "material-ui/svg-icons";
-// import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
-// import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
+// import ScheduleOfADayOfMaps from "../components/ScheduleOfADayOfMaps"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,6 +75,7 @@ const recommend = (props) => {
                 // favoritePlaces={favoritePlaces}
                 myRoutesAndSchedules={myRoutesAndSchedules}
               />
+              // <ScheduleOfADayOfMaps myRoutesAndSchedules={myRoutesAndSchedules} />
             )}
           </Grid>
         </Grid>
