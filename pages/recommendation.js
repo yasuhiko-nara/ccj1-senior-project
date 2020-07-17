@@ -1,11 +1,11 @@
 import _ from "lodash";
 import axios from "axios";
-import { useState, useCallback } from "react";
-
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 
 import Navbar from "../components/Navbar";
 
@@ -26,31 +26,30 @@ const useStyles = makeStyles((theme) => ({
 
 const recommend = (props) => {
   const [myRoutesAndSchedules, setMyRoutesAndSchedules] = useState(null);
+  const targetPrefecture = useSelector((state) => state.map.targetPrefecture);
 
   const classes = useStyles();
 
-  const getRecommendRoutes = useCallback(() => {
-    console.log(
-      "now loading route recommend and this can be fetched by anybody"
-    );
-
-    const opt = {
-      method: "get",
-      params: {
-        prefecture: "青森県",
-      },
-      url: "/routes",
-    };
-
-    axios(opt).then((res) => {
-      const removeDuplication = _.uniqBy(
-        JSON.parse(res.data.body),
-        JSON.stringify
-      );
-      console.log(removeDuplication);
-      setMyRoutesAndSchedules(removeDuplication);
-    });
-  }, []);
+  useEffect(() => {
+    if (targetPrefecture.pref) {
+      console.log(`now loading recommend of ${targetPrefecture.pref} `);
+      const opt = {
+        method: "get",
+        params: {
+          prefecture: targetPrefecture.pref,
+        },
+        url: "/routes",
+      };
+      axios(opt).then((res) => {
+        const removeDuplication = _.uniqBy(
+          JSON.parse(res.data.body),
+          JSON.stringify
+        );
+        console.log(removeDuplication);
+        setMyRoutesAndSchedules(removeDuplication);
+      });
+    }
+  }, [targetPrefecture]);
 
   return (
     <>
@@ -61,23 +60,22 @@ const recommend = (props) => {
               <Navbar />
             </Paper>
           </Grid>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={getRecommendRoutes}
-          >
-            青森のルート取得
-          </Button>
-
-          <Grid item xs={12}>
-            {myRoutesAndSchedules && myRoutesAndSchedules.length > 0 && (
-              <SingleLineGridListOfMaps
-                // favoritePlaces={favoritePlaces}
-                myRoutesAndSchedules={myRoutesAndSchedules}
-              />
-              // <ScheduleOfADayOfMaps myRoutesAndSchedules={myRoutesAndSchedules} />
-            )}
-          </Grid>
+          {!targetPrefecture.pref && (
+            <Grid>
+              <h2>都道府県を選んでください</h2>
+            </Grid>
+          )}
+          {targetPrefecture.pref && (
+            <Grid item xs={12}>
+              {myRoutesAndSchedules && myRoutesAndSchedules.length > 0 && (
+                <SingleLineGridListOfMaps
+                  // favoritePlaces={favoritePlaces}
+                  myRoutesAndSchedules={myRoutesAndSchedules}
+                />
+                // <ScheduleOfADayOfMaps myRoutesAndSchedules={myRoutesAndSchedules} />
+              )}
+            </Grid>
+          )}
         </Grid>
       </div>
     </>
