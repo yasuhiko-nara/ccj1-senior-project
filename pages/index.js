@@ -76,9 +76,11 @@ const Index = (props) => {
       <style jsx>{`
       .back{
         background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
-        background-size: cover;
-        height:100vh;
-        width: 100vw;
+        background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+        height:100%;
+        width: 100%;
       }
         img {
           width: 100%;

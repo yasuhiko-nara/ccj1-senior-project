@@ -81,7 +81,6 @@ export default function CustomizedMenus(props) {
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        // color="primary"
         onClick={handleClick}
       >
         {props.category}
