@@ -2,7 +2,6 @@ import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "@react-google-maps/api";
 import { Checkbox } from "@material-ui/core";
-import { select_plan } from "../../redux/travels/action";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -12,17 +11,16 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
+import CheckForFavorite from "./CheckForFavorite";
 
-export default function Activity({
-  icon,
-  show,
-  activity,
-  showAddPlanButton = true,
-}) {
+const favoriteIcon =
+  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%83%BC%E3%83%88%E3%81%AE%E3%83%9E%E3%83%BC%E3%82%AF3.svg?alt=media&token=485153b6-3a71-4443-bf2f-b2eaf1d033e5";
+
+export default function Activity({ showAddPlanButton = true }) {
+  const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
+
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
-
-  const dispatch = useDispatch();
 
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -30,25 +28,27 @@ export default function Activity({
 
   return (
     <>
-      {show &&
-        activity.map((marker, index) => (
-          <Marker
-            key={`${marker.location.lat * (index + 1)}`}
-            position={{ lat: marker.location.lat, lng: marker.location.lng }}
-            onMouseOver={() => {
-              setSelected(marker);
-            }}
-            onClick={() => {
-              setOpen(true);
-            }}
-            icon={{
-              url: icon,
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-              scaledSize: new window.google.maps.Size(30, 30),
-            }}
-          />
-        ))}
+      {favoritePlaces.map((marker, index) => (
+        <Marker
+          key={`${marker.location.lat * (index + 1)}`}
+          position={{
+            lat: marker.location.lat,
+            lng: marker.location.lng,
+          }}
+          onMouseOver={() => {
+            setSelected(marker);
+          }}
+          onClick={() => {
+            setOpen(true);
+          }}
+          icon={{
+            url: favoriteIcon,
+            origin: new window.google.maps.Point(0, 0),
+            anchor: new window.google.maps.Point(15, 15),
+            scaledSize: new window.google.maps.Size(30, 30),
+          }}
+        />
+      ))}
 
       {selected ? (
         <InfoWindow
@@ -62,6 +62,7 @@ export default function Activity({
         >
           <div>
             <h2>
+              <CheckForFavorite activity={selected} />
               <span role="img" aria-label="bear">
                 {selected.name}
               </span>
@@ -84,7 +85,7 @@ export default function Activity({
             {selected ? (
               <>
                 <img src={selected.image} width="100%" />
-                {/* DialogContentTextの中にテキスト以外（pタグやh2タグ）を入れるとエラーが起きるので修正しました */}
+
                 {selected.reviews.map((review, index) => (
                   <div key={`${review.title}+${index}`}>
                     <Typography>{review.title}</Typography>
@@ -108,18 +109,6 @@ export default function Activity({
             <Button onClick={handleClose} color="primary">
               戻る
             </Button>
-            {selected && showAddPlanButton && (
-              <Button
-                onClick={() => {
-                  setOpen(false);
-                  dispatch(select_plan(selected));
-                }}
-                color="primary"
-                autoFocus
-              >
-                <strong>{selected.name}</strong>を追加
-              </Button>
-            )}
           </DialogActions>
         </Dialog>
       </>

@@ -8,9 +8,9 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 import Navbar from "../components/Navbar";
-import FavoritePlaces from "../components/FavoritePlaces";
+// import FavoritePlaces from "../components/FavoritePlaces";
 import SingleLineGridListOfMaps from "../components/SingleLineGridListOfMaps";
-import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
+// import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
 // import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,8 +28,10 @@ const userpage = (props) => {
   const userLoginFlag = useSelector((state) => state.users.loginFlag);
   const userId = useSelector((state) => state.users.userId);
   const idToken = useSelector((state) => state.users.idToken);
-  const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
-  const myRoutes = useSelector((state) => state.travels.myRoutes);
+  // const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
+  const myRoutesAndSchedules = useSelector(
+    (state) => state.travels.myRoutesAndSchedules
+  );
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -68,14 +70,12 @@ const userpage = (props) => {
         url: `/savedRoutes`,
       };
       axios(opt).then((res) => {
-        const routesAndSchedules = JSON.parse(res.data.body);
-        const schedules = routesAndSchedules.map((data) => data.schedules);
-        dispatch(get_my_routes(schedules));
+        const myRoutesAndSchedules = JSON.parse(res.data.body);
+
+        dispatch(get_my_routes(myRoutesAndSchedules));
       });
     }
   }, []);
-
-  console.log("myRoute", myRoutes);
 
   return (
     <>
@@ -86,22 +86,14 @@ const userpage = (props) => {
               <Navbar />
             </Paper>
           </Grid>
-          {/* <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              {favoritePlaces.length > 0 && (
-                <FavoritePlaces favoritePlaces={favoritePlaces} />
-              )}
-            </Paper>
-          </Grid> */}
+
           <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              {favoritePlaces.length > 0 && myRoutes.length > 0 && (
-                <GoogleMapForFavoritePlaces
-                  favoritePlaces={favoritePlaces}
-                  myRoute={myRoutes[0]}
-                />
-              )}
-            </Paper>
+            {myRoutesAndSchedules.length > 0 && (
+              <SingleLineGridListOfMaps
+                // favoritePlaces={favoritePlaces}
+                myRoutesAndSchedules={myRoutesAndSchedules}
+              />
+            )}
           </Grid>
         </Grid>
       </div>

@@ -11,12 +11,13 @@ export default function () {
   const currentDirection = useSelector(
     (state) => state.travels.currentDirection
   );
+  const routeInfo = useSelector((state) => state.travels.routeInfo);
   const schedules = useSelector((state) => state.travels.schedules);
   const data = {
     action: "save",
     userId,
     schedules,
-    route: {}, // 本来なら、currentDirecitonを送りたいが、要領オーバーで、mongoDBが受け付けない
+    route: routeInfo,
   };
   const saveRoute = useCallback(async () => {
     const opt = {

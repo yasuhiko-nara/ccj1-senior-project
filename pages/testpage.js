@@ -13,7 +13,6 @@ import CheckBox from "../components/CheckBox";
 import Schedules from "../components/Schedules";
 import Navbar from "../components/Navbar";
 import SpotList from "../components/SpotList";
-import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
 
 export async function getStaticProps() {
   console.log("server");
@@ -42,9 +41,9 @@ const useStyles = makeStyles((theme) => ({
 const Index = (props) => {
   const classes = useStyles();
   const router = useRouter();
-  const currentDirection = useSelector(
-    (state) => state.travels.currentDirection
-  );
+  // const currentDirection = useSelector(
+  //   (state) => state.travels.currentDirection
+  // );
 
   const initialState = JSON.parse(props.data);
 

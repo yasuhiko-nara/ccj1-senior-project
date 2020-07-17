@@ -74,9 +74,9 @@ export const get_favorite_places = (activities) => {
 };
 
 export const GET_MY_ROUTES = "GET_MY_ROUTES";
-export const get_my_routes = (myRoutes) => {
+export const get_my_routes = (myRoutesAndSchedules) => {
   return {
     type: "GET_MY_ROUTES",
-    myRoutes,
+    myRoutesAndSchedules,
   };
 };
