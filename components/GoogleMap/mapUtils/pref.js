@@ -250,7 +250,7 @@ export const categoryMap = [
     ],
   },
   {
-    category: "東北",
+    category: "東北地方",
     feeld: [
       {
         pref: "青森県",
@@ -285,7 +285,7 @@ export const categoryMap = [
     ],
   },
   {
-    category: "関東",
+    category: "関東地方",
     feeld: [
       {
         pref: "茨城県",
@@ -325,7 +325,7 @@ export const categoryMap = [
     ],
   },
   {
-    category: "中部",
+    category: "中部地方",
     feeld: [
       {
         pref: "新潟県",
@@ -377,7 +377,7 @@ export const categoryMap = [
     ],
   },
   {
-    category: " 近畿",
+    category: " 近畿地方",
     feeld: [
       {
         pref: "三重県",
@@ -407,7 +407,7 @@ export const categoryMap = [
     ],
   },
   {
-    category: "中国",
+    category: "中国地方",
     feeld: [
       {
         pref: "鳥取県",
@@ -437,7 +437,7 @@ export const categoryMap = [
     ],
   },
   {
-    category: "四国",
+    category: "四国地方",
     feeld: [
       {
         pref: "徳島県",
@@ -462,7 +462,7 @@ export const categoryMap = [
     ],
   },
   {
-    category: "九州",
+    category: "九州地方",
     feeld: [
       {
         pref: "福岡県",

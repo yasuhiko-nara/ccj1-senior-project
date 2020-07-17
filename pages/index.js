@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
 import List from "../components/List";
 import CheckBox from "../components/CheckBox";
+import Button from "@material-ui/core/Button";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
@@ -10,72 +11,79 @@ import MapCategory from "../components/Category/MapCategory";
 import prefs, { categoryMap } from "../components/GoogleMap/mapUtils/pref";
 import Navbar from "../components/Navbar";
 
-// export async function getStaticProps() {
-//   const res = await axios.get(
-//     "https://ala5g0w56m.execute-api.ap-northeast-1.amazonaws.com/Rakutabi_API"
-//   );
-//   const data = JSON.stringify(res.data);
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// }
-
 const Index = (props) => {
   let flag;
   const [pref, setPref] = useState("");
-  //const initialState = JSON.parse(props.data);
-  const dispatch = useDispatch();
-  // dispatch(get_initial_status(initialState));
 
+  const dispatch = useDispatch();
+
+  const str = ``;
   return (
     <div className="top">
       <Navbar />
-      <img
-        src="https://www.ana.co.jp/www2/plan-book/promotions/special-fares/spring.jpg"
-        alt="らくたびトップ画"
-      />
-      <div className="search-bar">
-        <input
-          type="text"
-          id="text"
-          value={pref.pref}
-          placeholder="どこに行きますか？"
-          disabled
-        ></input>
-        <Link
-          href={{
-            pathname: "map",
-            query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
-          }}
-        >
-          <button>調べる</button>
-        </Link>
-      </div>
-      <div className="prefecture">
-        <h2 style={{ textAlign: "center" }}>都道府県一覧</h2>
-        {/* <div style={{ height: "2em" }}> */}
-        <div className="small__container">
-          <Grid container spacing={7} justify="center">
-            {categoryMap.map((obj) => (
-              <Grid style={{ marginBottom: "30px" }} item xs={3}>
-                <MapCategory
-                  feeld={obj.feeld}
-                  category={obj.category}
-                  setLocation={(obj) => setPref(obj)}
-                  pref={pref}
-                />
+      <div className="back">
+        <h2 className="back__h2 fadein">あなたの旅を</h2>
+        <h2 className="back__h2--delay fadein">
+          <span className="merge" /> サポートします
+        </h2>
+        <div className="search-container">
+          <div className="search-bar">
+            <p className="result">{pref.pref}</p>
+
+            <Link
+              href={{
+                pathname: "map",
+                query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
+              }}
+            >
+              <Button
+                style={{ backgroundColor: "#2b90d9" }}
+                variant="contained"
+              >
+                調べる
+              </Button>
+
+              {/* <button>調べる</button> */}
+            </Link>
+          </div>
+          <div className="prefecture">
+            <h2 style={{ textAlign: "center" }}>
+              調べたい都道府県を選んでください
+            </h2>
+            {/* <div style={{ height: "2em" }}> */}
+            <div className="small__container">
+              <Grid container spacing={7} justify="center">
+                {categoryMap.map((obj) => (
+                  <Grid style={{ marginBottom: "30px" }} item xs={3}>
+                    <MapCategory
+                      feeld={obj.feeld}
+                      category={obj.category}
+                      setLocation={(obj) => setPref(obj)}
+                      pref={pref}
+                    />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
+            </div>
+          </div>
         </div>
       </div>
+
       <style jsx>{`
+      .back{
+        background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
+        height:100vh;
+        width: 100vw;
+      }
         img {
           width: 100%;
+          
         }
         .search-bar {
+          display:flex;
+          height:4rem;
+          
+          align-items:center;
           margin-top: 20px;
           text-align: center;
         }
@@ -111,8 +119,9 @@ const Index = (props) => {
           color: #fff;
         }
         .prefecture {
+          
           position: relative;
-          height: 27em;
+          height: 22em;
           margin: 0 15%;
           margin-top: 30px;
         }
@@ -124,9 +133,60 @@ const Index = (props) => {
           transform: translateY(-50%) translateX(-50%);
           -webkit- transform: translateY(-50%) translateX(-50%);
         }
-        h2 {
-          margin-bottom: 15px;
+       
+         
+        .search-container{
+          border-radius:5%;
+          background-color:#d9e1e8;
+          opacity:0.8;
+          width:70%;
+          margin:0 auto;
         }
+       .result{
+         margin-left:30%;
+         width:40%;
+         
+        font-family: 'Noto Serif JP', sans-serif;
+        
+          padding: 10px 15px;
+          font-size: 2.5em;
+          
+          box-sizing: border-box;
+          margin-right: 15px;
+       }
+
+       .merge{
+         margin-left:150px;
+       }
+
+       .fadein{
+        opacity: 0;
+        animation: fadein 3s ease forwards;
+       }
+
+    .back__h2--delay{
+      animation-delay: 2s;
+        font-size:3em;
+        font-family: 'Noto Serif JP', sans-serif;
+        margin-bottom:2em;
+    }
+
+
+       .back__h2{
+        padding:3%;
+        font-size:3em;
+        font-family: 'Noto Serif JP', sans-serif;
+        
+       }
+
+     
+      @keyframes fadein {
+     
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      }
       `}</style>
     </div>
   );

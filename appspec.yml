@@ -5,6 +5,6 @@ files:
     destination: /home/ec2-user/rakutabi
 hooks:
   AfterInstall:
-    - location: /home/ec2-user/rakutabi/aws_scripts/codedeploy_scripts/deploy_build_server.sh
+    - location: aws_scripts/codedeploy_scripts/deploy_build_server.sh
       timeout: 600
       runas: ec2-user

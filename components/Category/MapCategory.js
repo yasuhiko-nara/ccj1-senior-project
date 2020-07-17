@@ -27,10 +27,11 @@ const StyledMenu = withStyles({
   />
 ));
 
+//theme.palette.primary.main
 const StyledMenuItem = withStyles((theme) => ({
   root: {
     "&:focus": {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: "#2b90d9",
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
         color: theme.palette.common.white,
       },
@@ -76,11 +77,11 @@ export default function CustomizedMenus(props) {
   return (
     <div>
       <Button
-        style={{ width: "140px" }}
+        style={{ width: "140px", backgroundColor: "#2b90d9" }}
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        color="primary"
+        // color="primary"
         onClick={handleClick}
       >
         {props.category}
