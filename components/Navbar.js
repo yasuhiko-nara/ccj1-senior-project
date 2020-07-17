@@ -18,6 +18,7 @@ import { signOut } from "./lib/signout";
 import { useDispatch, useSelector } from "react-redux";
 import { user_logout, user_login } from "../redux/users/action";
 import prefs from "./GoogleMap/mapUtils/pref";
+import { set_prefecture } from "../redux/map/action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,10 +78,10 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const [selectedPref, setPref] = useState([]);
+  const targetPrefecture = useSelector((state) => state.map.targetPrefecture);
 
   const handleChange = (event) => {
-    setPref(event.target.value);
+    dispatch(set_prefecture(event.target.value));
     Router.push({
       pathname: "/testpage",
       query: {
@@ -152,7 +153,7 @@ const Navbar = () => {
             </div>
             <Select
               labelId="selected-pref"
-              value={selectedPref}
+              value={targetPrefecture}
               onChange={handleChange}
               classes={{
                 select: classes.inputInput,
