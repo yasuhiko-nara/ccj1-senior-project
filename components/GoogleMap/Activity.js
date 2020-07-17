@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "@react-google-maps/api";
-import { Checkbox } from "@material-ui/core";
 import { select_plan } from "../../redux/travels/action";
 
 import Button from "@material-ui/core/Button";
