@@ -22,48 +22,52 @@ const Index = (props) => {
     <div className="top">
       <Navbar />
       <div className="back">
-        <h2 className="back__h2 fadein">あなたの旅を</h2>
-        <h2 className="back__h2--delay fadein">
-          <span className="merge" /> サポートします
-        </h2>
-        <div className="search-container">
-          <div className="search-bar">
-            <p className="result">{pref.pref}</p>
+        <div class="bgImg src1"></div>
+        <div class="bgImg src2"></div>
+        <div class="bgImg src3"></div>
+        <div class="bgImg src4"></div>
+        <div>
+          <h2 className="back__h2 fadein">あなたの旅を</h2>
+          <h2 className="back__h2--delay fadein">
+            <span className="merge" /> サポートします
+          </h2>
+          <div className="search-container">
+            <div className="search-bar">
+              <p className="result">{pref.pref}</p>
 
-            <Link
-              href={{
-                pathname: "map",
-                query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
-              }}
-            >
-              <Button
-                style={{ backgroundColor: "#2b90d9" }}
-                variant="contained"
+              <Link
+                href={{
+                  pathname: "map",
+                  query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
+                }}
               >
-                調べる
-              </Button>
+                <Button
+                  style={{ backgroundColor: "#2b90d9" }}
+                  variant="contained"
+                >
+                  調べる
+                </Button>
 
-              {/* <button>調べる</button> */}
-            </Link>
-          </div>
-          <div className="prefecture">
-            <h2 style={{ textAlign: "center" }}>
-              調べたい都道府県を選んでください
-            </h2>
-            {/* <div style={{ height: "2em" }}> */}
-            <div className="small__container">
-              <Grid container spacing={7} justify="center">
-                {categoryMap.map((obj) => (
-                  <Grid style={{ marginBottom: "30px" }} item xs={3}>
-                    <MapCategory
-                      feeld={obj.feeld}
-                      category={obj.category}
-                      setLocation={(obj) => setPref(obj)}
-                      pref={pref}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
+                {/* <button>調べる</button> */}
+              </Link>
+            </div>
+            <div className="prefecture">
+              <h2 className="select">調べたい都道府県を選んでください</h2>
+              {/* <div style={{ height: "2em" }}> */}
+              <div className="small__container">
+                <Grid container spacing={7} justify="center">
+                  {categoryMap.map((obj) => (
+                    <Grid style={{ marginBottom: "30px" }} item xs={3}>
+                      <MapCategory
+                        feeld={obj.feeld}
+                        category={obj.category}
+                        setLocation={(obj) => setPref(obj)}
+                        pref={pref}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </div>
             </div>
           </div>
         </div>
@@ -72,8 +76,11 @@ const Index = (props) => {
       <style jsx>{`
       .back{
         background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
-        height:100vh;
-        width: 100vw;
+        background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+        height:100%;
+        width: 100%;
       }
         img {
           width: 100%;
@@ -178,6 +185,27 @@ const Index = (props) => {
         font-family: 'Noto Serif JP', sans-serif;
         
        }
+
+       .select{
+        font-family: 'Noto Serif JP', sans-serif;
+        text-align:center;
+       }
+
+       box .src1 {
+        background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
+      }
+      .box .src2 {
+        background-image : url("http://sozai-free.com/sozai/jpg/crw_4044_jfr.jpg");   /* 背景の画像を指定 */
+        animation-delay  : 5s;
+      }
+      .box .src3 {
+        background-image : url("http://sozai-free.com/sozai/jpg/crw_0952_jfr.jpg");   /* 背景の画像を指定 */
+        animation-delay  : 10s;
+      }
+      .box .src4 {
+        background-image : url("http://sozai-free.com/sozai/jpg/crw_1441_jfr.jpg");   /* 背景の画像を指定 */
+        animation-delay  : 15s;
+      }
 
      
       @keyframes fadein {
