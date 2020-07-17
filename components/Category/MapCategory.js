@@ -63,7 +63,7 @@ export default function CustomizedMenus(props) {
 
   const result = props.feeld.map((obj) => {
     return (
-      <div onClick={() => toggle(obj)}>
+      <div className="item" onClick={() => toggle(obj)}>
         <StyledMenuItem>
           <ListItemIcon>
             <DirectionsRunIcon fontSize="small" />
@@ -75,13 +75,12 @@ export default function CustomizedMenus(props) {
   });
 
   return (
-    <div>
+    <div className="item">
       <Button
         style={{ width: "140px", backgroundColor: "#2b90d9" }}
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        // color="primary"
         onClick={handleClick}
       >
         {props.category}
@@ -95,6 +94,11 @@ export default function CustomizedMenus(props) {
       >
         {result}
       </StyledMenu>
+      <style jsx>{`
+        .item {
+          font-family: "Noto Serif JP", sans-serif;
+        }
+      `}</style>
     </div>
   );
 }
