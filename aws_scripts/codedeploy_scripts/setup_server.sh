@@ -1,6 +1,7 @@
 #! /bin/bash
 # run in bash
 
+# サーバー初期設定のつもりで書いたけどcode deployの過程ではやらないほうがいい気がしてきたからappspeckからは外す,でもどこかに反映したいからコードは残すだけ残しておく
 # recognize other programs
 source /home/ec2-user/.bash_profile
 
@@ -29,13 +30,15 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
 ## nvm有効化
 . ~/.nvm/nvm.sh
 ##  nvmからnodeインストール
-nvm install node 
+nvm install node
 node -v
 
 # nginx setup
-## stop previoust nginx server
+## stop previous nginx server
 sudo service nginx stop
 sudo service nginx status
-
 ## install nginx
 sudo amazon-linux-extras install -y nginx1.12
+
+# remove previous app files and directory
+sudo rm -R /home/ec2-user/rakutabi
