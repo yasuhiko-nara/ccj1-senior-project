@@ -7,7 +7,9 @@ const initialState = {
     idToken: "",
   },
 
-  map: {},
+  map: {
+    targetPrefecture: {},
+  },
   travels: {
     show: true,
     currentDirection: null,
