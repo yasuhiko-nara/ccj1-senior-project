@@ -25,6 +25,14 @@ app.prepare().then(() => {
     })
   );
 
+  server.use(
+    "/routes",
+    createProxyMiddleware({
+      target: "https://w52wtr6g8k.execute-api.ap-northeast-1.amazonaws.com",
+      changeOrigin: true,
+    })
+  );
+
   server.all("*", (req, res) => {
     return handle(req, res);
   });

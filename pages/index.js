@@ -17,48 +17,58 @@ const Index = (props) => {
 
   const dispatch = useDispatch();
 
+  const str = ``;
   return (
     <div className="top">
       <Navbar />
       <div className="back">
-        <h2 className="back__h2 fadein">あなたの旅をサポートします</h2>
-      </div>
+        <h2 className="back__h2 fadein">あなたの旅を</h2>
+        <h2 className="back__h2--delay fadein">
+          <span className="merge" /> サポートします
+        </h2>
+        <div className="search-container">
+          <div className="search-bar">
+            <p className="result">{pref.pref}</p>
 
-      {/* <img
-        src="https://www.ana.co.jp/www2/plan-book/promotions/special-fares/spring.jpg"
-        alt="らくたびトップ画"
-      /> */}
-      <div className="search-bar">
-        <p className="result">{pref.pref}</p>
+            <Link
+              href={{
+                pathname: "map",
+                query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
+              }}
+            >
+              <Button
+                style={{ backgroundColor: "#2b90d9" }}
+                variant="contained"
+              >
+                調べる
+              </Button>
 
-        <Link
-          href={{
-            pathname: "/testpage",
-            query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
-          }}
-        >
-          <Button variant="contained">調べる</Button>
-          {/* <button>調べる</button> */}
-        </Link>
-      </div>
-      <div className="prefecture">
-        <h2 style={{ textAlign: "center" }}>都道府県一覧</h2>
-        {/* <div style={{ height: "2em" }}> */}
-        <div className="small__container">
-          <Grid container spacing={7} justify="center">
-            {categoryMap.map((obj) => (
-              <Grid style={{ marginBottom: "30px" }} item xs={3}>
-                <MapCategory
-                  feeld={obj.feeld}
-                  category={obj.category}
-                  setLocation={(obj) => setPref(obj)}
-                  pref={pref}
-                />
+              {/* <button>調べる</button> */}
+            </Link>
+          </div>
+          <div className="prefecture">
+            <h2 style={{ textAlign: "center" }}>
+              調べたい都道府県を選んでください
+            </h2>
+            {/* <div style={{ height: "2em" }}> */}
+            <div className="small__container">
+              <Grid container spacing={7} justify="center">
+                {categoryMap.map((obj) => (
+                  <Grid style={{ marginBottom: "30px" }} item xs={3}>
+                    <MapCategory
+                      feeld={obj.feeld}
+                      category={obj.category}
+                      setLocation={(obj) => setPref(obj)}
+                      pref={pref}
+                    />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
+            </div>
+          </div>
         </div>
       </div>
+
       <style jsx>{`
       .back{
         background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
@@ -71,7 +81,9 @@ const Index = (props) => {
         }
         .search-bar {
           display:flex;
-          justify-content: center;
+          height:4rem;
+          
+          align-items:center;
           margin-top: 20px;
           text-align: center;
         }
@@ -107,8 +119,9 @@ const Index = (props) => {
           color: #fff;
         }
         .prefecture {
+          
           position: relative;
-          height: 27em;
+          height: 22em;
           margin: 0 15%;
           margin-top: 30px;
         }
@@ -120,20 +133,30 @@ const Index = (props) => {
           transform: translateY(-50%) translateX(-50%);
           -webkit- transform: translateY(-50%) translateX(-50%);
         }
-        h2 {
-          margin-bottom: 15px;
-        }
-
-       .result{
+       
          
-         height:3em;
-         width: 10%;
+        .search-container{
+          border-radius:5%;
+          background-color:#d9e1e8;
+          opacity:0.8;
+          width:70%;
+          margin:0 auto;
+        }
+       .result{
+         margin-left:30%;
+         width:40%;
+         
+        font-family: 'Noto Serif JP', sans-serif;
+        
           padding: 10px 15px;
-          font-size: 16px;
-          border-radius: 3px;
-          border: 2px solid #ddd;
+          font-size: 2.5em;
+          
           box-sizing: border-box;
           margin-right: 15px;
+       }
+
+       .merge{
+         margin-left:150px;
        }
 
        .fadein{
@@ -141,29 +164,24 @@ const Index = (props) => {
         animation: fadein 3s ease forwards;
        }
 
-       .aa{
-        animation-delay: 2s;
-        font-size:4em;
+    .back__h2--delay{
+      animation-delay: 2s;
+        font-size:3em;
         font-family: 'Noto Serif JP', sans-serif;
-        // animation-name: fadein;
-        // animation-duration: 3s;
-        
-       }
+        margin-bottom:2em;
+    }
+
 
        .back__h2{
         padding:3%;
-        font-size:4em;
+        font-size:3em;
         font-family: 'Noto Serif JP', sans-serif;
-        // animation-name: fadein;
-        // animation-duration: 3s;
+        
        }
 
      
       @keyframes fadein {
-      // from {
-      //   opacity: 0;
-      //   transform: translateY(20px);
-      // }
+     
       100% {
         opacity: 1;
         transform: translateY(0);

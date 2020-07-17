@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback } from "react";
 import { DirectionsRenderer, DirectionsService } from "@react-google-maps/api";
 
 export default function DirectionForUserPage({

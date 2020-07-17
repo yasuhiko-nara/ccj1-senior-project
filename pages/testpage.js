@@ -46,7 +46,6 @@ const Index = (props) => {
   // );
 
   const initialState = JSON.parse(props.data);
-
   const dispatch = useDispatch();
   dispatch(get_initial_status(initialState));
 
