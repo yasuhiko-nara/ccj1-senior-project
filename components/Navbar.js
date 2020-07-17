@@ -13,9 +13,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
+import Select from "@material-ui/core/Select";
 import { signOut } from "./lib/signout";
 import { useDispatch, useSelector } from "react-redux";
 import { user_logout, user_login } from "../redux/users/action";
+import prefs from "./GoogleMap/mapUtils/pref";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,7 +76,21 @@ const Navbar = () => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const router = useRouter();
+
+  const [selectedPref, setPref] = useState([]);
+
+  const handleChange = (event) => {
+    setPref(event.target.value);
+    Router.push({
+      pathname: "/testpage",
+      query: {
+        lat: event.target.value.lat,
+        lng: event.target.value.lng,
+        pref: event.target.value.pref,
+      },
+    });
+  };
+
   useEffect(() => {
     let str = localStorage.getItem("loginFlag");
     let userId = localStorage.getItem("userId");
@@ -134,15 +150,18 @@ const Navbar = () => {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
+            <Select
+              labelId="selected-pref"
+              value={selectedPref}
+              onChange={handleChange}
               classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
+                select: classes.inputInput,
               }}
-              defaultValue={router.query.pref}
-              inputProps={{ "aria-label": "search", readOnly: true }}
-            />
+            >
+              {prefs.map((pref) => (
+                <MenuItem value={pref}>{pref.pref}</MenuItem>
+              ))}
+            </Select>
           </div>
           {flag ? (
             <div>
