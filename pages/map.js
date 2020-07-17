@@ -41,12 +41,9 @@ const useStyles = makeStyles((theme) => ({
 const map = (props) => {
   const classes = useStyles();
   const router = useRouter();
-  // const currentDirection = useSelector(
-  //   (state) => state.travels.currentDirection
-  // );
 
   const initialState = JSON.parse(props.data);
-  console.log("aaa", initialState);
+
   const dispatch = useDispatch();
   dispatch(get_initial_status(initialState));
 
@@ -124,4 +121,4 @@ const map = (props) => {
   );
 };
 
-export default Index;
+export default map;
