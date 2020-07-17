@@ -5,6 +5,15 @@
 //     data:data
 //   }
 // }
+
+export const SET_PREFECTURE = "SET_PREFECTURE";
+export const set_prefecture = (targetPrefecture) => {
+  return {
+    type: "SET_PREFECTURE",
+    targetPrefecture: targetPrefecture,
+  };
+};
+
 export const GET_LOCATIONS = "GET_LACATIONS";
 export const get_locations = () => {
   return {
