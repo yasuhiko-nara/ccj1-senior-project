@@ -119,7 +119,7 @@ export default function Activity({ showAddPlanButton = true }) {
           <DialogContent>
             {selected ? (
               <>
-                <img src={selected.image} width="100%" />
+                <img src={selected.bigImage || selected.image} width="100%" />
                 {/* DialogContentTextの中にテキスト以外（pタグやh2タグ）を入れるとエラーが起きるので修正しました */}
                 {selected.reviews.map((review, index) => (
                   <div key={`${review.title}+${index}`}>
