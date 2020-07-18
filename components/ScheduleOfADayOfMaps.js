@@ -31,7 +31,6 @@ export default function ScheduleOfADayOfMaps({
   routeName,
   userName,
 }) {
-  console.log(routeInfo, routeName, userName);
   const classes = useStyles();
   const distanceInKm =
     routeInfo.length > 0
