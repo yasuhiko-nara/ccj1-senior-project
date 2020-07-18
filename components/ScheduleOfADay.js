@@ -12,8 +12,8 @@ import RouteSaveButton from "./GoogleMap/RouteSaveButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    // alignItems: "center",
+    width: "30%",
+    fontSize: theme.typography.pxToRem(25),
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -64,7 +64,7 @@ export default function ScheduleOfADay({
             id="panel1a-header"
           >
             {routeName && (
-              <Typography className={classes.heading} item={4}>
+              <Typography className={classes.root} item={4}>
                 {routeName}
               </Typography>
             )}

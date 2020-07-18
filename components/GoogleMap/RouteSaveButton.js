@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  delete_schedules_and_route,
+  // delete_schedules_and_route,
   save_route_name,
 } from "../../redux/travels/action";
 import Button from "@material-ui/core/Button";

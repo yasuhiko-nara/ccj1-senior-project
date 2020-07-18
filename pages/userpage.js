@@ -70,7 +70,8 @@ const userpage = (props) => {
         url: `/savedRoutes`,
       };
       axios(opt).then((res) => {
-        const myRoutesAndSchedules = JSON.parse(res.data.body);
+        console.log(res.data.body);
+        const myRoutesAndSchedules = res.data.body;
 
         dispatch(get_my_routes(myRoutesAndSchedules));
       });

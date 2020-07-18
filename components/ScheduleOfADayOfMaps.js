@@ -12,8 +12,8 @@ import RouteSaveButton from "./GoogleMap/RouteSaveButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    // alignItems: "center",
+    width: "50%",
+    fontSize: theme.typography.pxToRem(25),
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -25,14 +25,13 @@ const useStyles = makeStyles((theme) => ({
   margin: { flexBasis: "35%" },
 }));
 
-export default function ScheduleOfADay({
+export default function ScheduleOfADayOfMaps({
   // schedules,
   routeInfo,
+  routeName,
+  userName,
 }) {
-  const userLoginFlag = useSelector((state) => state.users.loginFlag);
-  const currentDirection = useSelector(
-    (state) => state.travels.currentDirection
-  );
+  console.log(routeInfo, routeName, userName);
   const classes = useStyles();
   const distanceInKm =
     routeInfo.length > 0
@@ -55,36 +54,33 @@ export default function ScheduleOfADay({
 
   return (
     <>
-      {userLoginFlag && currentDirection && (
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography className={classes.heading} item={4}>
-              移動距離： {distanceInKm}km
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          {routeName && (
+            <Typography className={classes.root} item={4}>
+              {routeName} by {userName}
             </Typography>
+          )}
+          <Typography className={classes.heading} item={4}>
+            移動距離： {distanceInKm}km
+          </Typography>
+          <Typography className={classes.heading} item={4}>
+            所要時間： {durationTime}
+          </Typography>
+          <div className={classes.margin} />
+          {/* <div className={classes.button}>
+            <RouteDeleteButton />
+          </div>
 
-            <Typography className={classes.heading} item={4}>
-              所要時間： {durationTime}
-            </Typography>
-
-            <div className={classes.margin} />
-
-            <div className={classes.button}>
-              <RouteDeleteButton />
-            </div>
-
-            <div className={classes.button}>
-              <RouteSaveButton />
-            </div>
-          </AccordionSummary>
-          {/* <AccordionDetails>
-            <Breadcrumb schedules={schedules} />
-          </AccordionDetails> */}
-        </Accordion>
-      )}
+          <div className={classes.button}>
+            <RouteSaveButton />
+          </div> */}
+        </AccordionSummary>
+      </Accordion>
     </>
   );
 }
