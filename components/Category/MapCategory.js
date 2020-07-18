@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -39,7 +39,16 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    [theme.breakpoints.down("sm")]: {
+      backgroundColor: "blue",
+    },
+  },
+}));
+
 export default function CustomizedMenus(props) {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const current = React.useRef(null);
   const handleClick = (event) => {
@@ -77,6 +86,7 @@ export default function CustomizedMenus(props) {
   return (
     <div className="item">
       <Button
+        className={classes.root}
         style={{ width: "140px", backgroundColor: "#2b90d9" }}
         aria-controls="customized-menu"
         aria-haspopup="true"

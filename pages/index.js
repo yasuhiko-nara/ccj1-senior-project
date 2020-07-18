@@ -1,23 +1,30 @@
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { get_initial_status } from "../redux/travels/action";
-import List from "../components/List";
-import CheckBox from "../components/CheckBox";
 import Button from "@material-ui/core/Button";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
 import MapCategory from "../components/Category/MapCategory";
-import prefs, { categoryMap } from "../components/GoogleMap/mapUtils/pref";
+import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../components/Navbar";
+import { categoryMap } from "../components/GoogleMap/mapUtils/pref";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    borderRadius: 90,
+    backgroundColor: "#2b90d9",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.8em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.5em",
+    },
+  },
+}));
 
 const Index = (props) => {
-  let flag;
   const [pref, setPref] = useState("");
-
-  const dispatch = useDispatch();
-
-  const str = ``;
+  const classes = useStyles();
   return (
     <div className="top">
       <Navbar />
@@ -41,19 +48,14 @@ const Index = (props) => {
                   query: { lat: pref.lat, lng: pref.lng, pref: pref.pref },
                 }}
               >
-                <Button
-                  style={{ backgroundColor: "#2b90d9" }}
-                  variant="contained"
-                >
+                <Button className={classes.root} variant="contained">
                   調べる
                 </Button>
-
-                {/* <button>調べる</button> */}
               </Link>
             </div>
             <div className="prefecture">
               <h2 className="select">調べたい都道府県を選んでください</h2>
-              {/* <div style={{ height: "2em" }}> */}
+
               <div className="small__container">
                 <Grid container spacing={7} justify="center">
                   {categoryMap.map((obj) => (
@@ -79,7 +81,7 @@ const Index = (props) => {
         background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-        height:100%;
+        height:100vh;
         width: 100%;
       }
         img {
@@ -94,9 +96,7 @@ const Index = (props) => {
           margin-top: 20px;
           text-align: center;
         }
-        button {
-          height: 45px;
-        }
+        
         #text {
           width: 50%;
           padding: 10px 15px;
@@ -146,29 +146,32 @@ const Index = (props) => {
           border-radius:5%;
           background-color:#d9e1e8;
           opacity:0.8;
-          width:70%;
+          width:80%;
           margin:0 auto;
         }
        .result{
          margin-left:30%;
          width:40%;
-         
-        font-family: 'Noto Serif JP', sans-serif;
-        
-          padding: 10px 15px;
-          font-size: 2.5em;
-          
-          box-sizing: border-box;
-          margin-right: 15px;
+         font-family: 'Noto Serif JP', sans-serif;
+        padding: 10px 15px;
+        font-size: 200%;
+        box-sizing: border-box;
+        margin-right: 15px;
        }
 
        .merge{
-         margin-left:150px;
+         margin-left:10%;
        }
 
        .fadein{
         opacity: 0;
         animation: fadein 3s ease forwards;
+       }
+       .back__h2{
+        padding:1%;
+        font-size:3em;
+        font-family: 'Noto Serif JP', sans-serif;
+        
        }
 
     .back__h2--delay{
@@ -178,13 +181,29 @@ const Index = (props) => {
         margin-bottom:2em;
     }
 
+    
 
-       .back__h2{
-        padding:3%;
-        font-size:3em;
+
+    @media screen and (max-width: 480px) { 
+      .result{
+        font-size:130%;
+      }
+      .back__h2{
+        padding:2%;
+        font-size:1.5em;
         font-family: 'Noto Serif JP', sans-serif;
         
        }
+       .back__h2--delay{
+       
+          font-size:1.5em;
+          font-family: 'Noto Serif JP', sans-serif;
+          margin-bottom:1em;
+      }
+    }
+
+
+      
 
        .select{
         font-family: 'Noto Serif JP', sans-serif;
