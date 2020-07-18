@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // import StarBorderIcon from "@material-ui/icons/StarBorder";
 import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
 import SingleLineGridList from "./SingleLineGridList";
+import ScheduleOfADayOfMaps from "./ScheduleOfADayOfMaps";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -44,13 +45,19 @@ export default function SingleLineGridListOfMaps({
       {/* <GridList spacing={20} className={classes.gridList} cols={2.5}> */}
       {myRoutesAndSchedules.map((routesAndSchedule, index) => (
         <div key={`${index}`}>
-          {routesAndSchedule.schedules.length > 2 &&
-            routesAndSchedule.route && (
+          {routesAndSchedule.schedules.length > 2 && routesAndSchedule.route && (
+            <>
               <SingleLineGridList
                 schedules={routesAndSchedule.schedules}
                 routeInfo={routesAndSchedule.route}
               />
-            )}
+              <ScheduleOfADayOfMaps
+                routeInfo={routesAndSchedule.route}
+                routeName={routesAndSchedule.routeName}
+                userName={routesAndSchedule.userName}
+              />
+            </>
+          )}
           <GoogleMapForFavoritePlaces
             // favoritePlaces={favoritePlaces}
             myRoute={routesAndSchedule.schedules}
