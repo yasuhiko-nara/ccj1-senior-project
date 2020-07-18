@@ -11,8 +11,8 @@ export default function Schedules() {
   // dispatch(select_plan)のときも、routeInfoが変更されていないにもかかわらず再レンダーされてしまう
   return (
     <>
-      <SingleLineGridList schedules={schedules} routeInfo={routeInfo} />
       <ScheduleOfADay schedules={schedules} routeInfo={routeInfo} />
+      <SingleLineGridList schedules={schedules} routeInfo={routeInfo} />
     </>
   );
 }

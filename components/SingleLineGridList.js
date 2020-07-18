@@ -71,12 +71,6 @@ export default function SingleLineGridList({ schedules, routeInfo }) {
                         root: classes.titleBar,
                         title: classes.title,
                       }}
-                      // ☆を消しました
-                      // actionIcon={
-                      //   <IconButton aria-label={`star ${activity.name}`}>
-                      //     <StarBorderIcon className={classes.title} />
-                      //   </IconButton>
-                      // }
                     />
                   </GridListTile>
                 ) : (

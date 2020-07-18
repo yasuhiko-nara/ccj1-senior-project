@@ -47,14 +47,14 @@ export default function SingleLineGridListOfMaps({
         <div key={`${index}`}>
           {routesAndSchedule.schedules.length > 2 && routesAndSchedule.route && (
             <>
-              <SingleLineGridList
-                schedules={routesAndSchedule.schedules}
-                routeInfo={routesAndSchedule.route}
-              />
               <ScheduleOfADayOfMaps
                 routeInfo={routesAndSchedule.route}
                 routeName={routesAndSchedule.routeName}
                 userName={routesAndSchedule.userName}
+              />
+              <SingleLineGridList
+                schedules={routesAndSchedule.schedules}
+                routeInfo={routesAndSchedule.route}
               />
             </>
           )}
@@ -63,6 +63,10 @@ export default function SingleLineGridListOfMaps({
             myRoute={routesAndSchedule.schedules}
             routeInfo={routesAndSchedule.route}
           />
+          <div>ここにスペースを作る </div>
+          <div>ここにスペースを作る </div>
+          <div>ここにスペースを作る </div>
+          <div>ここにスペースを作る </div>
         </div>
       ))}
       {/* </GridList> */}
