@@ -16,6 +16,7 @@ const initialState = {
     routeInfo: [],
     favoritePlaces: [],
     myRoutesAndSchedules: [],
+    routeName: null,
 
     // routeInfo: [
     // {

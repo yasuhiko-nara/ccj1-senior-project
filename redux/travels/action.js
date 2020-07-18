@@ -50,13 +50,6 @@ export const change_direction = (directionResponse, routeInfo, routeOrder) => {
   };
 };
 
-export const DELETE_SCHEDULES_AND_ROUTE = "DELETE_SCHEDULES_AND_ROUTE";
-export const delete_schedules_and_route = () => {
-  return {
-    type: "DELETE_SCHEDULES_AND_ROUTE",
-  };
-};
-
 export const LIKE_ACTIVITY = "LIKE_ACTIVITY";
 export const like_activity = (activity) => {
   return {
@@ -78,5 +71,20 @@ export const get_my_routes = (myRoutesAndSchedules) => {
   return {
     type: "GET_MY_ROUTES",
     myRoutesAndSchedules,
+  };
+};
+
+export const SAVE_ROUTE_NAME = "SAVE_ROUTE_NAME";
+export const save_route_name = (routeName) => {
+  return {
+    type: "SAVE_ROUTE_NAME",
+    routeName,
+  };
+};
+
+export const DELETE_SCHEDULES_AND_ROUTE = "DELETE_SCHEDULES_AND_ROUTE";
+export const delete_schedules_and_route = () => {
+  return {
+    type: "DELETE_SCHEDULES_AND_ROUTE",
   };
 };

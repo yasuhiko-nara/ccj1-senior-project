@@ -29,6 +29,7 @@ export default function ScheduleOfADay({
   // schedules,
   routeInfo,
 }) {
+  const routeName = useSelector((state) => state.travels.routeName);
   const userLoginFlag = useSelector((state) => state.users.loginFlag);
   const currentDirection = useSelector(
     (state) => state.travels.currentDirection
@@ -62,6 +63,12 @@ export default function ScheduleOfADay({
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
+            {routeName && (
+              <Typography className={classes.heading} item={4}>
+                {routeName}
+              </Typography>
+            )}
+
             <Typography className={classes.heading} item={4}>
               移動距離： {distanceInKm}km
             </Typography>
