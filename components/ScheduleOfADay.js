@@ -6,9 +6,10 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Breadcrumb from "./Breadcrumb";
+// import Breadcrumb from "./Breadcrumb";
 import RouteDeleteButton from "./GoogleMap/RouteDeleteButton";
 import RouteSaveButton from "./GoogleMap/RouteSaveButton";
+import SingleLineGridList from "./SingleLineGridList";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,10 +26,8 @@ const useStyles = makeStyles((theme) => ({
   margin: { flexBasis: "35%" },
 }));
 
-export default function ScheduleOfADay({
-  // schedules,
-  routeInfo,
-}) {
+export default function ScheduleOfADay() {
+  const routeInfo = useSelector((state) => state.travels.routeInfo);
   const routeName = useSelector((state) => state.travels.routeName);
   const userLoginFlag = useSelector((state) => state.users.loginFlag);
   const currentDirection = useSelector(
@@ -87,9 +86,9 @@ export default function ScheduleOfADay({
               <RouteSaveButton />
             </div>
           </AccordionSummary>
-          {/* <AccordionDetails>
-            <Breadcrumb schedules={schedules} />
-          </AccordionDetails> */}
+          <AccordionDetails>
+            <SingleLineGridList />
+          </AccordionDetails>
         </Accordion>
       )}
     </>

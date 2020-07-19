@@ -2,13 +2,8 @@ import React from "react";
 // import Carousel from "react-multi-carousel";
 
 import { makeStyles } from "@material-ui/core/styles";
-// import GridList from "@material-ui/core/GridList";
-// import GridListTile from "@material-ui/core/GridListTile";
-// import GridListTileBar from "@material-ui/core/GridListTileBar";
-// import IconButton from "@material-ui/core/IconButton";
-// import StarBorderIcon from "@material-ui/icons/StarBorder";
-import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
-import SingleLineGridList from "./SingleLineGridList";
+
+import GoogleMapForFavoritePlaces from "./GoogleMap/GoogleMapForFavoritePlaces";
 import ScheduleOfADayOfMaps from "./ScheduleOfADayOfMaps";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SingleLineGridListOfMaps({
+export default function ScheduleForUserPage({
   // favoritePlaces,
   myRoutesAndSchedules,
 }) {
   const classes = useStyles();
-
+  // console.log("myRoutesAndSchedules", myRoutesAndSchedules);
   return (
     <div className={classes.root}>
       {/* <GridList spacing={20} className={classes.gridList} cols={2.5}> */}
@@ -51,10 +46,7 @@ export default function SingleLineGridListOfMaps({
                 routeInfo={routesAndSchedule.route}
                 routeName={routesAndSchedule.routeName}
                 userName={routesAndSchedule.userName}
-              />
-              <SingleLineGridList
                 schedules={routesAndSchedule.schedules}
-                routeInfo={routesAndSchedule.route}
               />
             </>
           )}

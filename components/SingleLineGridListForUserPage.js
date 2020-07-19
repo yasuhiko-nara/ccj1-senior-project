@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -29,9 +29,10 @@ const useStyles = makeStyles((theme) => ({
 const icon =
   "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%82%99%E3%82%A4%E3%82%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=260673d7-dafc-4496-b5d1-2a41ffab66a6";
 
-export default function SingleLineGridList() {
-  const schedules = useSelector((state) => state.travels.schedules);
-  const routeInfo = useSelector((state) => state.travels.routeInfo);
+export default function SingleLineGridListForUserPage({
+  schedules,
+  routeInfo,
+}) {
   const classes = useStyles();
   const routeInfoAndSchedules = [];
   for (let i = 0; i < schedules.length; i++) {
@@ -58,6 +59,7 @@ export default function SingleLineGridList() {
       routeInfoAndSchedules
     );
   }
+
   return (
     <>
       {schedules.length > 2 && schedules.length - 1 === routeInfo.length && (
