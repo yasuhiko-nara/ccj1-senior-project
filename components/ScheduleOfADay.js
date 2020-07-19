@@ -88,7 +88,6 @@ export default function ScheduleOfADay() {
           </AccordionSummary>
           <AccordionDetails>
             <SingleLineGridList />
-            {/* <Breadcrumb schedules={schedules} /> */}
           </AccordionDetails>
         </Accordion>
       )}

@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 
 import Navbar from "../components/Navbar";
 import FavoriteSpotList from "../components/FavoriteSpotList";
-import SingleLineGridListOfMaps from "../components/SingleLineGridListOfMaps";
+import ScheduleForUserPage from "../components/ScheduleForUserPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -93,7 +93,7 @@ const userpage = (props) => {
 
           {myRoutesAndSchedules.length > 0 && (
             <Grid item xs={12}>
-              <SingleLineGridListOfMaps
+              <ScheduleForUserPage
                 // favoritePlaces={favoritePlaces}
                 myRoutesAndSchedules={myRoutesAndSchedules}
               />

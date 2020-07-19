@@ -1,14 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Breadcrumb from "./Breadcrumb";
-import RouteDeleteButton from "./GoogleMap/RouteDeleteButton";
-import RouteSaveButton from "./GoogleMap/RouteSaveButton";
+
+import SingleLineGridListForUserPage from "../components/SingleLineGridListForUserPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ScheduleOfADayOfMaps({
-  // schedules,
+  schedules,
   routeInfo,
   routeName,
   userName,
@@ -51,6 +50,8 @@ export default function ScheduleOfADayOfMaps({
     ? new Date(durationInSec * 1000).toISOString().substr(11, 5)
     : null;
 
+  console.log("this is the schedule", schedules);
+  console.log("this is the routeInfo", routeInfo);
   return (
     <>
       <Accordion>
@@ -71,14 +72,13 @@ export default function ScheduleOfADayOfMaps({
             所要時間： {durationTime}
           </Typography>
           <div className={classes.margin} />
-          {/* <div className={classes.button}>
-            <RouteDeleteButton />
-          </div>
-
-          <div className={classes.button}>
-            <RouteSaveButton />
-          </div> */}
         </AccordionSummary>
+        <AccordionDetails>
+          <SingleLineGridListForUserPage
+            schedules={schedules}
+            routeInfo={routeInfo}
+          />
+        </AccordionDetails>
       </Accordion>
     </>
   );
