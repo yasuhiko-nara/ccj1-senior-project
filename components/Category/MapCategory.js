@@ -40,8 +40,16 @@ const StyledMenuItem = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    backgroundColor: "#2b90d9",
+
     [theme.breakpoints.down("sm")]: {
-      backgroundColor: "blue",
+      width: "100%",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: "100%",
     },
   },
 }));
@@ -61,7 +69,7 @@ export default function CustomizedMenus(props) {
   const toggle = (obj) => {
     const pref = JSON.stringify(obj);
     const o = JSON.stringify(props.pref);
-    console.log(o, pref);
+
     if (pref === o) {
       props.setLocation({ pref: "" });
     } else {
@@ -86,7 +94,6 @@ export default function CustomizedMenus(props) {
     <div className="item">
       <Button
         className={classes.root}
-        style={{ width: "140px", backgroundColor: "#2b90d9" }}
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"

@@ -57,7 +57,8 @@ const Index = (props) => {
               <h2 className="select">調べたい都道府県を選んでください</h2>
 
               <div className="small__container">
-                <Grid container spacing={7} justify="center">
+                <div></div>
+                <Grid container spacing={6} justify="center">
                   {categoryMap.map((obj) => (
                     <Grid item xs={6} sm={3}>
                       <MapCategory
@@ -187,6 +188,7 @@ const Index = (props) => {
     @media screen and (max-width: 480px) { 
       .result{
         font-size:130%;
+       
       }
       .back__h2{
         padding:2%;
@@ -199,6 +201,21 @@ const Index = (props) => {
           font-size:1.5em;
           font-family: 'Noto Serif JP', sans-serif;
           margin-bottom:1em;
+      }
+      .prefecture{
+        position: relative;
+       height: 22em;
+       margin: 0 ;
+      margin-top: 30px;
+      }
+
+      .search-container{
+        border-radius:5%;
+        background-color:#d9e1e8;
+        opacity:0.8;
+        width:90%;
+        padding: 0 10px;
+        margin:0 auto;
       }
     }
 
