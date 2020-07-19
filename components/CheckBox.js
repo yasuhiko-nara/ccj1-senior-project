@@ -10,8 +10,14 @@ import {
   FormHelperText,
   Checkbox,
 } from "@material-ui/core";
-import Favorite from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+
+import {
+  Favorite,
+  FavoriteBorder,
+  LocationOn,
+  CheckBox,
+  CheckBoxOutlineBlank,
+} from "@material-ui/icons";
 
 const useStyles = makeStyles(() => ({
   formControl: {
@@ -43,11 +49,10 @@ export default function CheckboxesGroup() {
           <FormControlLabel
             control={
               <Checkbox
-                icon={<FavoriteBorder />}
-                checkedIcon={<Favorite />}
                 checked={attractions}
                 onChange={handleChange}
                 name="attractions"
+                color="primary"
               />
             }
             label="観光スポット"
@@ -55,11 +60,10 @@ export default function CheckboxesGroup() {
           <FormControlLabel
             control={
               <Checkbox
-                icon={<FavoriteBorder />}
-                checkedIcon={<Favorite />}
                 checked={restaurants}
                 onChange={handleChange}
                 name="restaurants"
+                color="primary"
               />
             }
             label="レストラン"
@@ -67,11 +71,10 @@ export default function CheckboxesGroup() {
           <FormControlLabel
             control={
               <Checkbox
-                icon={<FavoriteBorder />}
-                checkedIcon={<Favorite />}
                 checked={hotels}
                 onChange={handleChange}
                 name="hotels"
+                color="primary"
               />
             }
             label="ホテル"

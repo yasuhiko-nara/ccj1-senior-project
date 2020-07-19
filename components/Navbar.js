@@ -83,7 +83,7 @@ const Navbar = () => {
   const handleChange = (event) => {
     dispatch(set_prefecture(event.target.value));
     Router.push({
-      pathname: "/testpage",
+      pathname: "/map",
       query: {
         lat: event.target.value.lat,
         lng: event.target.value.lng,

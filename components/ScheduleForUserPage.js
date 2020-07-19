@@ -2,13 +2,9 @@ import React from "react";
 // import Carousel from "react-multi-carousel";
 
 import { makeStyles } from "@material-ui/core/styles";
-// import GridList from "@material-ui/core/GridList";
-// import GridListTile from "@material-ui/core/GridListTile";
-// import GridListTileBar from "@material-ui/core/GridListTileBar";
-// import IconButton from "@material-ui/core/IconButton";
-// import StarBorderIcon from "@material-ui/icons/StarBorder";
-import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
-import SingleLineGridList from "./SingleLineGridList";
+
+import GoogleMapForFavoritePlaces from "./GoogleMap/GoogleMapForFavoritePlaces";
+import ScheduleOfADayOfMaps from "./ScheduleOfADayOfMaps";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -33,29 +29,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SingleLineGridListOfMaps({
+export default function ScheduleForUserPage({
   // favoritePlaces,
   myRoutesAndSchedules,
 }) {
   const classes = useStyles();
-
+  // console.log("myRoutesAndSchedules", myRoutesAndSchedules);
   return (
     <div className={classes.root}>
       {/* <GridList spacing={20} className={classes.gridList} cols={2.5}> */}
       {myRoutesAndSchedules.map((routesAndSchedule, index) => (
         <div key={`${index}`}>
-          {routesAndSchedule.schedules.length > 2 &&
-            routesAndSchedule.route && (
-              <SingleLineGridList
-                schedules={routesAndSchedule.schedules}
+          {routesAndSchedule.schedules.length > 2 && routesAndSchedule.route && (
+            <>
+              <ScheduleOfADayOfMaps
                 routeInfo={routesAndSchedule.route}
+                routeName={routesAndSchedule.routeName}
+                userName={routesAndSchedule.userName}
+                schedules={routesAndSchedule.schedules}
               />
-            )}
+            </>
+          )}
           <GoogleMapForFavoritePlaces
             // favoritePlaces={favoritePlaces}
             myRoute={routesAndSchedule.schedules}
             routeInfo={routesAndSchedule.route}
           />
+          <div>ここにスペースを作る </div>
+          <div>ここにスペースを作る </div>
+          <div>ここにスペースを作る </div>
+          <div>ここにスペースを作る </div>
         </div>
       ))}
       {/* </GridList> */}

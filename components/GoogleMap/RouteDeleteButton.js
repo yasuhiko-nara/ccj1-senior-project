@@ -11,7 +11,7 @@ export default function () {
 
   return (
     <Button variant="contained" color="primary" onClick={deleteRoute}>
-      ルート消去
+      ルート再作成
     </Button>
   );
 }

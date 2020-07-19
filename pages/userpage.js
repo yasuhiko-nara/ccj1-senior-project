@@ -8,10 +8,8 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 import Navbar from "../components/Navbar";
-// import FavoritePlaces from "../components/FavoritePlaces";
-import SingleLineGridListOfMaps from "../components/SingleLineGridListOfMaps";
-// import GoogleMapForFavoritePlaces from "../components/GoogleMap/GoogleMapForFavoritePlaces";
-// import GoogleMapForRouteView from "../components/GoogleMap/GoogleMapForRouteVIew";
+import FavoriteSpotList from "../components/FavoriteSpotList";
+import ScheduleForUserPage from "../components/ScheduleForUserPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +26,7 @@ const userpage = (props) => {
   const userLoginFlag = useSelector((state) => state.users.loginFlag);
   const userId = useSelector((state) => state.users.userId);
   const idToken = useSelector((state) => state.users.idToken);
-  // const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
+  const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
   const myRoutesAndSchedules = useSelector(
     (state) => state.travels.myRoutesAndSchedules
   );
@@ -70,7 +68,8 @@ const userpage = (props) => {
         url: `/savedRoutes`,
       };
       axios(opt).then((res) => {
-        const myRoutesAndSchedules = JSON.parse(res.data.body);
+        console.log(res.data.body);
+        const myRoutesAndSchedules = res.data.body;
 
         dispatch(get_my_routes(myRoutesAndSchedules));
       });
@@ -86,15 +85,20 @@ const userpage = (props) => {
               <Navbar />
             </Paper>
           </Grid>
-
           <Grid item xs={12}>
-            {myRoutesAndSchedules.length > 0 && (
-              <SingleLineGridListOfMaps
+            <Paper className={classes.paper}>
+              <FavoriteSpotList spotsOfTargetPref={favoritePlaces} />
+            </Paper>
+          </Grid>
+
+          {myRoutesAndSchedules.length > 0 && (
+            <Grid item xs={12}>
+              <ScheduleForUserPage
                 // favoritePlaces={favoritePlaces}
                 myRoutesAndSchedules={myRoutesAndSchedules}
               />
-            )}
-          </Grid>
+            </Grid>
+          )}
         </Grid>
       </div>
     </>

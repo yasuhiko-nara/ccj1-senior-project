@@ -78,14 +78,6 @@ export const travelReducer = (state = initialState.travels, action) => {
         schedules: reOrderedSchedules,
       };
 
-    case actions.DELETE_SCHEDULES_AND_ROUTE:
-      return {
-        ...state,
-        currentDirection: null,
-        routeInfo: [],
-        schedules: [],
-      };
-
     case actions.LIKE_ACTIVITY:
       const targetActivity = action.activity;
       const targetClass = action.activity.activityClass;
@@ -113,6 +105,19 @@ export const travelReducer = (state = initialState.travels, action) => {
       return {
         ...state,
         myRoutesAndSchedules: action.myRoutesAndSchedules,
+      };
+    case actions.SAVE_ROUTE_NAME:
+      return {
+        ...state,
+        routeName: action.routeName,
+      };
+    case actions.DELETE_SCHEDULES_AND_ROUTE:
+      return {
+        ...state,
+        currentDirection: null,
+        routeInfo: [],
+        schedules: [],
+        routeName: null,
       };
 
     default:
