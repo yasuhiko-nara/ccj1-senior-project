@@ -66,15 +66,18 @@ const recommend = (props) => {
             </Grid>
           )}
           {targetPrefecture.pref && (
-            <Grid item xs={12}>
+            <>
               {myRoutesAndSchedules && myRoutesAndSchedules.length > 0 && (
-                <SingleLineGridListOfMaps
-                  // favoritePlaces={favoritePlaces}
-                  myRoutesAndSchedules={myRoutesAndSchedules}
-                />
-                // <ScheduleOfADayOfMaps myRoutesAndSchedules={myRoutesAndSchedules} />
+                <>
+                  <Grid item xs={12}>
+                    <SingleLineGridListOfMaps
+                      // favoritePlaces={favoritePlaces}
+                      myRoutesAndSchedules={myRoutesAndSchedules}
+                    />
+                  </Grid>
+                </>
               )}
-            </Grid>
+            </>
           )}
         </Grid>
       </div>
