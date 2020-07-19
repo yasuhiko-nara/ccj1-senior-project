@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Router, { useRouter } from "next/router";
+import Link from "next/link";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -135,7 +136,13 @@ const Navbar = () => {
       <AppBar position="static" color="default">
         {/* ["default","inherit","primary","secondary","transparent"]. => whiteだとエラーが出てるので変更しました*/}
         <Toolbar>
-          <img src="https://pbs.twimg.com/profile_images/1087001401413128192/b3WuEqTF.jpg"></img>
+          <Link
+            href={{
+              pathname: "/",
+            }}
+          >
+            <img src="https://pbs.twimg.com/profile_images/1087001401413128192/b3WuEqTF.jpg"></img>
+          </Link>
           <Typography className={classes.title}></Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
