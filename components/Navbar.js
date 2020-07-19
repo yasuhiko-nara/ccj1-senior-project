@@ -84,7 +84,6 @@ const Navbar = () => {
 
   const handleChange = (event) => {
     dispatch(set_prefecture(event.target.value));
-    //console.log(Router.pathname);
     if (Router.pathname !== "/recommendation") {
       Router.push({
         pathname: "/map",
