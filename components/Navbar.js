@@ -84,14 +84,17 @@ const Navbar = () => {
 
   const handleChange = (event) => {
     dispatch(set_prefecture(event.target.value));
-    Router.push({
-      pathname: "/map",
-      query: {
-        lat: event.target.value.lat,
-        lng: event.target.value.lng,
-        pref: event.target.value.pref,
-      },
-    });
+    //console.log(Router.pathname);
+    if (Router.pathname !== "/recommendation") {
+      Router.push({
+        pathname: "/map",
+        query: {
+          lat: event.target.value.lat,
+          lng: event.target.value.lng,
+          pref: event.target.value.pref,
+        },
+      });
+    }
   };
 
   useEffect(() => {
