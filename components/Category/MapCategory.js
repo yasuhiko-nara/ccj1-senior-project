@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -27,7 +27,6 @@ const StyledMenu = withStyles({
   />
 ));
 
-//theme.palette.primary.main
 const StyledMenuItem = withStyles((theme) => ({
   root: {
     "&:focus": {
@@ -39,9 +38,26 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: "#2b90d9",
+
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: "100%",
+    },
+  },
+}));
+
 export default function CustomizedMenus(props) {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const current = React.useRef(null);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -53,7 +69,7 @@ export default function CustomizedMenus(props) {
   const toggle = (obj) => {
     const pref = JSON.stringify(obj);
     const o = JSON.stringify(props.pref);
-    console.log(o, pref);
+
     if (pref === o) {
       props.setLocation({ pref: "" });
     } else {
@@ -77,7 +93,7 @@ export default function CustomizedMenus(props) {
   return (
     <div className="item">
       <Button
-        style={{ width: "140px", backgroundColor: "#2b90d9" }}
+        className={classes.root}
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
