@@ -63,6 +63,13 @@ const SignUp = () => {
     });
   };
 
+  const styles = {
+    p: {
+      color: "gray",
+      fontSize: "13px",
+      paddingLeft: "75px",
+    },
+  };
   return (
     <>
       <Navbar />
@@ -88,6 +95,9 @@ const SignUp = () => {
           type="password"
           autoComplete="current-password"
         />
+        <p style={styles.p}>
+          パスワードには大文字、小文字、数字を含めてください
+        </p>
         <Button
           style={{
             width: "50%",
