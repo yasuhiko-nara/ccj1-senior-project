@@ -27,7 +27,6 @@ const StyledMenu = withStyles({
   />
 ));
 
-//theme.palette.primary.main
 const StyledMenuItem = withStyles((theme) => ({
   root: {
     "&:focus": {
@@ -50,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CustomizedMenus(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const current = React.useRef(null);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

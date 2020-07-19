@@ -59,7 +59,7 @@ const Index = (props) => {
               <div className="small__container">
                 <Grid container spacing={7} justify="center">
                   {categoryMap.map((obj) => (
-                    <Grid style={{ marginBottom: "30px" }} item xs={3}>
+                    <Grid item xs={6} sm={3}>
                       <MapCategory
                         feeld={obj.feeld}
                         category={obj.category}
@@ -79,8 +79,8 @@ const Index = (props) => {
       .back{
         background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
         background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+        background-position: center center;
+        background-size: cover;
         height:100vh;
         width: 100%;
       }
