@@ -29,11 +29,11 @@ const Index = (props) => {
     <div className="top">
       <Navbar />
       <div className="back">
-        <div class="bgImg src1"></div>
-        <div class="bgImg src2"></div>
-        <div class="bgImg src3"></div>
-        <div class="bgImg src4"></div>
-        <div>
+        <div className="bgImg src1"></div>
+        <div className="bgImg src2"></div>
+        <div className="bgImg src3"></div>
+        <div className="bgImg src4"></div>
+        <div className="top__container">
           <h2 className="back__h2 fadein">あなたの旅を</h2>
           <h2 className="back__h2--delay fadein">
             <span className="merge" /> サポートします
@@ -78,12 +78,15 @@ const Index = (props) => {
 
       <style jsx>{`
       .back{
-        background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
+        // background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
+        // background-repeat: no-repeat;
+        // background-position: center center;
+        // background-size: cover;
         height:100vh;
         width: 100%;
+      }
+      .top__container{
+        z-index: 11;
       }
         img {
           width: 100%;
@@ -206,7 +209,7 @@ const Index = (props) => {
         position: relative;
        height: 22em;
        margin: 0 ;
-      margin-top: 30px;
+      margin-top: 20px;
       }
 
       .search-container{
@@ -227,21 +230,48 @@ const Index = (props) => {
         text-align:center;
        }
 
-       box .src1 {
-        background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
+       .back .bgImg {
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        height:100vh;
+        width: 100%;
+        position   : absolute;
+        top        : 60px;
+        left       : 0;
+        bottom     : 0;
+        right      : 0;
+         opacity    : 0;
+        animation  : bgAnime 20s infinite;   /* 4画像 × 各5s = 20s */
       }
-      .box .src2 {
-        background-image : url("http://sozai-free.com/sozai/jpg/crw_4044_jfr.jpg");   /* 背景の画像を指定 */
+
+       .back .src1 {
+        
+        background-image: url("http://sozai-free.com/sozai/jpg/img_0315.jpg");
+       
+      }
+      .back .src2 {
+        background-image : url("http://sozai-free.com/sozai/jpg/1crw_4393_jfr.jpg");   /* 背景の画像を指定 */
+        
         animation-delay  : 5s;
       }
-      .box .src3 {
-        background-image : url("http://sozai-free.com/sozai/jpg/crw_0952_jfr.jpg");   /* 背景の画像を指定 */
+      .back .src3 {
+        background-image : url("http://sozai-free.com/sozai/jpg/1crw_4233_jfr.jpg");   /* 背景の画像を指定 */
+        
         animation-delay  : 10s;
       }
-      .box .src4 {
+      .back .src4 {
         background-image : url("http://sozai-free.com/sozai/jpg/crw_1441_jfr.jpg");   /* 背景の画像を指定 */
         animation-delay  : 15s;
       }
+
+      @keyframes bgAnime {
+        0% { opacity: 0; }
+        5% { opacity: 1; }
+       25% { opacity: 1; }
+       30% { opacity: 0; }
+      100% { opacity: 0; }
+     }
 
      
       @keyframes fadein {
