@@ -34,7 +34,7 @@ export default function ScheduleForUserPage({
   myRoutesAndSchedules,
 }) {
   const classes = useStyles();
-  console.log("myRoutesAndSchedules", myRoutesAndSchedules);
+  // console.log("myRoutesAndSchedules", myRoutesAndSchedules);
   return (
     <div className={classes.root}>
       {/* <GridList spacing={20} className={classes.gridList} cols={2.5}> */}
