@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
+
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -72,13 +72,14 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const dispatch = useDispatch();
   let flag = useSelector((state) => state.users.loginFlag);
-  console.log(flag);
+
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const targetPrefecture = useSelector((state) => state.map.targetPrefecture);
+  console.log(targetPrefecture);
 
   const handleChange = (event) => {
     dispatch(set_prefecture(event.target.value));
@@ -130,18 +131,7 @@ const Navbar = () => {
 
   return (
     <div className={classes.root}>
-      <FormGroup>
-        {/* <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? "Logout" : "Login"}
-        /> */}
-      </FormGroup>
+      <FormGroup></FormGroup>
       <AppBar position="static" color="default">
         {/* ["default","inherit","primary","secondary","transparent"]. => whiteだとエラーが出てるので変更しました*/}
         <Toolbar>

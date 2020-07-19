@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
@@ -6,6 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
+import { set_prefecture } from "../../redux/map/action";
 
 const StyledMenu = withStyles({
   paper: {
@@ -57,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CustomizedMenus(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -72,8 +75,11 @@ export default function CustomizedMenus(props) {
 
     if (pref === o) {
       props.setLocation({ pref: "" });
+      dispatch(set_prefecture(""));
     } else {
       props.setLocation(obj);
+
+      dispatch(set_prefecture(obj.pref));
     }
   };
 

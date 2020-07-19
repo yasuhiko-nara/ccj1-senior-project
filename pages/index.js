@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Index = (props) => {
+  const dispatch = useDispatch();
   const [pref, setPref] = useState("");
   const classes = useStyles();
   return (
