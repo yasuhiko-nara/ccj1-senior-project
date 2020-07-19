@@ -20,6 +20,9 @@ export const travelReducer = (state = initialState.travels, action) => {
         },
       };
     case actions.GET_INITIAL_STATUS:
+      const favoritePlacesNames = action.favoritePlaces.map(
+        (activity) => activity.name
+      );
       return {
         ...state,
         restaurants: [
@@ -27,6 +30,9 @@ export const travelReducer = (state = initialState.travels, action) => {
             const modifiedElem = elem;
             modifiedElem.day = 1;
             modifiedElem.like = false;
+            if (favoritePlacesNames.includes(elem.name)) {
+              modifiedElem.like = true;
+            }
             modifiedElem.activityClass = "restaurants";
             return modifiedElem;
           }),
@@ -36,6 +42,9 @@ export const travelReducer = (state = initialState.travels, action) => {
             const modifiedElem = elem;
             modifiedElem.day = 1;
             modifiedElem.like = false;
+            if (favoritePlacesNames.includes(elem.name)) {
+              modifiedElem.like = true;
+            }
             modifiedElem.activityClass = "attractions";
             return modifiedElem;
           }),
@@ -45,6 +54,9 @@ export const travelReducer = (state = initialState.travels, action) => {
             const modifiedElem = elem;
             modifiedElem.day = 1;
             modifiedElem.like = false;
+            if (favoritePlacesNames.includes(elem.name)) {
+              modifiedElem.like = true;
+            }
             modifiedElem.activityClass = "hotels";
             return modifiedElem;
           }),
@@ -96,9 +108,10 @@ export const travelReducer = (state = initialState.travels, action) => {
       };
 
     case actions.GET_FAVORITE_PLACES:
+      const favoritePlaces = action.activities;
       return {
         ...state,
-        favoritePlaces: action.activities,
+        favoritePlaces,
       };
 
     case actions.GET_MY_ROUTES:

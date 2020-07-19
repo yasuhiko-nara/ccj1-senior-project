@@ -1,7 +1,12 @@
+import _ from "lodash";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { get_initial_status } from "../redux/travels/action";
+import {
+  get_initial_status,
+  get_favorite_places,
+} from "../redux/travels/action";
 import { toggle_display } from "../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -39,13 +44,48 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const map = (props) => {
+  const dispatch = useDispatch();
+  const initialState = JSON.parse(props.data);
+  const userLoginFlag = useSelector((state) => state.users.loginFlag);
+  const userId = useSelector((state) => state.users.userId);
+  const idToken = useSelector((state) => state.users.idToken);
+
+  useEffect(() => {
+    if (!userLoginFlag) {
+      console.log("now loading initial status");
+      dispatch(get_initial_status(initialState, []));
+    }
+
+    if (userLoginFlag) {
+      console.log("now loading my favorite places");
+      const opt = {
+        method: "get",
+        params: {
+          userId,
+        },
+        headers: {
+          Authorization: idToken,
+        },
+        url: "/favoriteSpot",
+      };
+      axios(opt).then((res) => {
+        const favoritePlacesWithoutDuplication = _.uniqBy(
+          JSON.parse(res.data.body),
+          JSON.stringify
+        );
+        console.log(
+          "this is my favoite places :",
+          favoritePlacesWithoutDuplication
+        );
+        dispatch(
+          get_initial_status(initialState, favoritePlacesWithoutDuplication)
+        );
+      });
+    }
+  }, [userLoginFlag]);
+
   const classes = useStyles();
   const router = useRouter();
-
-  const initialState = JSON.parse(props.data);
-
-  const dispatch = useDispatch();
-  dispatch(get_initial_status(initialState));
 
   const mapToList = useSelector((store) => store.travels.toggleDisplay);
 
