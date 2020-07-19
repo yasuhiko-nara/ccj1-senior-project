@@ -18,10 +18,11 @@ export const select_activities = (activity) => {
 };
 
 export const GET_INITIAL_STATUS = "GET_INITIAL_STATUS";
-export const get_initial_status = (initialState) => {
+export const get_initial_status = (initialState, favoritePlaces) => {
   return {
     type: "GET_INITIAL_STATUS",
     initialState,
+    favoritePlaces,
   };
 };
 
