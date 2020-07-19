@@ -12,12 +12,12 @@ export const mapReducer = (state = initialState.map, action) => {
     case HYDRATE:
       return { ...state, ...action.payload };
     case actions.SET_PREFECTURE:
+      console.log("hffffffffff");
       return {
         ...state,
         targetPrefecture: action.targetPrefecture,
       };
     case actions.GET_LOCATIONS:
-      console.log("uko!!");
       return {
         ...state,
         // restaurants: travels[selectedPlace].restaurants,
