@@ -6,7 +6,7 @@ files:
 hooks:
   BeforeInstall:
     - location: aws_scripts/codedeploy_scripts/01_remove_previous_codes.sh
-      timeout: 600
+      timeout: 300
       runas: ec2-user
   AfterInstall:
     - location: aws_scripts/codedeploy_scripts/02_deploy_build_server.sh

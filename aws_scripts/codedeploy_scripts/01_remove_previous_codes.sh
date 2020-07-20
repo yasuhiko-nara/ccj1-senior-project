@@ -6,7 +6,7 @@
 ## move to rakutabi directory
 cd /home/ec2-user/rakutabi
 ## kill all forever process
-yarn forever stopall
+yarn forever stop node_modules/.bin/next
 
 # remove previous app files and directory
 cd /home/ec2-user
