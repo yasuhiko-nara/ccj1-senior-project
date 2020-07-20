@@ -50,8 +50,8 @@ export default function ScheduleOfADayOfMaps({
     ? new Date(durationInSec * 1000).toISOString().substr(11, 5)
     : null;
 
-  console.log("this is the schedule", schedules);
-  console.log("this is the routeInfo", routeInfo);
+  // console.log("this is the schedule", schedules);
+  // console.log("this is the routeInfo", routeInfo);
   return (
     <>
       <Accordion>

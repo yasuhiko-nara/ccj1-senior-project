@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Marker, InfoWindow } from "@react-google-maps/api";
+import { Marker, InfoWindow, MarkerClusterer } from "@react-google-maps/api";
 import { select_plan } from "../../redux/travels/action";
 
 import Button from "@material-ui/core/Button";
@@ -14,12 +14,12 @@ import Typography from "@material-ui/core/Typography";
 import CheckForFavorite from "./CheckForFavorite";
 
 const restaurantIcon =
-  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF%E3%81%A8%E3%83%8A%E3%82%A4%E3%83%95%E3%81%AE%E3%81%8A%E9%A3%9F%E4%BA%8B%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E7%B4%A0%E6%9D%90%20(1).svg?alt=media&token=ca319d7f-5a67-4207-856f-28fc75f6875f";
+  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/googlemap%2F%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF%E3%81%A8%E3%83%8A%E3%82%A4%E3%83%95%E3%81%AE%E3%81%8A%E9%A3%9F%E4%BA%8B%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E7%B4%A0%E6%9D%90.png?alt=media&token=d388c830-5887-446b-a4a0-7a223187c94e";
 
 const activityIcon =
-  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%82%99%E3%82%A4%E3%82%AF%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.svg?alt=media&token=260673d7-dafc-4496-b5d1-2a41ffab66a6";
+  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/googlemap%2F%E4%B9%97%E7%94%A8%E8%BB%8A%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E7%B4%A0%E6%9D%901.png?alt=media&token=6e692394-1880-488f-b6a9-efdf8718f9b1";
 const hotelIcon =
-  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%98%E3%82%99%E3%83%83%E3%83%88%E3%82%99%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B39.svg?alt=media&token=76f3bedd-c925-4561-b282-07b81a98a8e6";
+  "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/googlemap%2F%E5%AE%BF%E6%B3%8A%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B32.png?alt=media&token=bfff456b-c267-4ab1-8121-e329deba3b56";
 
 const favoriteIcon =
   "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/kamo%2F%E3%83%8F%E3%83%BC%E3%83%88%E3%81%AE%E3%83%9E%E3%83%BC%E3%82%AF3.svg?alt=media&token=485153b6-3a71-4443-bf2f-b2eaf1d033e5";
@@ -58,38 +58,79 @@ export default function Activity({ showAddPlanButton = true }) {
     }
   }, []);
 
+  // const options = {
+  //   imagePath:
+  //     "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+  //   // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
+  // };
+
+  const clusterStyles = [
+    {
+      textColor: "white",
+      url:
+        "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/googlemap%2Frakutabi%20(1).png?alt=media&token=a190fa50-bb19-4eb1-b425-cb236ae7970b",
+      height: 50,
+      width: 50,
+    },
+    {
+      textColor: "white",
+      url:
+        "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/googlemap%2Frakutabi%20(1).png?alt=media&token=a190fa50-bb19-4eb1-b425-cb236ae7970b",
+      height: 50,
+      width: 50,
+    },
+    {
+      textColor: "white",
+      url:
+        "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/googlemap%2Frakutabi%20(1).png?alt=media&token=a190fa50-bb19-4eb1-b425-cb236ae7970b",
+      height: 50,
+      width: 50,
+    },
+  ];
+  const options = {
+    gridSize: 50,
+    styles: clusterStyles,
+    maxZoom: 15,
+  };
+
   return (
     <>
-      {activities.map(
-        (marker, index) =>
-          selectedActivities[marker.activityClass] && (
-            <Marker
-              key={`${marker.location.lat * (index + 1)}`}
-              position={{
-                lat: marker.location.lat,
-                lng: marker.location.lng,
-              }}
-              onMouseOver={() => {
-                setSelected(marker);
-              }}
-              onClick={() => {
-                setOpen(true);
-              }}
-              icon={{
-                url: selectIcon(marker),
-                origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(15, 15),
-                scaledSize: new window.google.maps.Size(30, 30),
-              }}
-            />
+      <MarkerClusterer options={options}>
+        {(clusterer) =>
+          activities.map(
+            (marker, index) =>
+              selectedActivities[marker.activityClass] && (
+                <Marker
+                  key={`${
+                    marker.location.lat * marker.location.lng * (index + 1)
+                  }`}
+                  clusterer={clusterer}
+                  position={{
+                    lat: Number(marker.location.lat),
+                    lng: Number(marker.location.lng),
+                  }}
+                  onMouseOver={() => {
+                    setSelected(marker);
+                  }}
+                  onClick={() => {
+                    setOpen(true);
+                  }}
+                  icon={{
+                    url: selectIcon(marker),
+                    origin: new window.google.maps.Point(0, 0),
+                    anchor: new window.google.maps.Point(15, 15),
+                    scaledSize: new window.google.maps.Size(30, 30),
+                  }}
+                />
+              )
           )
-      )}
-
+        }
+      </MarkerClusterer>
       {selected ? (
         <InfoWindow
           position={{
-            lat: selected.location.lat,
-            lng: selected.location.lng,
+            lat: Number(selected.location.lat),
+            lng: Number(selected.location.lng),
           }}
           onCloseClick={() => {
             setSelected(null);

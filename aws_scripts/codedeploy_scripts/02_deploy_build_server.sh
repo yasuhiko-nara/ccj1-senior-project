@@ -18,23 +18,22 @@ envfile=/home/ec2-user/rakutabi/env.json
 echo ${env} >> ${envfile}
 
 ## js で編集
-### 書き込み用.env用意
-# touch /home/ec2-user/rakutabi/.env
 ### 編集用スクリプト実行
-node /home/ec2-user/rakutabi/aws_scripts/codedeploy_scripts/setup_env.js
+node /home/ec2-user/rakutabi/aws_scripts/codedeploy_scripts/03_setup_env.js
 ###　一時ファイル削除
-sudo rm /home/ec2-user/rakutabi/env.json
+sudo rm -f /home/ec2-user/rakutabi/env.json
 
 
 # start nginx server as reverse proxy
+## stop nginx server
+sudo service nginx stop
 ## enable to overwrite nginx directory
 sudo chown -R ec2-user:ec2-user /etc/nginx
 ## remove previous config file
-sudo rm /etc/nginx/conf.d/nginx.conf
+sudo rm -f /etc/nginx/conf.d/nginx.conf
 ## copy nginx config file to target directory
 sudo cp /home/ec2-user/rakutabi/aws_scripts/nginx_settings/nginx.conf /etc/nginx/conf.d
 ## restart nginx server
-sudo service nginx stop
 sudo service nginx start
 ## enrecognize config file to nginx
 sudo service nginx reload
@@ -50,4 +49,5 @@ yarn forever stop node_modules/.bin/next
 ## build server
 yarn build
 ## start server
-yarn forever start node_modules/.bin/next start
+# yarn forever start node_modules/.bin/next star
+yarn forever start -c "yarn start" ./

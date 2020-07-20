@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "inline-flex",
     alignItems: "center",
-
   },
   formControl: {
     alignItems: "center",
@@ -110,8 +109,6 @@ export default function CheckboxesGroup() {
               />
             }
             label={matches ? "ホテル　": "ホテルㅤㅤㅤ"}
-
-            // label="ホテルㅤㅤ"
           />
         </FormGroup>
         <Button className={classes.button} variant="contained" color="primary" disableElevation onClick={() => dispatch(toggle_display())}>

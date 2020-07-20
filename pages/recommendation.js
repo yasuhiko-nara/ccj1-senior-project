@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 // import Button from "@material-ui/core/Button";
 
 import Navbar from "../components/Navbar";
-import FavoriteSpotList from "../components/FavoriteSpotList";
+// import FavoriteSpotList from "../components/FavoriteSpotList";
 import ScheduleForUserPage from "../components/ScheduleForUserPage";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +29,7 @@ const recommend = (props) => {
   const userId = useSelector((state) => state.users.userId);
   const idToken = useSelector((state) => state.users.idToken);
   const targetPrefecture = useSelector((state) => state.map.targetPrefecture);
-  const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
+  // const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
   const [myRoutesAndSchedules, setMyRoutesAndSchedules] = useState(null);
 
   const classes = useStyles();
@@ -54,6 +54,21 @@ const recommend = (props) => {
           JSON.stringify
         );
         dispatch(get_favorite_places(removeDuplication));
+      });
+    }
+    if (!targetPrefecture.pref) {
+      console.log(`now loading recommend of all prefectures `);
+      const opt = {
+        method: "get",
+        url: "/routes",
+      };
+      axios(opt).then((res) => {
+        const removeDuplication = _.uniqBy(
+          JSON.parse(res.data.body),
+          JSON.stringify
+        );
+        // console.log(removeDuplication);
+        setMyRoutesAndSchedules(removeDuplication);
       });
     }
     if (targetPrefecture.pref) {
@@ -85,11 +100,11 @@ const recommend = (props) => {
               <Navbar />
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Paper className={classes.paper}>
               <FavoriteSpotList spotsOfTargetPref={favoritePlaces} />
             </Paper>
-          </Grid>
+          </Grid> */}
           {!targetPrefecture.pref && (
             <Grid>
               <h2>都道府県を選んでください</h2>

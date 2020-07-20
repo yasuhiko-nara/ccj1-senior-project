@@ -158,8 +158,10 @@ const Navbar = () => {
                 select: classes.inputInput,
               }}
             >
-              {prefs.map((pref) => (
-                <MenuItem value={pref}>{pref.pref}</MenuItem>
+              {prefs.map((pref, index) => (
+                <MenuItem key={`${index}`} value={pref}>
+                  {pref.pref}
+                </MenuItem>
               ))}
             </Select>
           </div>
@@ -194,7 +196,14 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    changeUrl("/map");
+                    Router.push({
+                      pathname: "/map",
+                      query: {
+                        lat: targetPrefecture.lat,
+                        lng: targetPrefecture.lng,
+                        pref: targetPrefecture.pref,
+                      },
+                    });
                   }}
                 >
                   たびを計画する
@@ -244,7 +253,14 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    changeUrl("/map");
+                    Router.push({
+                      pathname: "/map",
+                      query: {
+                        lat: targetPrefecture.lat,
+                        lng: targetPrefecture.lng,
+                        pref: targetPrefecture.pref,
+                      },
+                    });
                   }}
                 >
                   たびを計画する
