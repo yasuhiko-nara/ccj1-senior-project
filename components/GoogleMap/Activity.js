@@ -86,21 +86,12 @@ export default function Activity({ showAddPlanButton = true }) {
                   onClick={() => {
                     setOpen(true);
                   }}
-                  icon={
-                    // {
-                    //   anchor: new google.maps.Point(0, 0),
-
-                    //   labelOrigin: new google.maps.Point(30, 30),
-                    //   path: google.maps.SymbolPath.CIRCLE,
-                    //   scale: 10,
-                    // }
-                    {
-                      url: selectIcon(marker),
-                      origin: new window.google.maps.Point(0, 0),
-                      anchor: new window.google.maps.Point(15, 15),
-                      scaledSize: new window.google.maps.Size(30, 30),
-                    }
-                  }
+                  icon={{
+                    url: selectIcon(marker),
+                    origin: new window.google.maps.Point(0, 0),
+                    anchor: new window.google.maps.Point(15, 15),
+                    scaledSize: new window.google.maps.Size(30, 30),
+                  }}
                 />
               )
           )
