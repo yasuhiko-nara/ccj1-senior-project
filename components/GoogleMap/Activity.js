@@ -87,21 +87,19 @@ export default function Activity({ showAddPlanButton = true }) {
                     setOpen(true);
                   }}
                   icon={
-                    {
-                      anchor: new google.maps.Point(0, 0),
-                      fillColor: "#FFBC42",
-                      labelOrigin: new google.maps.Point(30, 30),
-                      path: google.maps.SymbolPath.CIRCLE,
-                      scale: 10,
-                    }
-                    //   {
-                    //   url: selectIcon(marker),
-                    //   // animation: google.maps.Animation.DROP,
-                    //   origin: new google.maps.Point(30, 30),
+                    // {
                     //   anchor: new google.maps.Point(0, 0),
-                    //   size: new google.maps.Size(20, 20),
-                    //   scaledSize: new google.maps.Size(20, 20),
+
+                    //   labelOrigin: new google.maps.Point(30, 30),
+                    //   path: google.maps.SymbolPath.CIRCLE,
+                    //   scale: 10,
                     // }
+                    {
+                      url: selectIcon(marker),
+                      origin: new window.google.maps.Point(0, 0),
+                      anchor: new window.google.maps.Point(15, 15),
+                      scaledSize: new window.google.maps.Size(30, 30),
+                    }
                   }
                 />
               )
