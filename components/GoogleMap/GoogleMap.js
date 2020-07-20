@@ -16,7 +16,9 @@ import mapStyles from "./mapUtils/mapStyles";
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "60vh",
-  width: "100vw",
+  // vwだとページの大きさに対し100％になり余白の分はみ出してしまうため親コンポーネントの大きさに依存する％に変更
+  // width: "100vw",
+  width: "100%",
 };
 // const mapContainerStyle = {
 //   height: "600px",
