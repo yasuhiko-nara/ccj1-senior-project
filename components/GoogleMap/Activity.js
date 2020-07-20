@@ -66,8 +66,8 @@ export default function Activity({ showAddPlanButton = true }) {
             <Marker
               key={`${marker.location.lat * (index + 1)}`}
               position={{
-                lat: marker.location.lat,
-                lng: marker.location.lng,
+                lat: Number(marker.location.lat),
+                lng: Number(marker.location.lng),
               }}
               onMouseOver={() => {
                 setSelected(marker);
@@ -88,8 +88,8 @@ export default function Activity({ showAddPlanButton = true }) {
       {selected ? (
         <InfoWindow
           position={{
-            lat: selected.location.lat,
-            lng: selected.location.lng,
+            lat: Number(selected.location.lat),
+            lng: Number(selected.location.lng),
           }}
           onCloseClick={() => {
             setSelected(null);

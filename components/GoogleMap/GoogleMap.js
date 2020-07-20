@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import Direction from "./Direction";
-import TestMap from "./mapUtils/TestMap";
+// import TestMap from "./mapUtils/TestMap";
 
-import Search from "./Search";
+// import Search from "./Search";
 // import Locate from "./Locate";
 // import RouteDeleteButton from "./RouteDeleteButtun";
 import Activity from "./Activity";

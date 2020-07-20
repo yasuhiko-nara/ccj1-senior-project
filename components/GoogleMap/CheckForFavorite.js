@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { like_activity } from "../../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  FormLabel,
-  FormControl,
-  FormGroup,
-  FormControlLabel,
-  FormHelperText,
+  // FormLabel,
+  // FormControl,
+  // FormGroup,
+  // FormControlLabel,
+  // FormHelperText,
   Checkbox,
 } from "@material-ui/core";
 import Favorite from "@material-ui/icons/Favorite";
@@ -43,7 +43,6 @@ export default function CheckboxesGroup({ activity }) {
           favoriteSpot: activity,
         },
       };
-      console.log(opt);
       axios(opt);
     }
   });
