@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Marker, InfoWindow } from "@react-google-maps/api";
+import { Marker, InfoWindow, MarkerClusterer } from "@react-google-maps/api";
 import { select_plan } from "../../redux/travels/action";
 
 import Button from "@material-ui/core/Button";
@@ -58,35 +58,56 @@ export default function Activity({ showAddPlanButton = true }) {
     }
   }, []);
 
+  const options = {
+    imagePath:
+      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+    // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
+  };
+
   return (
     <>
-      {activities.map(
-        (marker, index) =>
-          selectedActivities[marker.activityClass] && (
-            <Marker
-              key={`${marker.location.lat * (index + 1)}`}
-              position={{
-                lat: Number(marker.location.lat),
-                lng: Number(marker.location.lng),
-              }}
-              onMouseOver={() => {
-                setSelected(marker);
-              }}
-              onClick={() => {
-                setOpen(true);
-              }}
-              icon={{
-                url: selectIcon(marker),
-                // animation: google.maps.Animation.DROP,
-                origin: new google.maps.Point(30, 30),
-                anchor: new google.maps.Point(0, 0),
-                size: new google.maps.Size(20, 20),
-                scaledSize: new google.maps.Size(20, 20),
-              }}
-            />
+      <MarkerClusterer options={options}>
+        {(clusterer) =>
+          activities.map(
+            (marker, index) =>
+              selectedActivities[marker.activityClass] && (
+                <Marker
+                  key={`${
+                    marker.location.lat * marker.location.lng * (index + 1)
+                  }`}
+                  clusterer={clusterer}
+                  position={{
+                    lat: Number(marker.location.lat),
+                    lng: Number(marker.location.lng),
+                  }}
+                  onMouseOver={() => {
+                    setSelected(marker);
+                  }}
+                  onClick={() => {
+                    setOpen(true);
+                  }}
+                  icon={
+                    {
+                      anchor: new google.maps.Point(0, 0),
+                      fillColor: "#FFBC42",
+                      labelOrigin: new google.maps.Point(30, 30),
+                      path: google.maps.SymbolPath.CIRCLE,
+                      scale: 10,
+                    }
+                    //   {
+                    //   url: selectIcon(marker),
+                    //   // animation: google.maps.Animation.DROP,
+                    //   origin: new google.maps.Point(30, 30),
+                    //   anchor: new google.maps.Point(0, 0),
+                    //   size: new google.maps.Size(20, 20),
+                    //   scaledSize: new google.maps.Size(20, 20),
+                    // }
+                  }
+                />
+              )
           )
-      )}
-
+        }
+      </MarkerClusterer>
       {selected ? (
         <InfoWindow
           position={{
