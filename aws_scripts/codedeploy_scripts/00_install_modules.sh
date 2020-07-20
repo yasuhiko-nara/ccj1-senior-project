@@ -39,6 +39,3 @@ sudo service nginx stop
 sudo service nginx status
 ## install nginx
 sudo amazon-linux-extras install -y nginx1.12
-
-# remove previous app files and directory
-sudo rm -R /home/ec2-user/rakutabi
