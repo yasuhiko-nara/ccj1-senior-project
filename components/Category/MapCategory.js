@@ -83,9 +83,9 @@ export default function CustomizedMenus(props) {
     }
   };
 
-  const result = props.feeld.map((obj) => {
+  const result = props.feeld.map((obj, index) => {
     return (
-      <div className="item" onClick={() => toggle(obj)}>
+      <div key={`${index}`} className="item" onClick={() => toggle(obj)}>
         <StyledMenuItem>
           <ListItemIcon>
             <DirectionsRunIcon fontSize="small" />

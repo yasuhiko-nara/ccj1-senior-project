@@ -26,8 +26,8 @@ const FavoriteSpotList = (props) => {
     <>
       <h2>お気に入りの場所</h2>
       <Carousel responsive={responsive}>
-        {spotsArr.map((spot) => (
-          <div className="container">
+        {spotsArr.map((spot, index) => (
+          <div key={index} className="container">
             <img src={spot.image} />
             <p>{spot.name}</p>
             <Rating defaultValue={spot.rationg} />
