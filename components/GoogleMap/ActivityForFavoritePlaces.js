@@ -26,10 +26,39 @@ export default function Activity({ showAddPlanButton = true }) {
     setOpen(false);
   }, []);
 
+  // const options = {
+  //   imagePath:
+  //     "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+  //   // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
+  // };
+
+  const clusterStyles = [
+    {
+      textColor: "white",
+      url:
+        "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/googlemap%2F%E5%8F%AF%E6%84%9B%E3%81%84%E3%83%8F%E3%83%BC%E3%83%88%E3%81%AE%E7%84%A1%E6%96%99%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B31.png?alt=media&token=ba7ae5fd-6773-4b9a-9e19-5011d9d1c48c",
+      height: 50,
+      width: 50,
+    },
+    {
+      textColor: "white",
+      url:
+        "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/googlemap%2F%E5%8F%AF%E6%84%9B%E3%81%84%E3%83%8F%E3%83%BC%E3%83%88%E3%81%AE%E7%84%A1%E6%96%99%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B31.png?alt=media&token=ba7ae5fd-6773-4b9a-9e19-5011d9d1c48c",
+      height: 50,
+      width: 50,
+    },
+    {
+      textColor: "white",
+      url:
+        "https://firebasestorage.googleapis.com/v0/b/tidal-reactor-279300.appspot.com/o/googlemap%2F%E5%8F%AF%E6%84%9B%E3%81%84%E3%83%8F%E3%83%BC%E3%83%88%E3%81%AE%E7%84%A1%E6%96%99%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B31.png?alt=media&token=ba7ae5fd-6773-4b9a-9e19-5011d9d1c48c",
+      height: 50,
+      width: 50,
+    },
+  ];
   const options = {
-    imagePath:
-      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-    // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
+    gridSize: 50,
+    styles: clusterStyles,
+    maxZoom: 15,
   };
 
   return (
