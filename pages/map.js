@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   get_initial_status,
-  get_favorite_places,
+  // get_favorite_places,
 } from "../redux/travels/action";
 import { toggle_display } from "../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
