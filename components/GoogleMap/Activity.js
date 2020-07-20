@@ -77,9 +77,11 @@ export default function Activity({ showAddPlanButton = true }) {
               }}
               icon={{
                 url: selectIcon(marker),
-                origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(15, 15),
-                scaledSize: new window.google.maps.Size(30, 30),
+                // animation: google.maps.Animation.DROP,
+                origin: new google.maps.Point(30, 30),
+                anchor: new google.maps.Point(0, 0),
+                size: new google.maps.Size(20, 20),
+                scaledSize: new google.maps.Size(20, 20),
               }}
             />
           )

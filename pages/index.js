@@ -60,8 +60,9 @@ const Index = (props) => {
               <div className="small__container">
                 <div></div>
                 <Grid container spacing={6} justify="center">
-                  {categoryMap.map((obj) => (
-                    <Grid item xs={6} sm={3}>
+                  {categoryMap.map((obj, index) => (
+                    <Grid key={`${index}`} item xs={6} sm={3}>
+                      　
                       <MapCategory
                         feeld={obj.feeld}
                         category={obj.category}

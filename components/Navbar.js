@@ -158,8 +158,10 @@ const Navbar = () => {
                 select: classes.inputInput,
               }}
             >
-              {prefs.map((pref) => (
-                <MenuItem value={pref}>{pref.pref}</MenuItem>
+              {prefs.map((pref, index) => (
+                <MenuItem key={`${index}`} value={pref}>
+                  {pref.pref}
+                </MenuItem>
               ))}
             </Select>
           </div>
