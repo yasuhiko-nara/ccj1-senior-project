@@ -1,12 +1,12 @@
 #! /bin/bash
 # run in bash
 
-
 # stop previous server
 ## move to rakutabi directory
 cd /home/ec2-user/rakutabi
 ## kill all forever process
 yarn forever stopall
+pkill -f node
 
 # remove previous app files and directory
 cd /home/ec2-user

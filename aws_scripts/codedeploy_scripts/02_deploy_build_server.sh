@@ -50,5 +50,4 @@ yarn forever stop node_modules/.bin/next
 yarn build
 ## start server
 # yarn forever start node_modules/.bin/next star
-yarn forever start -c "yarn next start" ./
-# yarn forever start -c "yarn start" ./
+yarn forever start -c "yarn start" ./
