@@ -196,7 +196,14 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    changeUrl("/map");
+                    Router.push({
+                      pathname: "/map",
+                      query: {
+                        lat: targetPrefecture.lat,
+                        lng: targetPrefecture.lng,
+                        pref: targetPrefecture.pref,
+                      },
+                    });
                   }}
                 >
                   たびを計画する
@@ -246,7 +253,14 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    changeUrl("/map");
+                    Router.push({
+                      pathname: "/map",
+                      query: {
+                        lat: targetPrefecture.lat,
+                        lng: targetPrefecture.lng,
+                        pref: targetPrefecture.pref,
+                      },
+                    });
                   }}
                 >
                   たびを計画する

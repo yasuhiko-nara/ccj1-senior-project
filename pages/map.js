@@ -108,24 +108,28 @@ const map = (props) => {
             </Paper>
           </Grid>
           {mapToList ? (
-            <>
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                  <SpotList spotsOfTargetPref={attractionsOfTargetPref} />
-                  <SpotList spotsOfTargetPref={restaurantsOfTargetPref} />
-                  <SpotList spotsOfTargetPref={hotelsOfTargetPref} />
-                </Paper>
-              </Grid>
-              <Grid item xs={0.5}>
-                <Paper>
-                  <AutorenewTwoToneIcon
-                    onClick={() => dispatch(toggle_display())}
-                    variant="contained"
-                    style={{ fontSize: "70px" }}
-                  />
-                </Paper>
-              </Grid>
-            </>
+            router.query.pref !== "" ? (
+              <>
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    <SpotList spotsOfTargetPref={attractionsOfTargetPref} />
+                    <SpotList spotsOfTargetPref={restaurantsOfTargetPref} />
+                    <SpotList spotsOfTargetPref={hotelsOfTargetPref} />
+                  </Paper>
+                </Grid>
+                <Grid item xs={0.5}>
+                  <Paper>
+                    <AutorenewTwoToneIcon
+                      onClick={() => dispatch(toggle_display())}
+                      variant="contained"
+                      style={{ fontSize: "70px" }}
+                    />
+                  </Paper>
+                </Grid>
+              </>
+            ) : (
+              <p id="message">都道府県を選んでください</p>
+            )
           ) : (
             <>
               <Grid item xs={11}>
@@ -157,6 +161,11 @@ const map = (props) => {
         </Grid>
       </div>
       {/* <GoogleMapForRouteView myRoute={currentDirection} /> */}
+      <style jsx>{`
+        #message {
+          margin-left: 25px;
+        }
+      `}</style>
     </>
   );
 };
