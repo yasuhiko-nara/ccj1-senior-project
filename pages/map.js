@@ -101,12 +101,17 @@ const map = (props) => {
   return (
     <>
       <div className={classes.root}>
-        <Grid container spacing={2}>
+        <Grid container fixed spacing={2}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Navbar />
             </Paper>
           </Grid>
+          <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <CheckBox />
+                </Paper>
+              </Grid>
           {mapToList ? (
             <>
               <Grid item xs={12}>
@@ -116,7 +121,7 @@ const map = (props) => {
                   <SpotList spotsOfTargetPref={hotelsOfTargetPref} />
                 </Paper>
               </Grid>
-              <Grid item xs={0.5}>
+              {/* <Grid item xs={0.5}>
                 <Paper>
                   <AutorenewTwoToneIcon
                     onClick={() => dispatch(toggle_display())}
@@ -124,24 +129,24 @@ const map = (props) => {
                     style={{ fontSize: "70px" }}
                   />
                 </Paper>
-              </Grid>
+              </Grid> */}
             </>
           ) : (
             <>
-              <Grid item xs={11}>
+              {/* <Grid item xs={12}>
                 <Paper className={classes.paper}>
                   <CheckBox />
                 </Paper>
-              </Grid>
-              <Grid item xs={0.5}>
+              </Grid> */}
+              {/* <Grid >
                 <Paper>
                   <AutorenewTwoToneIcon
                     onClick={() => dispatch(toggle_display())}
                     variant="contained"
-                    style={{ fontSize: "70px" }}
+                    style={{ fontSize: "200%" }}
                   />
                 </Paper>
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <Paper className={classes.paper}>
                   <Schedules />
