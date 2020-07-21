@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 
 const FavoriteSpotList = (props) => {
   const userName = useSelector((state) => state.users.userName);
-  const spotsArr = props.spotsOfTargetPref;
+  const spotsArr = useSelector((state) => state.travels.favoritePlaces);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.

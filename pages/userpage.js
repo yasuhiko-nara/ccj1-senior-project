@@ -27,7 +27,6 @@ const userpage = (props) => {
   const userLoginFlag = useSelector((state) => state.users.loginFlag);
   const userId = useSelector((state) => state.users.userId);
   const idToken = useSelector((state) => state.users.idToken);
-  const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
   const myRoutesAndSchedules = useSelector(
     (state) => state.travels.myRoutesAndSchedules
   );
@@ -95,7 +94,7 @@ const userpage = (props) => {
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <FavoriteSpotList spotsOfTargetPref={favoritePlaces} />
+              <FavoriteSpotList />
             </Paper>
           </Grid>
 

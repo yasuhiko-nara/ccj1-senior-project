@@ -105,7 +105,11 @@ const recommend = (props) => {
           </Grid>
           {!targetPrefecture.pref && (
             <Grid>
-              <h2>都道府県を選んでください</h2>
+              <Paper className={classes.paper}>
+                <Typography variant="h4" gutterBottom>
+                  都道府県を選んでください
+                </Typography>
+              </Paper>
             </Grid>
           )}
           {targetPrefecture.pref && (
