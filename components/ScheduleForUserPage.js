@@ -1,5 +1,4 @@
 import React from "react";
-// import Carousel from "react-multi-carousel";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -29,15 +28,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ScheduleForUserPage({
-  // favoritePlaces,
-  myRoutesAndSchedules,
-}) {
+export default function ScheduleForUserPage({ myRoutesAndSchedules }) {
   const classes = useStyles();
-  // console.log("myRoutesAndSchedules", myRoutesAndSchedules);
   return (
     <div className={classes.root}>
-      {/* <GridList spacing={20} className={classes.gridList} cols={2.5}> */}
       {myRoutesAndSchedules.map((routesAndSchedule, index) => (
         <div key={`${index}`}>
           {routesAndSchedule.schedules.length > 2 && routesAndSchedule.route && (
@@ -51,17 +45,16 @@ export default function ScheduleForUserPage({
             </>
           )}
           <GoogleMapForFavoritePlaces
-            // favoritePlaces={favoritePlaces}
             myRoute={routesAndSchedule.schedules}
             routeInfo={routesAndSchedule.route}
           />
-          <div>ここにスペースを作る </div>
-          <div>ここにスペースを作る </div>
-          <div>ここにスペースを作る </div>
-          <div>ここにスペースを作る </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       ))}
-      {/* </GridList> */}
     </div>
   );
 }
