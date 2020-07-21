@@ -6,6 +6,7 @@ import { get_favorite_places, get_my_routes } from "../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 import Navbar from "../components/Navbar";
 import FavoriteSpotList from "../components/FavoriteSpotList";
@@ -87,6 +88,13 @@ const userpage = (props) => {
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
+              <Typography variant="h4" gutterBottom>
+                みんなの旅をみる
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
               <FavoriteSpotList spotsOfTargetPref={favoritePlaces} />
             </Paper>
           </Grid>
@@ -94,7 +102,6 @@ const userpage = (props) => {
           {myRoutesAndSchedules.length > 0 && (
             <Grid item xs={12}>
               <ScheduleForUserPage
-                // favoritePlaces={favoritePlaces}
                 myRoutesAndSchedules={myRoutesAndSchedules}
               />
             </Grid>
