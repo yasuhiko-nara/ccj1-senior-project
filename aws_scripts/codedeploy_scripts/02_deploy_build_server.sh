@@ -46,7 +46,10 @@ npm install -g yarn
 yarn
 ## stop previous server
 yarn forever stop node_modules/.bin/next
-## build server
+## build server エラー出るが何故か複数回ビルドすると治るので実行
+yarn build
+yarn build
+yarn build
 yarn build
 ## start server
 # yarn forever start node_modules/.bin/next star
