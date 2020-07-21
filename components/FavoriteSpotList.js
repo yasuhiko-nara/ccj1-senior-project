@@ -1,8 +1,12 @@
+import React from "react";
+import { useSelector } from "react-redux";
 import Carousel from "react-multi-carousel";
 import Rating from "@material-ui/lab/Rating";
+import Typography from "@material-ui/core/Typography";
 
 const FavoriteSpotList = (props) => {
-  const spotsArr = props.spotsOfTargetPref;
+  const userName = useSelector((state) => state.users.userName);
+  const spotsArr = useSelector((state) => state.travels.favoritePlaces);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -24,7 +28,7 @@ const FavoriteSpotList = (props) => {
   };
   return (
     <>
-      <h2>お気に入りの場所</h2>
+      <Typography gutterBottom>{userName}さんのお気に入りの場所</Typography>
       <Carousel responsive={responsive}>
         {spotsArr.map((spot, index) => (
           <div key={index} className="container">
