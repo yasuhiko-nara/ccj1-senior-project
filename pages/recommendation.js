@@ -6,10 +6,9 @@ import { get_favorite_places } from "../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-// import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 import Navbar from "../components/Navbar";
-// import FavoriteSpotList from "../components/FavoriteSpotList";
 import ScheduleForUserPage from "../components/ScheduleForUserPage";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +28,6 @@ const recommend = (props) => {
   const userId = useSelector((state) => state.users.userId);
   const idToken = useSelector((state) => state.users.idToken);
   const targetPrefecture = useSelector((state) => state.map.targetPrefecture);
-  // const favoritePlaces = useSelector((state) => state.travels.favoritePlaces);
   const [myRoutesAndSchedules, setMyRoutesAndSchedules] = useState(null);
 
   const classes = useStyles();
@@ -67,7 +65,6 @@ const recommend = (props) => {
           JSON.parse(res.data.body),
           JSON.stringify
         );
-        // console.log(removeDuplication);
         setMyRoutesAndSchedules(removeDuplication);
       });
     }
@@ -85,7 +82,6 @@ const recommend = (props) => {
           JSON.parse(res.data.body),
           JSON.stringify
         );
-        // console.log(removeDuplication);
         setMyRoutesAndSchedules(removeDuplication);
       });
     }
@@ -100,11 +96,13 @@ const recommend = (props) => {
               <Navbar />
             </Paper>
           </Grid>
-          {/* <Grid item xs={12}>
+          <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <FavoriteSpotList spotsOfTargetPref={favoritePlaces} />
+              <Typography variant="h4" gutterBottom>
+                みんなの旅をみる
+              </Typography>
             </Paper>
-          </Grid> */}
+          </Grid>
           {!targetPrefecture.pref && (
             <Grid>
               <h2>都道府県を選んでください</h2>
@@ -116,7 +114,6 @@ const recommend = (props) => {
                 <>
                   <Grid item xs={12}>
                     <ScheduleForUserPage
-                      // favoritePlaces={favoritePlaces}
                       myRoutesAndSchedules={myRoutesAndSchedules}
                     />
                   </Grid>

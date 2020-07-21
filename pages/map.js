@@ -3,15 +3,11 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  get_initial_status,
-  // get_favorite_places,
-} from "../redux/travels/action";
-import { toggle_display } from "../redux/travels/action";
+import { get_initial_status } from "../redux/travels/action";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import AutorenewTwoToneIcon from "@material-ui/icons/AutorenewTwoTone";
+import Typography from "@material-ui/core/Typography";
 
 import Map from "../components/GoogleMap/GoogleMap";
 import CheckBox from "../components/CheckBox";
@@ -108,10 +104,17 @@ const map = (props) => {
             </Paper>
           </Grid>
           <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                  <CheckBox />
-                </Paper>
-              </Grid>
+            <Paper className={classes.paper}>
+              <Typography variant="h4" gutterBottom>
+                たびを計画する
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <CheckBox />
+            </Paper>
+          </Grid>
           {mapToList ? (
             router.query.pref !== "" ? (
               <>
